@@ -7,8 +7,9 @@ public class Board {
 	private String movingPlayer;
 	private String postionsOfHorizontalBars;
 	private String postionsOfVerticalBars;
-	private String beadRepresentation;
 	private String sequenceOfMoves;
+	private String boardConfiguration;
+	private String beadConfiguration;
 	private int count;
 
 	/**
@@ -102,21 +103,6 @@ public class Board {
 	}
 
 	/**
-	 * @return the beadRepresentation
-	 */
-	public String getBeadRepresentation() {
-		return beadRepresentation;
-	}
-
-	/**
-	 * @param beadRepresentation
-	 *            the beadRepresentation to set
-	 */
-	public void setBeadRepresentation(String beadRepresentation) {
-		this.beadRepresentation = beadRepresentation;
-	}
-
-	/**
 	 * @return the sequenceOfMoves
 	 */
 	public String getSequenceOfMoves() {
@@ -129,6 +115,36 @@ public class Board {
 	 */
 	public void setSequenceOfMoves(String sequenceOfMoves) {
 		this.sequenceOfMoves = sequenceOfMoves;
+	}
+
+	/**
+	 * @return the boardConfiguration
+	 */
+	public String getBoardConfiguration() {
+		return boardConfiguration;
+	}
+
+	/**
+	 * @param boardConfiguration
+	 *            the boardConfiguration to set
+	 */
+	public void setBoardConfiguration(String boardConfiguration) {
+		this.boardConfiguration = boardConfiguration;
+	}
+
+	/**
+	 * @return the beadConfiguration
+	 */
+	public String getBeadConfiguration() {
+		return beadConfiguration;
+	}
+
+	/**
+	 * @param beadConfiguration
+	 *            the beadConfiguration to set
+	 */
+	public void setBeadConfiguration(String beadConfiguration) {
+		this.beadConfiguration = beadConfiguration;
 	}
 
 	/**

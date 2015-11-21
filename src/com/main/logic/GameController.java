@@ -3,8 +3,6 @@ package com.main.logic;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-import com.main.rishabh.MoveController;
-
 public class GameController {
 
 	/**

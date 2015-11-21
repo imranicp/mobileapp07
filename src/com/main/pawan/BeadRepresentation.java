@@ -2,16 +2,15 @@ package com.main.pawan;
 
 public class BeadRepresentation {
 
-	public BoardGame Count(BoardGame value){
-		
-int i,j;
-		
+	public BoardGame Count(BoardGame value) {
+
+		int i, j;
+
 		// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		// Logic of putting beads on the board but some improvement needed in
 		// the code.(need to be coded well)
 		// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		int a = 0, b = 1;
-		
 
 		for (i = 0; i < 7; i++) {
 
@@ -103,12 +102,11 @@ int i,j;
 			System.out.println("\n" + value.countForThirdPlayer);
 			System.out.println("\n" + value.countForFourthPlayer);
 		}
-	/*	for (i = 0; i < 7; i++) {
-			for (j = 0; j < 7; j++) {
-				System.out.print(value.beadsOnTheTable[i][j]);
-			}
-			System.out.println();
-		}*/
+		/*
+		 * for (i = 0; i < 7; i++) { for (j = 0; j < 7; j++) {
+		 * System.out.print(value.beadsOnTheTable[i][j]); }
+		 * System.out.println(); }
+		 */
 		return value;
 	}
 }

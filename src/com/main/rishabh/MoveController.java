@@ -57,24 +57,23 @@ public class MoveController {
 						if (move.charAt(0) == 'v') {
 							verticalBar = makeMove(move, verticalBar);
 						}
+
+						System.out.println("Board Config after performing moves");
+						boardConf = boardConfGenerator(horizontalBar, verticalBar);
+
+						beadConf = beadConfGenerator(beadConf, boardConf);
+
+						movingPlayer = getMovingPlayer(beadConf, moveCounter, movingPlayer,
+								numberOfPlayers);
+
+						String playersLeft = checkbeadConf(beadConf, numberOfPlayers);
 					}
-					System.out.println("Board Config after performing moves");
-					boardConf = boardConfGenerator(horizontalBar, verticalBar);
-
-					beadConf = beadConfGenerator(beadConf, boardConf);
-
-					movingPlayer = getMovingPlayer(beadConf, moveCounter,
-							movingPlayer, numberOfPlayers);
-
-					String playersLeft = checkbeadConf(beadConf,
-							numberOfPlayers);
 				}
 
 				System.out.println(boardConf);
 				System.out.println(beadConf);
 
-				output = numberOfPlayers + movingPlayer + horizontalBar
-						+ verticalBar + beadConf;
+				output = numberOfPlayers + movingPlayer + horizontalBar + verticalBar + beadConf;
 				System.out.println(output);
 			} else {
 				throw new GameException(1);
@@ -103,16 +102,16 @@ public class MoveController {
 	 * @return
 	 */
 
-	public String getMovingPlayer(String beadConf, int moveCounter,
-			String movingPlayer, String numberOfPlayers) {
+	public String getMovingPlayer(String beadConf, int moveCounter, String movingPlayer,
+			String numberOfPlayers) {
 
 		if (numberOfPlayers.equals("2")) {
 			if (moveCounter % 2 == 0) {
 
-				movingPlayer = "2";
+				movingPlayer = "1";
 
 			} else if (numberOfPlayers.equals("2") && moveCounter % 2 != 0) {
-				movingPlayer = "1";
+				movingPlayer = "2";
 			}
 		} else if (numberOfPlayers.equals("3")) {
 			if (movingPlayer.equals("3")) {
@@ -255,16 +254,14 @@ public class MoveController {
 		int i = 1;
 		for (char barPos : horizontalBar.toCharArray()) {
 
-			horBarConf = horBarConf
-					+ barConfGenerator("h", String.valueOf(i), barPos);
+			horBarConf = horBarConf + barConfGenerator("h", String.valueOf(i), barPos);
 			i++;
 		}
 		i = 1;
 		System.out.println("");
 		for (char barPos : verticalBar.toCharArray()) {
 
-			verBarConf = verBarConf
-					+ barConfGenerator("v", String.valueOf(i), barPos);
+			verBarConf = verBarConf + barConfGenerator("v", String.valueOf(i), barPos);
 			i++;
 		}
 		System.out.println("");
@@ -279,8 +276,7 @@ public class MoveController {
 		for (i = 0; i < horBarConf.length(); i++) {
 			if (verBarConf.charAt(i) == 'x') {
 				boardConf = boardConf + "b";
-			} else if (verBarConf.charAt(i) == 'o'
-					&& horBarConf.charAt(i) == 'x') {
+			} else if (verBarConf.charAt(i) == 'o' && horBarConf.charAt(i) == 'x') {
 				boardConf = boardConf + "r";
 			} else {
 				boardConf = boardConf + "h";
