@@ -55,9 +55,18 @@ public class MoveController {
 						board.setOutput(board.getNumberOfPlayers() + board.getMovingPlayer()
 								+ board.getPostionsOfHorizontalBars()
 								+ board.getPostionsOfVerticalBars() + board.getBeadConfiguration());
-
-						// System.out.println(board.getOutput());
+						System.out.println(board.getCount());
+						System.out.println(board.getPostionsOfHorizontalBars());
+						System.out.println(board.getPostionsOfVerticalBars());
+						System.out.println(board.getBoardConfiguration());
+						System.out.println(board.getBeadConfiguration());
+						System.out.println(board.getOutput());
 					}
+				} else {
+					checkWin(board);
+					board.setOutput(board.getNumberOfPlayers() + board.getMovingPlayer()
+							+ board.getPostionsOfHorizontalBars()
+							+ board.getPostionsOfVerticalBars() + board.getBeadConfiguration());
 				}
 
 			} else {
@@ -73,36 +82,28 @@ public class MoveController {
 	}
 
 	public void checkWin(Board board) {
-		if (!board.getBeadConfiguration().contains(Character.toString(Strings.charfour))) {
-			board.setPlayerFour(false);
-		}
+		checkbeadConf(board);
 
-		if (!board.getBeadConfiguration().contains(Character.toString(Strings.charthree))) {
-			board.setPlayerThree(false);
-		}
-		if (!board.getBeadConfiguration().contains(Character.toString(Strings.chartwo))) {
-			board.setPlayerTwo(false);
-
-		}
-		if (!board.getBeadConfiguration().contains(Character.toString(Strings.charone))) {
-			board.setPlayerOne(false);
-
-		}
 		if (!board.isPlayerFour() && !board.isPlayerThree() && !board.isPlayerTwo()) {
 			board.setWinner(Strings.one);
+			board.setCount(1);
 		}
 		if (!board.isPlayerOne() && !board.isPlayerThree() && !board.isPlayerFour()) {
 			board.setWinner(Strings.two);
+			board.setCount(1);
 		}
 		if (!board.isPlayerOne() && !board.isPlayerTwo() && !board.isPlayerFour()) {
 			board.setWinner(Strings.three);
+			board.setCount(1);
 		}
 		if (!board.isPlayerOne() && !board.isPlayerThree() && !board.isPlayerTwo()) {
 			board.setWinner(Strings.four);
+			board.setCount(1);
 		}
 		if (!board.isPlayerFour() && !board.isPlayerThree() && !board.isPlayerTwo()
 				&& !board.isPlayerOne()) {
 			board.setWinner(board.getMoveOne().substring(3, 4));
+			board.setCount(1);
 		}
 
 	}

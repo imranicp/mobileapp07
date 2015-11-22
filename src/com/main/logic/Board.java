@@ -9,6 +9,7 @@ public class Board {
 	 */
 	public Board() {
 		super();
+		this.count = 2;
 		this.playerOne = true;
 		this.playerTwo = true;
 		this.playerThree = true;
