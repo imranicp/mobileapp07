@@ -2,8 +2,6 @@ package com.main.logic;
 
 import java.util.regex.Pattern;
 
-import com.main.rishabh.GameException;
-
 public class MoveController {
 	/**
 	 * @param input
@@ -15,14 +13,11 @@ public class MoveController {
 	 * 
 	 */
 
-	public String moveTest(String input) throws Exception {
-		String output = "";
-		String boardConf = "";
-		int moveCounter = 0;
-		Board board = new Board();
-		board.setInput(input);
+	public Board moveTest(Board board) throws Exception {
+
 		try {
-			if (Pattern.matches(Strings.pattern, board.getInput())) {
+			if (Pattern.matches(Strings.gamePattern, board.getInput())) {
+
 				board.setNumberOfPlayers(board.getInput().substring(0, 1));
 				board.setMovingPlayer(board.getInput().substring(1, 2));
 				board.setPostionsOfHorizontalBars(board.getInput().substring(2, 9));
@@ -30,26 +25,17 @@ public class MoveController {
 				board.setBeadConfiguration(board.getInput().substring(16, 65));
 				board.setSequenceOfMoves(board.getInput().substring(65, board.getInput().length()));
 
-				// before performing the moves we must check whether the move is
-				// correct or not
-				// Rule 1 same bar must not be moved in consecutive turns.You
-				// can’t slide a bar that was slid in the previous turn by
-				// anyone of your opponents,So you should look at the (up to) 3
-				// previously moved bars.
-				// Rule 2 when only two players are left a player cannot move
-				// the same bar for more then two consecutive turns
-
 				// Perform moves
-				String[] movesArray = board.getSequenceOfMoves().split("(?<=\\G...)");
+				String[] movesArray = board.getSequenceOfMoves().split(Strings.movePattern);
 				if (!board.getSequenceOfMoves().isEmpty()) {
 					for (String move : movesArray) {
-						moveCounter = moveCounter + 1;
-						if (move.charAt(0) == 'h') {
+						rulesCheck(move, board);
+						if (move.charAt(0) == Strings.charh) {
 							board.setPostionsOfHorizontalBars(makeMove(move,
 									board.getPostionsOfHorizontalBars()));
 
 						}
-						if (move.charAt(0) == 'v') {
+						if (move.charAt(0) == Strings.charv) {
 							board.setPostionsOfVerticalBars(makeMove(move,
 									board.getPostionsOfVerticalBars()));
 
@@ -62,19 +48,17 @@ public class MoveController {
 						board.setBeadConfiguration(beadConfGenerator(board.getBeadConfiguration(),
 								board.getBoardConfiguration()));
 
-						// String playersLeft =
-						// checkbeadConf(board.getBeadConfiguration(),
-						// board.getNumberOfPlayers());
+						checkbeadConf(board);
+						setMovingPlayer(board);
+						checkElimination(board);
 
-						board.setMovingPlayer(getMovingPlayer(board.getBeadConfiguration(),
-								moveCounter, board.getMovingPlayer(), board.getNumberOfPlayers()));
+						board.setOutput(board.getNumberOfPlayers() + board.getMovingPlayer()
+								+ board.getPostionsOfHorizontalBars()
+								+ board.getPostionsOfVerticalBars() + board.getBeadConfiguration());
+
+						// System.out.println(board.getOutput());
 					}
 				}
-
-				board.setOutput(board.getNumberOfPlayers() + board.getMovingPlayer()
-						+ board.getPostionsOfHorizontalBars() + board.getPostionsOfVerticalBars()
-						+ board.getBeadConfiguration());
-				System.out.println(output);
 
 			} else {
 
@@ -85,7 +69,125 @@ public class MoveController {
 			throw e;
 		}
 
-		return board.getOutput();
+		return board;
+	}
+
+	public void setMoves(String move, Board board) {
+		if (board.getMoveThree() != null) {
+			board.setMoveFour(board.getMoveThree());
+		}
+		if (board.getMoveTwo() != null) {
+			board.setMoveThree(board.getMoveTwo());
+		}
+
+		if (board.getMoveOne() != null) {
+			board.setMoveTwo(board.getMoveOne());
+		}
+
+		board.setMoveOne(move + board.getMovingPlayer());
+	}
+
+	public void rulesCheck(String move, Board board) throws GameException {
+		checkbeadConf(board);
+		int counter = 0;
+		if (board.isPlayerOne()) {
+			counter++;
+		}
+		if (board.isPlayerTwo()) {
+			counter++;
+		}
+		if (board.isPlayerThree()) {
+			counter++;
+		}
+		if (board.isPlayerFour()) {
+			counter++;
+		}
+
+		if (board.getNumberOfPlayers().equals(Strings.four) && counter > 2) {
+			System.out.println("move: " + move.substring(0, 3));
+			System.out.println("move one: " + board.getMoveOne());
+			System.out.println("move two: " + board.getMoveTwo());
+			System.out.println("move three: " + board.getMoveThree());
+			if (board.getMoveOne() != null
+					&& !board.getMovingPlayer().equals(board.getMoveOne().substring(3, 4))
+					&& (move.substring(0, 2).equals(board.getMoveOne().substring(0, 2)))) {
+				throw new GameException(2);
+			} else if (board.getMoveTwo() != null
+					&& !board.getMovingPlayer().equals(board.getMoveTwo().substring(3, 4))
+					&& move.substring(0, 2).equals(board.getMoveTwo().substring(0, 2))) {
+				throw new GameException(2);
+			} else if (board.getMoveThree() != null
+					&& !board.getMovingPlayer().equals(board.getMoveThree().substring(3, 4))
+					&& move.substring(0, 2).equals(board.getMoveThree().substring(0, 2))) {
+				throw new GameException(2);
+			} else {
+				setMoves(move, board);
+
+			}
+
+		}
+
+		if (board.getNumberOfPlayers().equals(Strings.three) && counter > 2) {
+			System.out.println("move: " + move.substring(0, 3));
+			System.out.println("move one: " + board.getMoveOne());
+			System.out.println("move two: " + board.getMoveTwo());
+			System.out.println("move three: " + board.getMoveThree());
+			System.out.println("move four: " + board.getMoveFour());
+
+			if (board.getMoveOne() != null
+					&& !board.getMovingPlayer().equals(board.getMoveOne().substring(3, 4))
+					&& (move.substring(0, 2).equals(board.getMoveOne().substring(0, 2)))) {
+				throw new GameException(2);
+			} else if (board.getMoveTwo() != null
+					&& !board.getMovingPlayer().equals(board.getMoveTwo().substring(3, 4))
+					&& move.substring(0, 2).equals(board.getMoveTwo().substring(0, 2))) {
+				throw new GameException(2);
+			} else {
+				setMoves(move, board);
+
+			}
+
+		}
+
+		if (counter == 2) {
+			System.out.println("move: " + move.substring(0, 3));
+			System.out.println("move one: " + board.getMoveOne());
+			System.out.println("move two: " + board.getMoveTwo());
+			System.out.println("move three: " + board.getMoveThree());
+			System.out.println("move four: " + board.getMoveFour());
+
+			if (board.getMoveOne() != null
+					&& !board.getMovingPlayer().equals(board.getMoveOne().substring(3, 4))
+					&& (move.substring(0, 2).equals(board.getMoveOne().substring(0, 2)))) {
+				throw new GameException(2);
+			} else if (board.getMoveTwo() != null
+					&& !board.getMovingPlayer().equals(board.getMoveTwo().substring(3, 4))
+					&& move.substring(0, 2).equals(board.getMoveTwo().substring(0, 2))) {
+				throw new GameException(2);
+			} else if (board.getMoveThree() != null
+					&& !board.getMovingPlayer().equals(board.getMoveThree().substring(3, 4))
+					&& move.substring(0, 2).equals(board.getMoveThree().substring(0, 2))) {
+				throw new GameException(2);
+			}
+
+			if (board.getMoveOne() != null
+					&& move.substring(0, 2).equals(board.getMoveOne().substring(0, 2))) {
+				throw new GameException(2);
+			} else if (board.getMoveTwo() != null
+					&& board.getMoveFour() != null
+					&& (board.getMovingPlayer().equals(board.getMoveTwo().substring(3, 4)))
+					&& (board.getMovingPlayer().equals(board.getMoveFour().substring(3, 4)))
+					&& (move.substring(0, 2).equals(board.getMoveTwo().substring(0, 2)) && move
+							.substring(0, 2).equals(board.getMoveFour().substring(0, 2)))) {
+				throw new GameException(2);
+			} else {
+				setMoves(move, board);
+			}
+
+		}
+
+		board.setCount(counter);
+
 	}
 
 	/**
@@ -103,82 +205,81 @@ public class MoveController {
 	 */
 	public String makeMove(String move, String bar) throws GameException {
 
-		System.out.println(move);
-		if (move.charAt(0) == 'h' && move.charAt(2) == 'i') {
+		if (move.charAt(0) == Strings.charh && move.charAt(2) == Strings.chari) {
 			int position = Integer.valueOf(String.valueOf(move.charAt(1))) - 1;
 
 			char changeBarVal = bar.charAt(position);
-			if (changeBarVal == '1' || changeBarVal == '2') {
-				if (changeBarVal == '1') {
-					changeBarVal = '0';
+			if (changeBarVal == Strings.charone || changeBarVal == Strings.chartwo) {
+				if (changeBarVal == Strings.charone) {
+					changeBarVal = Strings.charzero;
 				} else {
-					changeBarVal = '1';
+					changeBarVal = Strings.charone;
 				}
 
 				StringBuilder newBarConfig = new StringBuilder(bar);
 				newBarConfig.setCharAt(position, changeBarVal);
-				System.out.println(bar);
+
 				bar = newBarConfig.toString();
-				System.out.println(bar);
+
 			} else {
 				throw new GameException(2);
 			}
-		} else if (move.charAt(0) == 'h' && move.charAt(2) == 'o') {
+		} else if (move.charAt(0) == Strings.charh && move.charAt(2) == Strings.charo) {
 			int position = Integer.valueOf(String.valueOf(move.charAt(1))) - 1;
 
 			char changeBarVal = bar.charAt(position);
 
-			if (changeBarVal == '0' || changeBarVal == '1') {
-				if (changeBarVal == '0') {
-					changeBarVal = '1';
+			if (changeBarVal == Strings.charzero || changeBarVal == Strings.charone) {
+				if (changeBarVal == Strings.charzero) {
+					changeBarVal = Strings.charone;
 				} else {
-					changeBarVal = '2';
+					changeBarVal = Strings.chartwo;
 				}
 
 				StringBuilder newBarConfig = new StringBuilder(bar);
 				newBarConfig.setCharAt(position, changeBarVal);
 
 				bar = newBarConfig.toString();
-				System.out.println(bar);
+
 			} else {
 				throw new GameException(2);
 			}
-		} else if (move.charAt(0) == 'v' && move.charAt(2) == 'i') {
+		} else if (move.charAt(0) == Strings.charv && move.charAt(2) == Strings.chari) {
 			int position = Integer.valueOf(String.valueOf(move.charAt(1))) - 1;
 
 			char changeBarVal = bar.charAt(position);
-			if (changeBarVal == '1' || changeBarVal == '2') {
-				if (changeBarVal == '1') {
-					changeBarVal = '0';
+			if (changeBarVal == Strings.charone || changeBarVal == Strings.chartwo) {
+				if (changeBarVal == Strings.charone) {
+					changeBarVal = Strings.charzero;
 				} else {
-					changeBarVal = '1';
+					changeBarVal = Strings.charone;
 				}
 
 				StringBuilder newBarConfig = new StringBuilder(bar);
 				newBarConfig.setCharAt(position, changeBarVal);
-				System.out.println(bar);
+
 				bar = newBarConfig.toString();
-				System.out.println(bar);
+
 			} else {
 				throw new GameException(2);
 			}
-		} else if (move.charAt(0) == 'v' && move.charAt(2) == 'o') {
+		} else if (move.charAt(0) == Strings.charv && move.charAt(2) == Strings.charo) {
 			int position = Integer.valueOf(String.valueOf(move.charAt(1))) - 1;
 
 			char changeBarVal = bar.charAt(position);
 
-			if (changeBarVal == '0' || changeBarVal == '1') {
-				if (changeBarVal == '0') {
-					changeBarVal = '1';
+			if (changeBarVal == Strings.charzero || changeBarVal == Strings.charone) {
+				if (changeBarVal == Strings.charzero) {
+					changeBarVal = Strings.charone;
 				} else {
-					changeBarVal = '2';
+					changeBarVal = Strings.chartwo;
 				}
 
 				StringBuilder newBarConfig = new StringBuilder(bar);
 				newBarConfig.setCharAt(position, changeBarVal);
-				System.out.println(bar);
+
 				bar = newBarConfig.toString();
-				System.out.println(bar);
+
 			} else {
 				throw new GameException(2);
 			}
@@ -202,32 +303,27 @@ public class MoveController {
 		int i = 1;
 		for (char barPos : horizontalBar.toCharArray()) {
 
-			horBarConf = horBarConf + barConfGenerator("h", String.valueOf(i), barPos);
+			horBarConf = horBarConf + barConfGenerator(Strings.h, String.valueOf(i), barPos);
 			i++;
 		}
 		i = 1;
-		System.out.println("");
+
 		for (char barPos : verticalBar.toCharArray()) {
 
-			verBarConf = verBarConf + barConfGenerator("v", String.valueOf(i), barPos);
+			verBarConf = verBarConf + barConfGenerator(Strings.v, String.valueOf(i), barPos);
 			i++;
 		}
-		System.out.println("");
-		System.out.println(verBarConf);
+
 		verBarConf = transpose(verBarConf);
 
-		System.out.println("");
-		System.out.println(verBarConf);
-		System.out.println("");
-		System.out.println(horBarConf);
-		System.out.println("");
 		for (i = 0; i < horBarConf.length(); i++) {
-			if (verBarConf.charAt(i) == 'x') {
-				boardConf = boardConf + "b";
-			} else if (verBarConf.charAt(i) == 'o' && horBarConf.charAt(i) == 'x') {
-				boardConf = boardConf + "r";
+			if (verBarConf.charAt(i) == Strings.charx) {
+				boardConf = boardConf + Strings.blue;
+			} else if (verBarConf.charAt(i) == Strings.charo
+					&& horBarConf.charAt(i) == Strings.charx) {
+				boardConf = boardConf + Strings.red;
 			} else {
-				boardConf = boardConf + "h";
+				boardConf = boardConf + Strings.hole;
 			}
 
 		}
@@ -247,11 +343,11 @@ public class MoveController {
 		String barConf = "";
 		String horBar = Strings.horizontalBar;
 		String verBar = Strings.verticalBar;
-		if (barType == "h") {
+		if (barType == Strings.h) {
 			barNumber = String.valueOf(Integer.parseInt(barNumber) - 1);
 			barConf = horBar.substring((((Integer.valueOf(barNumber)) * 9)),
 					(((Integer.valueOf(barNumber)) * 9) + 9));
-		} else if (barType == "v") {
+		} else if (barType == Strings.v) {
 
 			barNumber = String.valueOf(Integer.parseInt(barNumber) - 1);
 			barConf = verBar.substring((((Integer.valueOf(barNumber)) * 9)),
@@ -259,14 +355,14 @@ public class MoveController {
 
 		}
 
-		if (barPos == '0') {
+		if (barPos == Strings.charzero) {
 			barConf = barConf.substring(0, 7);
-		} else if (barPos == '1') {
+		} else if (barPos == Strings.charone) {
 			barConf = barConf.substring(1, 8);
-		} else if (barPos == '2') {
+		} else if (barPos == Strings.chartwo) {
 			barConf = barConf.substring(2, 9);
 		}
-		System.out.println(barConf);
+
 		return barConf;
 	}
 
@@ -305,9 +401,9 @@ public class MoveController {
 	public String beadConfGenerator(String beadConf, String boardConf) {
 		int i;
 		for (i = 0; i < beadConf.length(); i++) {
-			if (beadConf.charAt(i) != '0' && boardConf.charAt(i) == 'h') {
+			if (beadConf.charAt(i) != Strings.charzero && boardConf.charAt(i) == Strings.charh) {
 				StringBuilder newBeadConfig = new StringBuilder(beadConf);
-				newBeadConfig.setCharAt(i, '0');
+				newBeadConfig.setCharAt(i, Strings.charzero);
 				beadConf = newBeadConfig.toString();
 			}
 		}
@@ -330,88 +426,105 @@ public class MoveController {
 	 * @return
 	 */
 
-	public String getMovingPlayer(String beadConf, int moveCounter, String movingPlayer,
-			String numberOfPlayers) {
+	public void setMovingPlayer(Board board) {
 
-		if (numberOfPlayers.equals("2")) {
-			if (moveCounter % 2 == 0) {
-
-				movingPlayer = "1";
-
-			} else if (numberOfPlayers.equals("2") && moveCounter % 2 != 0) {
-				movingPlayer = "2";
+		if (board.getNumberOfPlayers().equals(Strings.two)) {
+			if (board.getMovingPlayer().equals(Strings.one)) {
+				board.setMovingPlayer(Strings.two);
 			}
-		} else if (numberOfPlayers.equals("3")) {
-			if (movingPlayer.equals("3")) {
-				if (moveCounter % 3 == 0) {
-					movingPlayer = "3";
-				} else if (moveCounter % 3 == 1) {
-					movingPlayer = "1";
-				} else if (moveCounter % 3 == 2) {
-					movingPlayer = "2";
-				}
-			} else if (movingPlayer.equals("2")) {
-				if (moveCounter % 3 == 0) {
-					movingPlayer = "2";
-				} else if (moveCounter % 3 == 1) {
-					movingPlayer = "3";
-				} else if (moveCounter % 3 == 2) {
-					movingPlayer = "1";
-				}
-			} else if (movingPlayer.equals("1")) {
-				if (moveCounter % 3 == 0) {
-					movingPlayer = "1";
-				} else if (moveCounter % 3 == 1) {
-					movingPlayer = "2";
-				} else if (moveCounter % 3 == 2) {
-					movingPlayer = "3";
-				}
+			if (board.getMovingPlayer().equals(Strings.two)) {
+				board.setMovingPlayer(Strings.one);
+			}
+		} else if (board.getNumberOfPlayers().equals(Strings.three)) {
+			if (board.getMovingPlayer().equals(Strings.three)) {
+				board.setMovingPlayer(Strings.one);
+			} else if (board.getMovingPlayer().equals(Strings.two)) {
+				board.setMovingPlayer(Strings.three);
+			} else if (board.getMovingPlayer().equals(Strings.one)) {
+				board.setMovingPlayer(Strings.two);
 			}
 
-		} else if (numberOfPlayers.equals("4")) {
-			if (movingPlayer.equals("4")) {
-				if (moveCounter % 4 == 0) {
-					movingPlayer = "4";
-				} else if (moveCounter % 4 == 1) {
-					movingPlayer = "1";
-				} else if (moveCounter % 4 == 2) {
-					movingPlayer = "2";
-				} else if (moveCounter % 4 == 3) {
-					movingPlayer = "3";
-				}
-			} else if (movingPlayer.equals("2")) {
-				if (moveCounter % 4 == 0) {
-					movingPlayer = "2";
-				} else if (moveCounter % 4 == 1) {
-					movingPlayer = "3";
-				} else if (moveCounter % 4 == 2) {
-					movingPlayer = "4";
-				} else if (moveCounter % 4 == 3) {
-					movingPlayer = "1";
-				}
-			} else if (movingPlayer.equals("3")) {
-				if (moveCounter % 4 == 0) {
-					movingPlayer = "3";
-				} else if (moveCounter % 4 == 1) {
-					movingPlayer = "4";
-				} else if (moveCounter % 4 == 2) {
-					movingPlayer = "1";
-				} else if (moveCounter % 4 == 3) {
-					movingPlayer = "2";
-				}
-			} else if (movingPlayer.equals("1")) {
-				if (moveCounter % 4 == 0) {
-					movingPlayer = "1";
-				} else if (moveCounter % 4 == 1) {
-					movingPlayer = "2";
-				} else if (moveCounter % 4 == 2) {
-					movingPlayer = "3";
-				} else if (moveCounter % 4 == 3) {
-					movingPlayer = "4";
-				}
+		} else if (board.getNumberOfPlayers().equals(Strings.four)) {
+			if (board.getMovingPlayer().equals(Strings.four)) {
+				board.setMovingPlayer(Strings.one);
+			} else if (board.getMovingPlayer().equals(Strings.three)) {
+				board.setMovingPlayer(Strings.four);
+			} else if (board.getMovingPlayer().equals(Strings.two)) {
+				board.setMovingPlayer(Strings.three);
+			} else if (board.getMovingPlayer().equals(Strings.one)) {
+				board.setMovingPlayer(Strings.two);
 			}
 
 		}
-		return movingPlayer;
+
 	}
+
+	public void checkElimination(Board board) {
+
+		if (board.getNumberOfPlayers().equals(Strings.two)) {
+			if (board.getMovingPlayer().equals(Strings.one) & !board.isPlayerOne()) {
+				board.setMovingPlayer(Strings.two);
+				checkElimination(board);
+			}
+			if (board.getMovingPlayer().equals(Strings.two) & !board.isPlayerTwo()) {
+				board.setMovingPlayer(Strings.one);
+				checkElimination(board);
+			}
+
+		}
+		if (board.getNumberOfPlayers().equals(Strings.three)) {
+			if (board.getMovingPlayer().equals(Strings.one) & !board.isPlayerOne()) {
+				board.setMovingPlayer(Strings.two);
+				checkElimination(board);
+			}
+			if (board.getMovingPlayer().equals(Strings.two) & !board.isPlayerTwo()) {
+				board.setMovingPlayer(Strings.three);
+				checkElimination(board);
+			}
+			if (board.getMovingPlayer().equals(Strings.three) & !board.isPlayerThree()) {
+				board.setMovingPlayer(Strings.one);
+				checkElimination(board);
+			}
+
+		}
+		if (board.getNumberOfPlayers().equals(Strings.four)) {
+			if (board.getMovingPlayer().equals(Strings.one) & !board.isPlayerOne()) {
+				board.setMovingPlayer(Strings.two);
+				checkElimination(board);
+			}
+			if (board.getMovingPlayer().equals(Strings.two) & !board.isPlayerTwo()) {
+				board.setMovingPlayer(Strings.three);
+				checkElimination(board);
+			}
+			if (board.getMovingPlayer().equals(Strings.three) & !board.isPlayerThree()) {
+				board.setMovingPlayer(Strings.four);
+				checkElimination(board);
+			}
+			if (board.getMovingPlayer().equals(Strings.four) & !board.isPlayerFour()) {
+				board.setMovingPlayer(Strings.one);
+				checkElimination(board);
+			}
+		}
+	}
+
+	public void checkbeadConf(Board board) {
+
+		if (!board.getBeadConfiguration().contains(Character.toString(Strings.charfour))) {
+			board.setPlayerFour(false);
+		}
+
+		if (!board.getBeadConfiguration().contains(Character.toString(Strings.charthree))) {
+			board.setPlayerThree(false);
+		}
+		if (!board.getBeadConfiguration().contains(Character.toString(Strings.chartwo))) {
+			board.setPlayerTwo(false);
+
+		}
+		if (!board.getBeadConfiguration().contains(Character.toString(Strings.charone))) {
+			board.setPlayerOne(false);
+
+		}
+
+	}
+
 }

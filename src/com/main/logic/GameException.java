@@ -23,6 +23,7 @@ public class GameException extends Exception {
 		if (code == 2) {
 			System.out.println(Strings.invalidMove);
 		}
+
 	}
 
 }

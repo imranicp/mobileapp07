@@ -7,20 +7,23 @@ public class GameController {
 
 	/**
 	 * @param args
+	 * @throws Exception
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		Board board = new Board();
 		do {
 			try {
-				// Input from user
 				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 				board.setInput(br.readLine());
 				MoveController mvControl = new MoveController();
-				String result = mvControl.moveTest(board.getInput());
-			} catch (Exception e) {
+				board = mvControl.moveTest(board);
+				System.out.println(board.getOutput());
 
+			} catch (Exception e) {
+				System.out.println(Strings.retry);
 			}
 		} while (board.getCount() > 1);
 
 	}
+
 }

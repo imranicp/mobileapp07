@@ -1,6 +1,20 @@
 package com.main.logic;
 
 public class Board {
+	/**
+	 * @param playerOne
+	 * @param playerTwo
+	 * @param playerThree
+	 * @param playerFour
+	 */
+	public Board() {
+		super();
+		this.playerOne = true;
+		this.playerTwo = true;
+		this.playerThree = true;
+		this.playerFour = true;
+	}
+
 	private String input;
 	private String output;
 	private String numberOfPlayers;
@@ -10,6 +24,14 @@ public class Board {
 	private String sequenceOfMoves;
 	private String boardConfiguration;
 	private String beadConfiguration;
+	private boolean playerOne;
+	private boolean playerTwo;
+	private boolean playerThree;
+	private boolean playerFour;
+	private String moveOne;
+	private String moveTwo;
+	private String moveThree;
+	private String moveFour;
 	private int count;
 
 	/**
@@ -145,6 +167,126 @@ public class Board {
 	 */
 	public void setBeadConfiguration(String beadConfiguration) {
 		this.beadConfiguration = beadConfiguration;
+	}
+
+	/**
+	 * @return the playerOne
+	 */
+	public boolean isPlayerOne() {
+		return playerOne;
+	}
+
+	/**
+	 * @param playerOne
+	 *            the playerOne to set
+	 */
+	public void setPlayerOne(boolean playerOne) {
+		this.playerOne = playerOne;
+	}
+
+	/**
+	 * @return the playerTwo
+	 */
+	public boolean isPlayerTwo() {
+		return playerTwo;
+	}
+
+	/**
+	 * @param playerTwo
+	 *            the playerTwo to set
+	 */
+	public void setPlayerTwo(boolean playerTwo) {
+		this.playerTwo = playerTwo;
+	}
+
+	/**
+	 * @return the playerThree
+	 */
+	public boolean isPlayerThree() {
+		return playerThree;
+	}
+
+	/**
+	 * @param playerThree
+	 *            the playerThree to set
+	 */
+	public void setPlayerThree(boolean playerThree) {
+		this.playerThree = playerThree;
+	}
+
+	/**
+	 * @return the playerFour
+	 */
+	public boolean isPlayerFour() {
+		return playerFour;
+	}
+
+	/**
+	 * @param playerFour
+	 *            the playerFour to set
+	 */
+	public void setPlayerFour(boolean playerFour) {
+		this.playerFour = playerFour;
+	}
+
+	/**
+	 * @return the moveOne
+	 */
+	public String getMoveOne() {
+		return moveOne;
+	}
+
+	/**
+	 * @param moveOne
+	 *            the moveOne to set
+	 */
+	public void setMoveOne(String moveOne) {
+		this.moveOne = moveOne;
+	}
+
+	/**
+	 * @return the moveTwo
+	 */
+	public String getMoveTwo() {
+		return moveTwo;
+	}
+
+	/**
+	 * @param moveTwo
+	 *            the moveTwo to set
+	 */
+	public void setMoveTwo(String moveTwo) {
+		this.moveTwo = moveTwo;
+	}
+
+	/**
+	 * @return the moveThree
+	 */
+	public String getMoveThree() {
+		return moveThree;
+	}
+
+	/**
+	 * @param moveThree
+	 *            the moveThree to set
+	 */
+	public void setMoveThree(String moveThree) {
+		this.moveThree = moveThree;
+	}
+
+	/**
+	 * @return the moveFour
+	 */
+	public String getMoveFour() {
+		return moveFour;
+	}
+
+	/**
+	 * @param moveFour
+	 *            the moveFour to set
+	 */
+	public void setMoveFour(String moveFour) {
+		this.moveFour = moveFour;
 	}
 
 	/**
