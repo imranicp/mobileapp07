@@ -5,8 +5,7 @@ import java.util.regex.Pattern;
 public class MoveController {
 	/**
 	 * @param input
-	 *            The input string is expected to be the configuration of the
-	 *            game.
+	 *            The input is expected to be the configuration of the game.
 	 * @return The result of the moveTest operation, the state of the game after
 	 *         performing moves.
 	 * @throws Exception
@@ -16,6 +15,7 @@ public class MoveController {
 	public Board moveTest(Board board) throws Exception {
 
 		try {
+			// checking the given input follows the correct pattern
 			if (Pattern.matches(Strings.gamePattern, board.getInput())) {
 
 				board.setNumberOfPlayers(board.getInput().substring(0, 1));
@@ -26,10 +26,16 @@ public class MoveController {
 				board.setSequenceOfMoves(board.getInput().substring(65, board.getInput().length()));
 
 				// Perform moves
+				// The moves are moved into an array and the moves are performed
+				// one at a time
 				String[] movesArray = board.getSequenceOfMoves().split(Strings.movePattern);
 				if (!board.getSequenceOfMoves().isEmpty()) {
 					for (String move : movesArray) {
+
+						// check all the rules before performing the move
 						rulesCheck(move, board);
+
+						// update the position of the bars according to the move
 						if (move.charAt(0) == Strings.charh) {
 							board.setPostionsOfHorizontalBars(makeMove(move,
 									board.getPostionsOfHorizontalBars()));
@@ -41,21 +47,37 @@ public class MoveController {
 
 						}
 
+						// generate the configuration of the board according to
+						// the new position of the bars
 						board.setBoardConfiguration(boardConfGenerator(
 								board.getPostionsOfHorizontalBars(),
 								board.getPostionsOfVerticalBars()));
 
+						// generate the configuration of beads after performing
+						// the moves
 						board.setBeadConfiguration(beadConfGenerator(board.getBeadConfiguration(),
 								board.getBoardConfiguration()));
 
+						// check the bead configuration for the available
+						// players
 						checkbeadConf(board);
+
+						// set the next possible moving player
 						setMovingPlayer(board);
+
+						// check if the player is eliminated, if yes set
+						// movingPlayer to the eligible player
 						checkElimination(board);
+
+						// check for win condition
 						checkWin(board);
+
+						// set the output of the board
 						board.setOutput(board.getNumberOfPlayers() + board.getMovingPlayer()
 								+ board.getPostionsOfHorizontalBars()
 								+ board.getPostionsOfVerticalBars() + board.getBeadConfiguration());
-						System.out.println(board.getCount());
+
+						System.out.println(board.getPlayerCount());
 						System.out.println(board.getPostionsOfHorizontalBars());
 						System.out.println(board.getPostionsOfVerticalBars());
 						System.out.println(board.getBoardConfiguration());
@@ -63,14 +85,18 @@ public class MoveController {
 						System.out.println(board.getOutput());
 					}
 				} else {
+					// in case there are no moves to perform check for a winning
+					// condition
 					checkWin(board);
+					// setting the input back to the output as there are no
+					// moves to perform
 					board.setOutput(board.getNumberOfPlayers() + board.getMovingPlayer()
 							+ board.getPostionsOfHorizontalBars()
 							+ board.getPostionsOfVerticalBars() + board.getBeadConfiguration());
 				}
 
 			} else {
-
+				// throw exception that the input is not valid
 				throw new GameException(1);
 
 			}
@@ -81,33 +107,47 @@ public class MoveController {
 		return board;
 	}
 
+	/**
+	 * This function checks the condition for win when there are beads from only
+	 * one player in the bead configuration, also in conditions when there are
+	 * no beads the player who last performed the moves will be the winner
+	 * 
+	 * @param board
+	 */
 	public void checkWin(Board board) {
 		checkbeadConf(board);
 
 		if (!board.isPlayerFour() && !board.isPlayerThree() && !board.isPlayerTwo()) {
 			board.setWinner(Strings.one);
-			board.setCount(1);
+			board.setPlayerCount(1);
 		}
 		if (!board.isPlayerOne() && !board.isPlayerThree() && !board.isPlayerFour()) {
 			board.setWinner(Strings.two);
-			board.setCount(1);
+			board.setPlayerCount(1);
 		}
 		if (!board.isPlayerOne() && !board.isPlayerTwo() && !board.isPlayerFour()) {
 			board.setWinner(Strings.three);
-			board.setCount(1);
+			board.setPlayerCount(1);
 		}
 		if (!board.isPlayerOne() && !board.isPlayerThree() && !board.isPlayerTwo()) {
 			board.setWinner(Strings.four);
-			board.setCount(1);
+			board.setPlayerCount(1);
 		}
 		if (!board.isPlayerFour() && !board.isPlayerThree() && !board.isPlayerTwo()
 				&& !board.isPlayerOne()) {
 			board.setWinner(board.getMoveOne().substring(3, 4));
-			board.setCount(1);
+			board.setPlayerCount(1);
 		}
 
 	}
 
+	/**
+	 * This function sets values to the history of moves which are being
+	 * performed
+	 * 
+	 * @param move
+	 * @param board
+	 */
 	public void setMoves(String move, Board board) {
 		if (board.getMoveThree() != null) {
 			board.setMoveFour(board.getMoveThree());
@@ -123,8 +163,21 @@ public class MoveController {
 		board.setMoveOne(move + board.getMovingPlayer());
 	}
 
+	/**
+	 * @param move
+	 *            the move which is supposed to be performed
+	 * @param board
+	 *            the function will deal with the history of 4 moves and they
+	 *            are stored like a chain of moves where MoveOne will the latest
+	 *            performed move and so on. We will also store the player who
+	 *            performed the move by adding the player number to move
+	 *            performed using the makeMove function
+	 * @throws GameException
+	 */
 	public void rulesCheck(String move, Board board) throws GameException {
 		checkbeadConf(board);
+		// counter is to check the number of players currently available to
+		// perform moves
 		int counter = 0;
 		if (board.isPlayerOne()) {
 			counter++;
@@ -138,7 +191,9 @@ public class MoveController {
 		if (board.isPlayerFour()) {
 			counter++;
 		}
-
+		// here we check whether the move is valid or not, the bar which is
+		// supposed to be moved must not be moved in the last turns by other
+		// players
 		if (board.getNumberOfPlayers().equals(Strings.four) && counter > 2) {
 			System.out.println("move: " + move.substring(0, 3));
 			System.out.println("move one: " + board.getMoveOne());
@@ -162,7 +217,9 @@ public class MoveController {
 			}
 
 		}
-
+		// here we check whether the move is valid or not, the bar which is
+		// supposed to be moved must not be moved in the last turns by other
+		// players
 		if (board.getNumberOfPlayers().equals(Strings.three) && counter > 2) {
 			System.out.println("move: " + move.substring(0, 3));
 			System.out.println("move one: " + board.getMoveOne());
@@ -185,6 +242,10 @@ public class MoveController {
 
 		}
 
+		// when the number of players are just two then we have to check that a
+		// bar must not be moved more then two times by the same player in
+		// consecutive turns. We make use of the stored player number in the
+		// history of moves ie the 4th character in the move history.
 		if (counter == 2) {
 			System.out.println("move: " + move.substring(0, 3));
 			System.out.println("move one: " + board.getMoveOne());
@@ -192,6 +253,10 @@ public class MoveController {
 			System.out.println("move three: " + board.getMoveThree());
 			System.out.println("move four: " + board.getMoveFour());
 
+			// this check must be done again because even if the current number
+			// of players are two, but still they should not be able to move the
+			// bars which were moved by players who got eliminated in the recent
+			// moves
 			if (board.getMoveOne() != null
 					&& !board.getMovingPlayer().equals(board.getMoveOne().substring(3, 4))
 					&& (move.substring(0, 2).equals(board.getMoveOne().substring(0, 2)))) {
@@ -206,6 +271,7 @@ public class MoveController {
 				throw new GameException(2);
 			}
 
+			// this is the check for two consecutive turns on the same bar
 			if (board.getMoveOne() != null
 					&& move.substring(0, 2).equals(board.getMoveOne().substring(0, 2))) {
 				throw new GameException(2);
@@ -222,11 +288,15 @@ public class MoveController {
 
 		}
 
-		board.setCount(counter);
+		board.setPlayerCount(counter);
 
 	}
 
 	/**
+	 * This function will change the configuration of the bar which is moved for
+	 * example: The move is h3i and the horizontal bar configuration is 1022222,
+	 * the output will be 1012222
+	 * 
 	 * @param move
 	 *            The move to be performed represented by a 3 character string
 	 *            where 1st character is the bar type, 2nd character is the bar
@@ -242,6 +312,8 @@ public class MoveController {
 	public String makeMove(String move, String bar) throws GameException {
 
 		if (move.charAt(0) == Strings.charh && move.charAt(2) == Strings.chari) {
+			// position of bar in the barConfig string will be 1 less than the
+			// specified position
 			int position = Integer.valueOf(String.valueOf(move.charAt(1))) - 1;
 
 			char changeBarVal = bar.charAt(position);
@@ -258,7 +330,7 @@ public class MoveController {
 				bar = newBarConfig.toString();
 
 			} else {
-				throw new GameException(2);
+				throw new GameException(1, String.valueOf(move.charAt(1)));
 			}
 		} else if (move.charAt(0) == Strings.charh && move.charAt(2) == Strings.charo) {
 			int position = Integer.valueOf(String.valueOf(move.charAt(1))) - 1;
@@ -278,7 +350,7 @@ public class MoveController {
 				bar = newBarConfig.toString();
 
 			} else {
-				throw new GameException(2);
+				throw new GameException(2, String.valueOf(move.charAt(1)));
 			}
 		} else if (move.charAt(0) == Strings.charv && move.charAt(2) == Strings.chari) {
 			int position = Integer.valueOf(String.valueOf(move.charAt(1))) - 1;
@@ -297,7 +369,7 @@ public class MoveController {
 				bar = newBarConfig.toString();
 
 			} else {
-				throw new GameException(2);
+				throw new GameException(3, String.valueOf(move.charAt(1)));
 			}
 		} else if (move.charAt(0) == Strings.charv && move.charAt(2) == Strings.charo) {
 			int position = Integer.valueOf(String.valueOf(move.charAt(1))) - 1;
@@ -317,7 +389,7 @@ public class MoveController {
 				bar = newBarConfig.toString();
 
 			} else {
-				throw new GameException(2);
+				throw new GameException(4, String.valueOf(move.charAt(1)));
 			}
 		}
 
@@ -325,6 +397,9 @@ public class MoveController {
 	}
 
 	/**
+	 * This function returns the board as a 49 character string where values are
+	 * b,r,or h
+	 * 
 	 * @param horizontalBar
 	 *            The horizontal bar configuration
 	 * @param verticalBar
@@ -349,7 +424,8 @@ public class MoveController {
 			verBarConf = verBarConf + barConfGenerator(Strings.v, String.valueOf(i), barPos);
 			i++;
 		}
-
+		// we need to transpose the vertical bar so that we can compare them to
+		// the corresponding horizontal bar positions
 		verBarConf = transpose(verBarConf);
 
 		for (i = 0; i < horBarConf.length(); i++) {
@@ -390,7 +466,7 @@ public class MoveController {
 					(((Integer.valueOf(barNumber)) * 9) + 9));
 
 		}
-
+		// select the barConf according to the current position of the bar
 		if (barPos == Strings.charzero) {
 			barConf = barConf.substring(0, 7);
 		} else if (barPos == Strings.charone) {
@@ -447,21 +523,10 @@ public class MoveController {
 	}
 
 	/**
-	 * The overall input will have the player number who will start performing
-	 * moves after the moves are performed the moving player value in the output
-	 * must be the player who last performed the move
+	 * This function determines the next player who must perform the move
 	 * 
-	 * @param beadConf
-	 *            Configuration of the beads
-	 * @param moveCounter
-	 *            the move Counter Value which is the number of moves performed
-	 * @param movingPlayer
-	 *            the player which started the sequence of moves
-	 * @param numberOfPlayers
-	 *            the total number of player playing the game
-	 * @return
+	 * @param board
 	 */
-
 	public void setMovingPlayer(Board board) {
 
 		if (board.getNumberOfPlayers().equals(Strings.two)) {
@@ -495,6 +560,13 @@ public class MoveController {
 
 	}
 
+	/**
+	 * This function recursively checks whether the current player who has the
+	 * turn is eliminated or not, if the player is eliminated then the next
+	 * eligible player will get the turn.
+	 * 
+	 * @param board
+	 */
 	public void checkElimination(Board board) {
 
 		if (board.getNumberOfPlayers().equals(Strings.two)) {
@@ -543,6 +615,13 @@ public class MoveController {
 		}
 	}
 
+	/**
+	 * This function checks the configuration of the beads and determines
+	 * whether a player is currently playing or not, For ex: if the bead
+	 * configuration doesnt have 4 then PlayerFour will be set to false
+	 * 
+	 * @param board
+	 */
 	public void checkbeadConf(Board board) {
 
 		if (!board.getBeadConfiguration().contains(Character.toString(Strings.charfour))) {

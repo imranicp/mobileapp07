@@ -28,4 +28,9 @@ public class Strings {
 	public static final char charthree = '3';
 	public static final char charfour = '4';
 	public static final String retry = "Please try a different move";
+	public static final String win = "The winner is: Player ";
+	public static final String horBar = "Horizontal Bar ";
+	public static final String inner = " is already in inner position";
+	public static final String outer = " is already in outer position";
+	public static final String verBar = "Vertical Bar ";
 }

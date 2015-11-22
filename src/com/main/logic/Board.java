@@ -9,7 +9,7 @@ public class Board {
 	 */
 	public Board() {
 		super();
-		this.count = 2;
+		this.playerCount = 2;
 		this.playerOne = true;
 		this.playerTwo = true;
 		this.playerThree = true;
@@ -34,7 +34,7 @@ public class Board {
 	private String moveThree;
 	private String moveFour;
 	private String winner;
-	private int count;
+	private int playerCount;
 
 	/**
 	 * @return the input
@@ -309,15 +309,15 @@ public class Board {
 	/**
 	 * @return the count
 	 */
-	public int getCount() {
-		return count;
+	public int getPlayerCount() {
+		return playerCount;
 	}
 
 	/**
 	 * @param count
 	 *            the count to set
 	 */
-	public void setCount(int count) {
-		this.count = count;
+	public void setPlayerCount(int playerCount) {
+		this.playerCount = playerCount;
 	}
 }

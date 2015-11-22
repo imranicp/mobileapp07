@@ -26,4 +26,23 @@ public class GameException extends Exception {
 
 	}
 
+	public GameException(int code, String bar) {
+		if (code == 1) {
+			System.out.println(Strings.invalidMove);
+			System.out.println(Strings.horBar + bar + Strings.inner);
+		}
+		if (code == 2) {
+			System.out.println(Strings.invalidMove);
+			System.out.println(Strings.horBar + bar + Strings.outer);
+		}
+		if (code == 3) {
+			System.out.println(Strings.invalidMove);
+			System.out.println(Strings.verBar + bar + Strings.inner);
+		}
+		if (code == 4) {
+			System.out.println(Strings.invalidMove);
+			System.out.println(Strings.verBar + bar + Strings.outer);
+		}
+
+	}
 }

@@ -22,9 +22,9 @@ public class GameController {
 			} catch (Exception e) {
 				System.out.println(Strings.retry);
 			}
-		} while (board.getCount() > 1);
+		} while (board.getPlayerCount() > 1);
 		if (board.getWinner() != null) {
-			System.out.println("The winner is: Player " + board.getWinner());
+			System.out.println(Strings.win + board.getWinner());
 		}
 	}
 
