@@ -23,7 +23,7 @@ public class GameController {
 				System.out.println(Strings.retry);
 			}
 		} while (board.getCount() > 1);
-
+		System.out.println("The winner is: Player " + board.getWinner());
 	}
 
 }

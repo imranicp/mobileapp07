@@ -51,7 +51,7 @@ public class MoveController {
 						checkbeadConf(board);
 						setMovingPlayer(board);
 						checkElimination(board);
-
+						checkWin(board);
 						board.setOutput(board.getNumberOfPlayers() + board.getMovingPlayer()
 								+ board.getPostionsOfHorizontalBars()
 								+ board.getPostionsOfVerticalBars() + board.getBeadConfiguration());
@@ -70,6 +70,41 @@ public class MoveController {
 		}
 
 		return board;
+	}
+
+	public void checkWin(Board board) {
+		if (!board.getBeadConfiguration().contains(Character.toString(Strings.charfour))) {
+			board.setPlayerFour(false);
+		}
+
+		if (!board.getBeadConfiguration().contains(Character.toString(Strings.charthree))) {
+			board.setPlayerThree(false);
+		}
+		if (!board.getBeadConfiguration().contains(Character.toString(Strings.chartwo))) {
+			board.setPlayerTwo(false);
+
+		}
+		if (!board.getBeadConfiguration().contains(Character.toString(Strings.charone))) {
+			board.setPlayerOne(false);
+
+		}
+		if (!board.isPlayerFour() && !board.isPlayerThree() && !board.isPlayerTwo()) {
+			board.setWinner(Strings.one);
+		}
+		if (!board.isPlayerOne() && !board.isPlayerThree() && !board.isPlayerFour()) {
+			board.setWinner(Strings.two);
+		}
+		if (!board.isPlayerOne() && !board.isPlayerTwo() && !board.isPlayerFour()) {
+			board.setWinner(Strings.three);
+		}
+		if (!board.isPlayerOne() && !board.isPlayerThree() && !board.isPlayerTwo()) {
+			board.setWinner(Strings.four);
+		}
+		if (!board.isPlayerFour() && !board.isPlayerThree() && !board.isPlayerTwo()
+				&& !board.isPlayerOne()) {
+			board.setWinner(board.getMoveOne().substring(3, 4));
+		}
+
 	}
 
 	public void setMoves(String move, Board board) {

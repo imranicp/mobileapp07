@@ -32,6 +32,7 @@ public class Board {
 	private String moveTwo;
 	private String moveThree;
 	private String moveFour;
+	private String winner;
 	private int count;
 
 	/**
@@ -287,6 +288,21 @@ public class Board {
 	 */
 	public void setMoveFour(String moveFour) {
 		this.moveFour = moveFour;
+	}
+
+	/**
+	 * @return the winner
+	 */
+	public String getWinner() {
+		return winner;
+	}
+
+	/**
+	 * @param winner
+	 *            the winner to set
+	 */
+	public void setWinner(String winner) {
+		this.winner = winner;
 	}
 
 	/**
