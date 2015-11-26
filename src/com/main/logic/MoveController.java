@@ -561,45 +561,54 @@ public class MoveController {
 	public void checkElimination(Board board) {
 
 		if (board.getNumberOfPlayers().equals(Strings.two)) {
-			if (board.getMovingPlayer().equals(Strings.one) & !board.isPlayerOne()) {
+			if (board.getMovingPlayer().equals(Strings.one) && !board.isPlayerOne()
+					&& board.isPlayerTwo()) {
 				board.setMovingPlayer(Strings.two);
 				checkElimination(board);
 			}
-			if (board.getMovingPlayer().equals(Strings.two) & !board.isPlayerTwo()) {
+			if (board.getMovingPlayer().equals(Strings.two) && !board.isPlayerTwo()
+					&& board.isPlayerOne()) {
 				board.setMovingPlayer(Strings.one);
 				checkElimination(board);
 			}
 
 		}
 		if (board.getNumberOfPlayers().equals(Strings.three)) {
-			if (board.getMovingPlayer().equals(Strings.one) & !board.isPlayerOne()) {
+			if (board.getMovingPlayer().equals(Strings.one) && !board.isPlayerOne()
+					&& board.isPlayerTwo()) {
 				board.setMovingPlayer(Strings.two);
 				checkElimination(board);
 			}
-			if (board.getMovingPlayer().equals(Strings.two) & !board.isPlayerTwo()) {
+			if (board.getMovingPlayer().equals(Strings.two) && !board.isPlayerTwo()
+					&& board.isPlayerThree()) {
 				board.setMovingPlayer(Strings.three);
 				checkElimination(board);
 			}
-			if (board.getMovingPlayer().equals(Strings.three) & !board.isPlayerThree()) {
+			if (board.getMovingPlayer().equals(Strings.three) && !board.isPlayerThree()
+					&& board.isPlayerOne()) {
 				board.setMovingPlayer(Strings.one);
 				checkElimination(board);
 			}
 
 		}
 		if (board.getNumberOfPlayers().equals(Strings.four)) {
-			if (board.getMovingPlayer().equals(Strings.one) & !board.isPlayerOne()) {
+			if (board.getMovingPlayer().equals(Strings.one) && !board.isPlayerOne()
+					&& board.isPlayerTwo()) {
 				board.setMovingPlayer(Strings.two);
 				checkElimination(board);
 			}
-			if (board.getMovingPlayer().equals(Strings.two) & !board.isPlayerTwo()) {
+			if (board.getMovingPlayer().equals(Strings.two) && !board.isPlayerTwo()
+					&& board.isPlayerThree()) {
 				board.setMovingPlayer(Strings.three);
 				checkElimination(board);
 			}
-			if (board.getMovingPlayer().equals(Strings.three) & !board.isPlayerThree()) {
+			if (board.getMovingPlayer().equals(Strings.three) && !board.isPlayerThree()
+					&& board.isPlayerFour()) {
 				board.setMovingPlayer(Strings.four);
 				checkElimination(board);
 			}
-			if (board.getMovingPlayer().equals(Strings.four) & !board.isPlayerFour()) {
+			if (board.getMovingPlayer().equals(Strings.four) && !board.isPlayerFour()
+					&& board.isPlayerOne()) {
 				board.setMovingPlayer(Strings.one);
 				checkElimination(board);
 			}
