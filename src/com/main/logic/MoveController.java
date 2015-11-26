@@ -46,6 +46,9 @@ public class MoveController {
 									board.getPostionsOfVerticalBars()));
 
 						}
+						// On a successful move the player who performed the
+						// move and the move are stored in history of moves
+						setMoves(move, board);
 
 						// generate the configuration of the board according to
 						// the new position of the bars
@@ -211,11 +214,7 @@ public class MoveController {
 					&& !board.getMovingPlayer().equals(board.getMoveThree().substring(3, 4))
 					&& move.substring(0, 2).equals(board.getMoveThree().substring(0, 2))) {
 				throw new GameException(2);
-			} else {
-				setMoves(move, board);
-
 			}
-
 		}
 		// here we check whether the move is valid or not, the bar which is
 		// supposed to be moved must not be moved in the last turns by other
@@ -235,11 +234,7 @@ public class MoveController {
 					&& !board.getMovingPlayer().equals(board.getMoveTwo().substring(3, 4))
 					&& move.substring(0, 2).equals(board.getMoveTwo().substring(0, 2))) {
 				throw new GameException(2);
-			} else {
-				setMoves(move, board);
-
 			}
-
 		}
 
 		// when the number of players are just two then we have to check that a
@@ -282,10 +277,7 @@ public class MoveController {
 					&& (move.substring(0, 2).equals(board.getMoveTwo().substring(0, 2)) && move
 							.substring(0, 2).equals(board.getMoveFour().substring(0, 2)))) {
 				throw new GameException(2);
-			} else {
-				setMoves(move, board);
 			}
-
 		}
 
 		board.setPlayerCount(counter);
