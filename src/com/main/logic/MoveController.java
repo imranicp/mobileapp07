@@ -264,13 +264,14 @@ public class MoveController {
 					&& !board.getMovingPlayer().equals(board.getMoveThree().substring(3, 4))
 					&& move.substring(0, 2).equals(board.getMoveThree().substring(0, 2))) {
 				throw new GameException(2);
+			} else if (board.getMoveFour() != null
+					&& !board.getMovingPlayer().equals(board.getMoveFour().substring(3, 4))
+					&& move.substring(0, 2).equals(board.getMoveFour().substring(0, 2))) {
+				throw new GameException(2);
 			}
 
 			// this is the check for two consecutive turns on the same bar
-			if (board.getMoveOne() != null
-					&& move.substring(0, 2).equals(board.getMoveOne().substring(0, 2))) {
-				throw new GameException(2);
-			} else if (board.getMoveTwo() != null
+			if (board.getMoveTwo() != null
 					&& board.getMoveFour() != null
 					&& (board.getMovingPlayer().equals(board.getMoveTwo().substring(3, 4)))
 					&& (board.getMovingPlayer().equals(board.getMoveFour().substring(3, 4)))
