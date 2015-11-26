@@ -46,6 +46,9 @@ public class MoveController {
 									board.getPostionsOfVerticalBars()));
 
 						}
+						// On a successful move the player who performed the
+						// move and the move are stored in history of moves
+						setMoves(move, board);
 
 						// generate the configuration of the board according to
 						// the new position of the bars
@@ -211,11 +214,7 @@ public class MoveController {
 					&& !board.getMovingPlayer().equals(board.getMoveThree().substring(3, 4))
 					&& move.substring(0, 2).equals(board.getMoveThree().substring(0, 2))) {
 				throw new GameException(2);
-			} else {
-				setMoves(move, board);
-
 			}
-
 		}
 		// here we check whether the move is valid or not, the bar which is
 		// supposed to be moved must not be moved in the last turns by other
@@ -235,11 +234,7 @@ public class MoveController {
 					&& !board.getMovingPlayer().equals(board.getMoveTwo().substring(3, 4))
 					&& move.substring(0, 2).equals(board.getMoveTwo().substring(0, 2))) {
 				throw new GameException(2);
-			} else {
-				setMoves(move, board);
-
 			}
-
 		}
 
 		// when the number of players are just two then we have to check that a
@@ -282,10 +277,7 @@ public class MoveController {
 					&& (move.substring(0, 2).equals(board.getMoveTwo().substring(0, 2)) && move
 							.substring(0, 2).equals(board.getMoveFour().substring(0, 2)))) {
 				throw new GameException(2);
-			} else {
-				setMoves(move, board);
 			}
-
 		}
 
 		board.setPlayerCount(counter);
@@ -569,45 +561,54 @@ public class MoveController {
 	public void checkElimination(Board board) {
 
 		if (board.getNumberOfPlayers().equals(Strings.two)) {
-			if (board.getMovingPlayer().equals(Strings.one) & !board.isPlayerOne()) {
+			if (board.getMovingPlayer().equals(Strings.one) && !board.isPlayerOne()
+					&& board.isPlayerTwo()) {
 				board.setMovingPlayer(Strings.two);
 				checkElimination(board);
 			}
-			if (board.getMovingPlayer().equals(Strings.two) & !board.isPlayerTwo()) {
+			if (board.getMovingPlayer().equals(Strings.two) && !board.isPlayerTwo()
+					&& board.isPlayerOne()) {
 				board.setMovingPlayer(Strings.one);
 				checkElimination(board);
 			}
 
 		}
 		if (board.getNumberOfPlayers().equals(Strings.three)) {
-			if (board.getMovingPlayer().equals(Strings.one) & !board.isPlayerOne()) {
+			if (board.getMovingPlayer().equals(Strings.one) && !board.isPlayerOne()
+					&& board.isPlayerTwo()) {
 				board.setMovingPlayer(Strings.two);
 				checkElimination(board);
 			}
-			if (board.getMovingPlayer().equals(Strings.two) & !board.isPlayerTwo()) {
+			if (board.getMovingPlayer().equals(Strings.two) && !board.isPlayerTwo()
+					&& board.isPlayerThree()) {
 				board.setMovingPlayer(Strings.three);
 				checkElimination(board);
 			}
-			if (board.getMovingPlayer().equals(Strings.three) & !board.isPlayerThree()) {
+			if (board.getMovingPlayer().equals(Strings.three) && !board.isPlayerThree()
+					&& board.isPlayerOne()) {
 				board.setMovingPlayer(Strings.one);
 				checkElimination(board);
 			}
 
 		}
 		if (board.getNumberOfPlayers().equals(Strings.four)) {
-			if (board.getMovingPlayer().equals(Strings.one) & !board.isPlayerOne()) {
+			if (board.getMovingPlayer().equals(Strings.one) && !board.isPlayerOne()
+					&& board.isPlayerTwo()) {
 				board.setMovingPlayer(Strings.two);
 				checkElimination(board);
 			}
-			if (board.getMovingPlayer().equals(Strings.two) & !board.isPlayerTwo()) {
+			if (board.getMovingPlayer().equals(Strings.two) && !board.isPlayerTwo()
+					&& board.isPlayerThree()) {
 				board.setMovingPlayer(Strings.three);
 				checkElimination(board);
 			}
-			if (board.getMovingPlayer().equals(Strings.three) & !board.isPlayerThree()) {
+			if (board.getMovingPlayer().equals(Strings.three) && !board.isPlayerThree()
+					&& board.isPlayerFour()) {
 				board.setMovingPlayer(Strings.four);
 				checkElimination(board);
 			}
-			if (board.getMovingPlayer().equals(Strings.four) & !board.isPlayerFour()) {
+			if (board.getMovingPlayer().equals(Strings.four) && !board.isPlayerFour()
+					&& board.isPlayerOne()) {
 				board.setMovingPlayer(Strings.one);
 				checkElimination(board);
 			}
