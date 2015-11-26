@@ -532,8 +532,7 @@ public class MoveController {
 		if (board.getNumberOfPlayers().equals(Strings.two)) {
 			if (board.getMovingPlayer().equals(Strings.one)) {
 				board.setMovingPlayer(Strings.two);
-			}
-			if (board.getMovingPlayer().equals(Strings.two)) {
+			} else if (board.getMovingPlayer().equals(Strings.two)) {
 				board.setMovingPlayer(Strings.one);
 			}
 		} else if (board.getNumberOfPlayers().equals(Strings.three)) {
