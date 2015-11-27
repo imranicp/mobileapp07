@@ -13,7 +13,7 @@ import org.junit.Test;
 public class MoveControllerTest {
 
 
-	public class TestMoveController {
+	
 
 		MoveController moveController;
 		Board board ;
@@ -39,29 +39,21 @@ public class MoveControllerTest {
 		board.setMoveThree("h6o2");
 		board.setMoveFour("v4o1");
 		moveController.setMoves("v3i", board);
-		assertNotEquals(board.getMoveOne(), "v3i1");
-		fail("Not yet implemented");
+		assertEquals(board.getMoveOne(), "v3i2");
+		
 		
 	}
 
 	@Test
 	public void testTranspose() {
 		
-		String input = board.getPostionsOfVerticalBars();
-		assertEquals("1100022",input);
 		
-		String result = "ooooxoxoooxxooxoxooxoxooxxoooxxoooxoxoooooxxoxooxox";
-		moveController.transpose(result);
-		assertNotEquals("ooxxxoo"
-				+ 	 "ooooxox"
-				+	 "ooxoooo"
-				+	 "oxoxooo"
-				+ 	 "xxoxoxo"
-				+	 "oxoxoxo"
-				+ 	 "xooooxx",result);
 		
-		fail("Not yet implemented");
+		 
+		 String result =moveController.transpose("ooooxoxoooxxooxoxooxoxooxxoooxxoooxoxoooooxxoxooxox");
+		assertEquals("ooxxooxooooxxxooxoxoooxoxooxxxoxoooooxooooxoooxoxox",result);
+		
+		
 	}
 
-}
 }
