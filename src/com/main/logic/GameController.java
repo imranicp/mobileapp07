@@ -17,7 +17,6 @@ public class GameController {
 				board.setInput(br.readLine());
 				MoveController mvControl = new MoveController();
 				board = mvControl.moveTest(board);
-				System.out.println(board.getOutput());
 
 			} catch (Exception e) {
 				System.out.println(Strings.retry);

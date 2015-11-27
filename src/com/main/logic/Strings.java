@@ -18,6 +18,7 @@ public class Strings {
 	public static final String blue = "b";
 	public static final String hole = "h";
 	public static final char charh = 'h';
+	public static final char charr = 'r';
 	public static final char charv = 'v';
 	public static final char charo = 'o';
 	public static final char charx = 'x';
@@ -33,4 +34,6 @@ public class Strings {
 	public static final String inner = " is already in inner position";
 	public static final String outer = " is already in outer position";
 	public static final String verBar = "Vertical Bar ";
+	public static final String output = "Output:";
+	public static final String lastOutput = "Last Output:";
 }

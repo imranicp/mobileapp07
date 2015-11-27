@@ -38,12 +38,12 @@ public class MoveController {
 						// update the position of the bars according to the move
 						if (move.charAt(0) == Strings.charh) {
 							board.setPostionsOfHorizontalBars(makeMove(move,
-									board.getPostionsOfHorizontalBars()));
+									board.getPostionsOfHorizontalBars(), board));
 
 						}
 						if (move.charAt(0) == Strings.charv) {
 							board.setPostionsOfVerticalBars(makeMove(move,
-									board.getPostionsOfVerticalBars()));
+									board.getPostionsOfVerticalBars(), board));
 
 						}
 						// On a successful move the player who performed the
@@ -80,12 +80,6 @@ public class MoveController {
 								+ board.getPostionsOfHorizontalBars()
 								+ board.getPostionsOfVerticalBars() + board.getBeadConfiguration());
 
-						System.out.println(board.getPlayerCount());
-						System.out.println(board.getPostionsOfHorizontalBars());
-						System.out.println(board.getPostionsOfVerticalBars());
-						System.out.println(board.getBoardConfiguration());
-						System.out.println(board.getBeadConfiguration());
-						System.out.println(board.getOutput());
 					}
 				} else {
 					// in case there are no moves to perform check for a winning
@@ -97,7 +91,8 @@ public class MoveController {
 							+ board.getPostionsOfHorizontalBars()
 							+ board.getPostionsOfVerticalBars() + board.getBeadConfiguration());
 				}
-
+				System.out.println(Strings.output);
+				System.out.println(board.getOutput());
 			} else {
 				// throw exception that the input is not valid
 				throw new GameException(1);
@@ -198,42 +193,33 @@ public class MoveController {
 		// supposed to be moved must not be moved in the last turns by other
 		// players
 		if (board.getNumberOfPlayers().equals(Strings.four) && counter > 2) {
-			System.out.println("move: " + move.substring(0, 3));
-			System.out.println("move one: " + board.getMoveOne());
-			System.out.println("move two: " + board.getMoveTwo());
-			System.out.println("move three: " + board.getMoveThree());
 			if (board.getMoveOne() != null
 					&& !board.getMovingPlayer().equals(board.getMoveOne().substring(3, 4))
 					&& (move.substring(0, 2).equals(board.getMoveOne().substring(0, 2)))) {
-				throw new GameException(2);
+				throw new GameException(Strings.charr, move, board);
 			} else if (board.getMoveTwo() != null
 					&& !board.getMovingPlayer().equals(board.getMoveTwo().substring(3, 4))
 					&& move.substring(0, 2).equals(board.getMoveTwo().substring(0, 2))) {
-				throw new GameException(2);
+				throw new GameException(Strings.charr, move, board);
 			} else if (board.getMoveThree() != null
 					&& !board.getMovingPlayer().equals(board.getMoveThree().substring(3, 4))
 					&& move.substring(0, 2).equals(board.getMoveThree().substring(0, 2))) {
-				throw new GameException(2);
+				throw new GameException(Strings.charr, move, board);
 			}
 		}
 		// here we check whether the move is valid or not, the bar which is
 		// supposed to be moved must not be moved in the last turns by other
 		// players
 		if (board.getNumberOfPlayers().equals(Strings.three) && counter > 2) {
-			System.out.println("move: " + move.substring(0, 3));
-			System.out.println("move one: " + board.getMoveOne());
-			System.out.println("move two: " + board.getMoveTwo());
-			System.out.println("move three: " + board.getMoveThree());
-			System.out.println("move four: " + board.getMoveFour());
 
 			if (board.getMoveOne() != null
 					&& !board.getMovingPlayer().equals(board.getMoveOne().substring(3, 4))
 					&& (move.substring(0, 2).equals(board.getMoveOne().substring(0, 2)))) {
-				throw new GameException(2);
+				throw new GameException(Strings.charr, move, board);
 			} else if (board.getMoveTwo() != null
 					&& !board.getMovingPlayer().equals(board.getMoveTwo().substring(3, 4))
 					&& move.substring(0, 2).equals(board.getMoveTwo().substring(0, 2))) {
-				throw new GameException(2);
+				throw new GameException(Strings.charr, move, board);
 			}
 		}
 
@@ -242,11 +228,6 @@ public class MoveController {
 		// consecutive turns. We make use of the stored player number in the
 		// history of moves ie the 4th character in the move history.
 		if (counter == 2) {
-			System.out.println("move: " + move.substring(0, 3));
-			System.out.println("move one: " + board.getMoveOne());
-			System.out.println("move two: " + board.getMoveTwo());
-			System.out.println("move three: " + board.getMoveThree());
-			System.out.println("move four: " + board.getMoveFour());
 
 			// this check must be done again because even if the current number
 			// of players are two, but still they should not be able to move the
@@ -255,19 +236,19 @@ public class MoveController {
 			if (board.getMoveOne() != null
 					&& !board.getMovingPlayer().equals(board.getMoveOne().substring(3, 4))
 					&& (move.substring(0, 2).equals(board.getMoveOne().substring(0, 2)))) {
-				throw new GameException(2);
+				throw new GameException(Strings.charr, move, board);
 			} else if (board.getMoveTwo() != null
 					&& !board.getMovingPlayer().equals(board.getMoveTwo().substring(3, 4))
 					&& move.substring(0, 2).equals(board.getMoveTwo().substring(0, 2))) {
-				throw new GameException(2);
+				throw new GameException(Strings.charr, move, board);
 			} else if (board.getMoveThree() != null
 					&& !board.getMovingPlayer().equals(board.getMoveThree().substring(3, 4))
 					&& move.substring(0, 2).equals(board.getMoveThree().substring(0, 2))) {
-				throw new GameException(2);
+				throw new GameException(Strings.charr, move, board);
 			} else if (board.getMoveFour() != null
 					&& !board.getMovingPlayer().equals(board.getMoveFour().substring(3, 4))
 					&& move.substring(0, 2).equals(board.getMoveFour().substring(0, 2))) {
-				throw new GameException(2);
+				throw new GameException(Strings.charr, move, board);
 			}
 
 			// this is the check for two consecutive turns on the same bar
@@ -277,7 +258,7 @@ public class MoveController {
 					&& (board.getMovingPlayer().equals(board.getMoveFour().substring(3, 4)))
 					&& (move.substring(0, 2).equals(board.getMoveTwo().substring(0, 2)) && move
 							.substring(0, 2).equals(board.getMoveFour().substring(0, 2)))) {
-				throw new GameException(2);
+				throw new GameException(Strings.charr, move, board);
 			}
 		}
 
@@ -302,7 +283,7 @@ public class MoveController {
 	 * @return Updated configuration of the bar after performing the move
 	 * @throws GameException
 	 */
-	public String makeMove(String move, String bar) throws GameException {
+	public String makeMove(String move, String bar, Board board) throws GameException {
 
 		if (move.charAt(0) == Strings.charh && move.charAt(2) == Strings.chari) {
 			// position of bar in the barConfig string will be 1 less than the
@@ -323,7 +304,7 @@ public class MoveController {
 				bar = newBarConfig.toString();
 
 			} else {
-				throw new GameException(1, String.valueOf(move.charAt(1)));
+				throw new GameException(1, String.valueOf(move.charAt(1)), board);
 			}
 		} else if (move.charAt(0) == Strings.charh && move.charAt(2) == Strings.charo) {
 			int position = Integer.valueOf(String.valueOf(move.charAt(1))) - 1;
@@ -343,7 +324,7 @@ public class MoveController {
 				bar = newBarConfig.toString();
 
 			} else {
-				throw new GameException(2, String.valueOf(move.charAt(1)));
+				throw new GameException(2, String.valueOf(move.charAt(1)), board);
 			}
 		} else if (move.charAt(0) == Strings.charv && move.charAt(2) == Strings.chari) {
 			int position = Integer.valueOf(String.valueOf(move.charAt(1))) - 1;
@@ -362,7 +343,7 @@ public class MoveController {
 				bar = newBarConfig.toString();
 
 			} else {
-				throw new GameException(3, String.valueOf(move.charAt(1)));
+				throw new GameException(3, String.valueOf(move.charAt(1)), board);
 			}
 		} else if (move.charAt(0) == Strings.charv && move.charAt(2) == Strings.charo) {
 			int position = Integer.valueOf(String.valueOf(move.charAt(1))) - 1;
@@ -382,7 +363,7 @@ public class MoveController {
 				bar = newBarConfig.toString();
 
 			} else {
-				throw new GameException(4, String.valueOf(move.charAt(1)));
+				throw new GameException(4, String.valueOf(move.charAt(1)), board);
 			}
 		}
 

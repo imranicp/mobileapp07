@@ -526,73 +526,85 @@ public class TestMoveController {
 
 	@Test
 	public void testMakeMoveHorizontalOuterToCentral() throws GameException {
-		String result = moveController.makeMove("h3i", "1021221");
+		Board board = new Board();
+		String result = moveController.makeMove("h3i", "1021221", board);
 		assertEquals("1011221", result);
 	}
 
 	@Test
 	public void testMakeMoveHorizontalInnerToCentral() throws GameException {
-		String result = moveController.makeMove("h3o", "1001221");
+		Board board = new Board();
+		String result = moveController.makeMove("h3o", "1001221", board);
 		assertEquals("1011221", result);
 	}
 
 	@Test
 	public void testMakeMoveHorizontalCentralToInner() throws GameException {
-		String result = moveController.makeMove("h3i", "1011221");
+		Board board = new Board();
+		String result = moveController.makeMove("h3i", "1011221", board);
 		assertEquals("1001221", result);
 	}
 
 	@Test
 	public void testMakeMoveHorizontalCentralToOuter() throws GameException {
-		String result = moveController.makeMove("h3o", "1011221");
+		Board board = new Board();
+		String result = moveController.makeMove("h3o", "1011221", board);
 		assertEquals("1021221", result);
 	}
 
 	@Test
 	public void testMakeMoveVerticalOuterToCentral() throws GameException {
-		String result = moveController.makeMove("v3i", "1021221");
+		Board board = new Board();
+		String result = moveController.makeMove("v3i", "1021221", board);
 		assertEquals("1011221", result);
 	}
 
 	@Test
 	public void testMakeMoveVerticalInnerToCentral() throws GameException {
-		String result = moveController.makeMove("v3o", "1001221");
+		Board board = new Board();
+		String result = moveController.makeMove("v3o", "1001221", board);
 		assertEquals("1011221", result);
 	}
 
 	@Test
 	public void testMakeMoveVerticalCentralToInner() throws GameException {
-		String result = moveController.makeMove("v3i", "1011221");
+		Board board = new Board();
+		String result = moveController.makeMove("v3i", "1011221", board);
 		assertEquals("1001221", result);
 	}
 
 	@Test
 	public void testMakeMoveVerticalCentralToOuter() throws GameException {
-		String result = moveController.makeMove("v3o", "1011221");
+		Board board = new Board();
+		String result = moveController.makeMove("v3o", "1011221", board);
 		assertEquals("1021221", result);
 	}
 
 	@Test(expected = GameException.class)
 	public void testMakeMoveVerticalInnerToInnerException() throws GameException {
-		moveController.makeMove("v3i", "1001221");
+		Board board = new Board();
+		moveController.makeMove("v3i", "1001221", board);
 
 	}
 
 	@Test(expected = GameException.class)
 	public void testMakeMoveVerticalOuterToOuterException() throws GameException {
-		moveController.makeMove("v3o", "1021221");
+		Board board = new Board();
+		moveController.makeMove("v3o", "1021221", board);
 
 	}
 
 	@Test(expected = GameException.class)
 	public void testMakeMoveHorizontalInnerToInnerException() throws GameException {
-		moveController.makeMove("h3i", "1001221");
+		Board board = new Board();
+		moveController.makeMove("h3i", "1001221", board);
 
 	}
 
 	@Test(expected = GameException.class)
 	public void testMakeMoveHorizontalOuterToOuterException() throws GameException {
-		moveController.makeMove("h3o", "1021221");
+		Board board = new Board();
+		moveController.makeMove("h3o", "1021221", board);
 
 	}
 
@@ -682,6 +694,133 @@ public class TestMoveController {
 		board.setMoveFour("h4o1");
 		moveController.setMoves("h3i", board);
 		assertEquals(board.getMoveOne(), "h3i1");
+	}
+
+	@Test
+	public void testBoardConf() {
+		String result = moveController.boardConfGenerator("1001101", "2022002");
+		assertEquals("hbbrbbhrhhbbbbrhhbrhhbrbrhrhhbhhhhbbbbhbrhbhbbrhb", result);
+	}
+
+	@Test
+	public void testBeadConf() {
+		String result = moveController.beadConfGenerator(
+				"000010002000000000012000000000000000010000000000",
+				"hbbrbbhrhhbbbbrhhbrhhbrbrhrhhbhhhhbbbbhbrhbhbbrhb");
+		assertEquals("000010000000000000000000000000000000010000000000", result);
+	}
+
+	// Check Elimination Two Players
+	@Test
+	public void testCheckEliminationTwoPlayersOne() {
+		Board testBoard = new Board();
+		testBoard.setNumberOfPlayers("2");
+		testBoard.setMovingPlayer("1");
+		testBoard.setPlayerTwo(true);
+		testBoard.setPlayerOne(false);
+		moveController.checkElimination(testBoard);
+		assertEquals(testBoard.getMovingPlayer(), Strings.two);
+
+	}
+
+	@Test
+	public void testCheckEliminationTwoPlayersTwo() {
+		Board testBoard = new Board();
+		testBoard.setNumberOfPlayers("2");
+		testBoard.setMovingPlayer("2");
+		testBoard.setPlayerTwo(false);
+		testBoard.setPlayerOne(true);
+		moveController.checkElimination(testBoard);
+		assertEquals(testBoard.getMovingPlayer(), Strings.one);
+
+	}
+
+	// Check Elimination Three Players
+
+	@Test
+	public void testCheckEliminationThreePlayersOne() {
+		Board testBoard = new Board();
+		testBoard.setNumberOfPlayers("3");
+		testBoard.setMovingPlayer("1");
+		testBoard.setPlayerTwo(true);
+		testBoard.setPlayerOne(false);
+		moveController.checkElimination(testBoard);
+		assertEquals(testBoard.getMovingPlayer(), Strings.two);
+
+	}
+
+	@Test
+	public void testCheckEliminationThreePlayersTwo() {
+		Board testBoard = new Board();
+		testBoard.setNumberOfPlayers("3");
+		testBoard.setMovingPlayer("2");
+		testBoard.setPlayerTwo(false);
+		testBoard.setPlayerThree(true);
+		moveController.checkElimination(testBoard);
+		assertEquals(testBoard.getMovingPlayer(), Strings.three);
+
+	}
+
+	@Test
+	public void testCheckEliminationThreePlayersThree() {
+		Board testBoard = new Board();
+		testBoard.setNumberOfPlayers("3");
+		testBoard.setMovingPlayer("3");
+		testBoard.setPlayerThree(false);
+		testBoard.setPlayerOne(true);
+		moveController.checkElimination(testBoard);
+		assertEquals(testBoard.getMovingPlayer(), Strings.one);
+
+	}
+
+	// Check Elimination Four Players
+
+	@Test
+	public void testCheckEliminationFourPlayersOne() {
+		Board testBoard = new Board();
+		testBoard.setNumberOfPlayers("4");
+		testBoard.setMovingPlayer("1");
+		testBoard.setPlayerTwo(true);
+		testBoard.setPlayerOne(false);
+		moveController.checkElimination(testBoard);
+		assertEquals(testBoard.getMovingPlayer(), Strings.two);
+
+	}
+
+	@Test
+	public void testCheckEliminationFourPlayersTwo() {
+		Board testBoard = new Board();
+		testBoard.setNumberOfPlayers("4");
+		testBoard.setMovingPlayer("2");
+		testBoard.setPlayerTwo(false);
+		testBoard.setPlayerThree(true);
+		moveController.checkElimination(testBoard);
+		assertEquals(testBoard.getMovingPlayer(), Strings.three);
+
+	}
+
+	@Test
+	public void testCheckEliminationFourPlayersThree() {
+		Board testBoard = new Board();
+		testBoard.setNumberOfPlayers("4");
+		testBoard.setMovingPlayer("3");
+		testBoard.setPlayerThree(false);
+		testBoard.setPlayerFour(true);
+		moveController.checkElimination(testBoard);
+		assertEquals(testBoard.getMovingPlayer(), Strings.four);
+
+	}
+
+	@Test
+	public void testCheckEliminationFourPlayersFour() {
+		Board testBoard = new Board();
+		testBoard.setNumberOfPlayers("4");
+		testBoard.setMovingPlayer("4");
+		testBoard.setPlayerFour(false);
+		testBoard.setPlayerOne(true);
+		moveController.checkElimination(testBoard);
+		assertEquals(testBoard.getMovingPlayer(), Strings.one);
+
 	}
 
 }

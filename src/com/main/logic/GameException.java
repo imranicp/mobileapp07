@@ -15,33 +15,46 @@ public class GameException extends Exception {
 		if (code == 0) {
 			System.out.println(Strings.abort);
 		}
-
 		if (code == 1) {
 			System.out.println(Strings.invalidInput);
 		}
 
-		if (code == 2) {
-			System.out.println(Strings.invalidMove);
+	}
+
+	public GameException(char code, String move, Board board) {
+
+		if (code == Strings.charr) {
+			System.out.println(Strings.invalidMove + ":" + move);
+			System.out.println(Strings.lastOutput);
+			System.out.println(board.getOutput());
 		}
 
 	}
 
-	public GameException(int code, String bar) {
+	public GameException(int code, String bar, Board board) {
 		if (code == 1) {
 			System.out.println(Strings.invalidMove);
 			System.out.println(Strings.horBar + bar + Strings.inner);
+			System.out.println(Strings.lastOutput);
+			System.out.println(board.getOutput());
 		}
 		if (code == 2) {
 			System.out.println(Strings.invalidMove);
 			System.out.println(Strings.horBar + bar + Strings.outer);
+			System.out.println(Strings.lastOutput);
+			System.out.println(board.getOutput());
 		}
 		if (code == 3) {
 			System.out.println(Strings.invalidMove);
 			System.out.println(Strings.verBar + bar + Strings.inner);
+			System.out.println(Strings.lastOutput);
+			System.out.println(board.getOutput());
 		}
 		if (code == 4) {
 			System.out.println(Strings.invalidMove);
 			System.out.println(Strings.verBar + bar + Strings.outer);
+			System.out.println(Strings.lastOutput);
+			System.out.println(board.getOutput());
 		}
 
 	}
