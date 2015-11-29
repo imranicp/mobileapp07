@@ -36,4 +36,7 @@ public class Strings {
 	public static final String verBar = "Vertical Bar ";
 	public static final String output = "Output:";
 	public static final String lastOutput = "Last Output:";
+	public static final String bar = " Bar moved in previous turn";
+	public static final String pilot = "Give an input to start the game:";
+	public static final String next = "Please give the next input:";
 }

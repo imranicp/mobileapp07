@@ -24,6 +24,15 @@ public class TestMoveController {
 	}
 
 	@Test
+	public void testMoveTest() throws Exception {
+		testBoard
+				.setInput("21012012021011020000100002000000000012000000000000000010000000000h3iv2o");
+		Board result = moveController.moveTest(testBoard);
+		assertEquals("21011012022011020000100002000000000002000000000000000010000000000",
+				result.getOutput());
+	}
+
+	@Test
 	public void testBarConfGeneratorHorizontalOneInner() {
 		assertEquals("xoxoxox", moveController.barConfGenerator("h", "1", '0'));
 	}
@@ -684,7 +693,7 @@ public class TestMoveController {
 	}
 
 	@Test
-	public void testSetMoves() {
+	public void testSetMovesMoveOne() {
 		Board board = new Board();
 
 		board.setMovingPlayer("1");
@@ -820,6 +829,28 @@ public class TestMoveController {
 		testBoard.setPlayerOne(true);
 		moveController.checkElimination(testBoard);
 		assertEquals(testBoard.getMovingPlayer(), Strings.one);
+
+	}
+
+	@Test
+	public void testSetMoves() {
+
+		testBoard.setMovingPlayer("2");
+		testBoard.setMoveOne("v4o2");
+		testBoard.setMoveTwo("h2o1");
+		testBoard.setMoveThree("h6o2");
+		testBoard.setMoveFour("v4o1");
+		moveController.setMoves("v3i", testBoard);
+		assertEquals(testBoard.getMoveOne(), "v3i2");
+
+	}
+
+	@Test
+	public void testTranspose() {
+
+		String result = moveController
+				.transpose("ooooxoxoooxxooxoxooxoxooxxoooxxoooxoxoooooxxoxooxox");
+		assertEquals("ooxxooxooooxxxooxoxoooxoxooxxxoxoooooxooooxoooxoxox", result);
 
 	}
 

@@ -1,20 +1,6 @@
 package com.main.logic;
 
 public class Board {
-	/**
-	 * @param playerOne
-	 * @param playerTwo
-	 * @param playerThree
-	 * @param playerFour
-	 */
-	public Board() {
-		super();
-		this.playerCount = 2;
-		this.playerOne = true;
-		this.playerTwo = true;
-		this.playerThree = true;
-		this.playerFour = true;
-	}
 
 	private String input;
 	private String output;
@@ -35,6 +21,21 @@ public class Board {
 	private String moveFour;
 	private String winner;
 	private int playerCount;
+
+	/**
+	 * @param playerOne
+	 * @param playerTwo
+	 * @param playerThree
+	 * @param playerFour
+	 */
+	public Board() {
+		super();
+		this.playerCount = 2;
+		this.playerOne = true;
+		this.playerTwo = true;
+		this.playerThree = true;
+		this.playerFour = true;
+	}
 
 	/**
 	 * @return the input

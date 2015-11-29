@@ -5,7 +5,8 @@ import java.util.regex.Pattern;
 public class MoveController {
 	/**
 	 * @param input
-	 *            The input is expected to be the configuration of the game.
+	 *            The input is expected to be the configuration of the game. The
+	 *            input must be set into the board object
 	 * @return The result of the moveTest operation, the state of the game after
 	 *         performing moves.
 	 * @throws Exception

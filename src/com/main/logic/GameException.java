@@ -24,7 +24,7 @@ public class GameException extends Exception {
 	public GameException(char code, String move, Board board) {
 
 		if (code == Strings.charr) {
-			System.out.println(Strings.invalidMove + ":" + move);
+			System.out.println(Strings.invalidMove + ":" + move + Strings.bar);
 			System.out.println(Strings.lastOutput);
 			System.out.println(board.getOutput());
 		}
