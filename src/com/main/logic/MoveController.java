@@ -13,8 +13,9 @@ public class MoveController {
 	 * 
 	 */
 
-	public Board moveTest(Board board) throws Exception {
-
+	public String moveTest(String input) throws Exception {
+		Board board = new Board();
+		board.setInput(input);
 		try {
 			// checking the given input follows the correct pattern
 			if (Pattern.matches(Strings.gamePattern, board.getInput())) {
@@ -103,7 +104,7 @@ public class MoveController {
 			throw e;
 		}
 
-		return board;
+		return board.getOutput();
 	}
 
 	/**
