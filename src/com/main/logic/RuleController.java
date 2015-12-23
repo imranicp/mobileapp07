@@ -39,34 +39,34 @@ public class RuleController {
 		// here we check whether the move is valid or not, the bar which is
 		// supposed to be moved must not be moved in the last turns by other
 		// players
-		if (board.getNumberOfPlayers()== Strings.four && counter > 2) {
+		if (board.getNumberOfPlayers()== Constants.four && counter > 2) {
 			if (board.getMoveOne() != null
 					&& board.getMovingPlayer()!=Integer.parseInt((board.getMoveOne().substring(3, 4)))
 					&& (move.substring(0, 2).equals(board.getMoveOne().substring(0, 2)))) {
-				throw new GameException(Strings.charr, move, board);
+				throw new GameException(Constants.charr, move, board);
 			} else if (board.getMoveTwo() != null
 					&& board.getMovingPlayer()!=Integer.parseInt((board.getMoveTwo().substring(3, 4)))
 					&& move.substring(0, 2).equals(board.getMoveTwo().substring(0, 2))) {
-				throw new GameException(Strings.charr, move, board);
+				throw new GameException(Constants.charr, move, board);
 			} else if (board.getMoveThree() != null
 					&& board.getMovingPlayer()!=Integer.parseInt((board.getMoveThree().substring(3, 4)))
 					&& move.substring(0, 2).equals(board.getMoveThree().substring(0, 2))) {
-				throw new GameException(Strings.charr, move, board);
+				throw new GameException(Constants.charr, move, board);
 			}
 		}
 		// here we check whether the move is valid or not, the bar which is
 		// supposed to be moved must not be moved in the last turns by other
 		// players
-		if (board.getNumberOfPlayers()== Strings.three && counter > 2) {
+		if (board.getNumberOfPlayers()== Constants.three && counter > 2) {
 
 			if (board.getMoveOne() != null
 					&& board.getMovingPlayer()!=Integer.parseInt((board.getMoveOne().substring(3, 4)))
 					&& (move.substring(0, 2).equals(board.getMoveOne().substring(0, 2)))) {
-				throw new GameException(Strings.charr, move, board);
+				throw new GameException(Constants.charr, move, board);
 			} else if (board.getMoveTwo() != null
 					&& board.getMovingPlayer()!=Integer.parseInt((board.getMoveTwo().substring(3, 4)))
 					&& move.substring(0, 2).equals(board.getMoveTwo().substring(0, 2))) {
-				throw new GameException(Strings.charr, move, board);
+				throw new GameException(Constants.charr, move, board);
 			}
 		}
 
@@ -87,7 +87,7 @@ public class RuleController {
 			if (board.getMoveOne()!= null 
 					&& (move.substring(0,2).equals(board.getMoveOne().substring(0,2)))
 					&& board.getMovingPlayer()!=Integer.parseInt((board.getMoveOne().substring(3, 4)))){
-				throw new GameException(Strings.charr, move, board);
+				throw new GameException(Constants.charr, move, board);
 			}
 
 			// this is the check for two consecutive turns on the same bar
@@ -97,7 +97,7 @@ public class RuleController {
 					&& (board.getMovingPlayer()==Integer.parseInt((board.getMoveFour().substring(3, 4))))
 					&& (move.substring(0, 2).equals(board.getMoveTwo().substring(0, 2)) && move
 							.substring(0, 2).equals(board.getMoveFour().substring(0, 2)))) {
-				throw new GameException(Strings.charr, move, board);
+				throw new GameException(Constants.charr, move, board);
 			}
 
 

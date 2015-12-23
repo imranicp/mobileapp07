@@ -15,9 +15,9 @@ public class BeadConf {
 	public String beadConfGenerator(String beadConf, String boardConf) {
 		int i;
 		for (i = 0; i < beadConf.length(); i++) {
-			if (beadConf.charAt(i) != Strings.charzero && boardConf.charAt(i) == Strings.charh) {
+			if (beadConf.charAt(i) != Constants.charzero && boardConf.charAt(i) == Constants.charh) {
 				StringBuilder newBeadConfig = new StringBuilder(beadConf);
-				newBeadConfig.setCharAt(i, Strings.charzero);
+				newBeadConfig.setCharAt(i, Constants.charzero);
 				beadConf = newBeadConfig.toString();
 			}
 		}
@@ -32,18 +32,18 @@ public class BeadConf {
 	 */
 	public Board checkbeadConf(Board board) {
 
-		if (!board.getBeadConfiguration().contains(Character.toString(Strings.charfour))) {
+		if (!board.getBeadConfiguration().contains(Character.toString(Constants.charfour))) {
 			board.setPlayerFour(false);
 		}
 
-		if (!board.getBeadConfiguration().contains(Character.toString(Strings.charthree))) {
+		if (!board.getBeadConfiguration().contains(Character.toString(Constants.charthree))) {
 			board.setPlayerThree(false);
 		}
-		if (!board.getBeadConfiguration().contains(Character.toString(Strings.chartwo))) {
+		if (!board.getBeadConfiguration().contains(Character.toString(Constants.chartwo))) {
 			board.setPlayerTwo(false);
 
 		}
-		if (!board.getBeadConfiguration().contains(Character.toString(Strings.charone))) {
+		if (!board.getBeadConfiguration().contains(Character.toString(Constants.charone))) {
 			board.setPlayerOne(false);
 
 		}

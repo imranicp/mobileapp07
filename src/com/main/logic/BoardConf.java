@@ -20,14 +20,14 @@ public class BoardConf {
 		int i = 1;
 		for (char barPos : horizontalBar.toCharArray()) {
 
-			horBarConf = horBarConf + barConfGenerator(Strings.h, String.valueOf(i), barPos);
+			horBarConf = horBarConf + barConfGenerator(Constants.h, String.valueOf(i), barPos);
 			i++;
 		}
 		i = 1;
 
 		for (char barPos : verticalBar.toCharArray()) {
 
-			verBarConf = verBarConf + barConfGenerator(Strings.v, String.valueOf(i), barPos);
+			verBarConf = verBarConf + barConfGenerator(Constants.v, String.valueOf(i), barPos);
 			i++;
 		}
 		// we need to transpose the vertical bar so that we can compare them to
@@ -35,13 +35,13 @@ public class BoardConf {
 		verBarConf = transpose(verBarConf);
 
 		for (i = 0; i < horBarConf.length(); i++) {
-			if (verBarConf.charAt(i) == Strings.charx) {
-				boardConf = boardConf + Strings.blue;
-			} else if (verBarConf.charAt(i) == Strings.charo
-					&& horBarConf.charAt(i) == Strings.charx) {
-				boardConf = boardConf + Strings.red;
+			if (verBarConf.charAt(i) == Constants.charx) {
+				boardConf = boardConf + Constants.blue;
+			} else if (verBarConf.charAt(i) == Constants.charo
+					&& horBarConf.charAt(i) == Constants.charx) {
+				boardConf = boardConf + Constants.red;
 			} else {
-				boardConf = boardConf + Strings.hole;
+				boardConf = boardConf + Constants.hole;
 			}
 
 		}
@@ -59,13 +59,13 @@ public class BoardConf {
 	 */
 	public String barConfGenerator(String barType, String barNumber, char barPos) {
 		String barConf = "";
-		String horBar = Strings.horizontalBar;
-		String verBar = Strings.verticalBar;
-		if (barType == Strings.h) {
+		String horBar = Constants.horizontalBar;
+		String verBar = Constants.verticalBar;
+		if (barType == Constants.h) {
 			barNumber = String.valueOf(Integer.parseInt(barNumber) - 1);
 			barConf = horBar.substring((((Integer.valueOf(barNumber)) * 9)),
 					(((Integer.valueOf(barNumber)) * 9) + 9));
-		} else if (barType == Strings.v) {
+		} else if (barType == Constants.v) {
 
 			barNumber = String.valueOf(Integer.parseInt(barNumber) - 1);
 			barConf = verBar.substring((((Integer.valueOf(barNumber)) * 9)),
@@ -73,11 +73,11 @@ public class BoardConf {
 
 		}
 		// select the barConf according to the current position of the bar
-		if (barPos == Strings.charzero) {
+		if (barPos == Constants.charzero) {
 			barConf = barConf.substring(0, 7);
-		} else if (barPos == Strings.charone) {
+		} else if (barPos == Constants.charone) {
 			barConf = barConf.substring(1, 8);
-		} else if (barPos == Strings.chartwo) {
+		} else if (barPos == Constants.chartwo) {
 			barConf = barConf.substring(2, 9);
 		}
 

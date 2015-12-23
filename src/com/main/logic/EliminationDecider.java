@@ -17,58 +17,58 @@ public class EliminationDecider {
 		{
 			winnerDecider.checkWin(board);
 		}
-		if (board.getNumberOfPlayers()== Strings.two) {
-			if (board.getMovingPlayer()== Strings.one && !board.isPlayerOne()
+		if (board.getNumberOfPlayers()== Constants.two) {
+			if (board.getMovingPlayer()== Constants.one && !board.isPlayerOne()
 					) {
-				board.setMovingPlayer(Strings.two);
+				board.setMovingPlayer(Constants.two);
 				checkElimination(board);
 			}
-			if (board.getMovingPlayer()== Strings.two && !board.isPlayerTwo()
+			if (board.getMovingPlayer()== Constants.two && !board.isPlayerTwo()
 					) {
-				board.setMovingPlayer(Strings.one);
-				checkElimination(board);
-			}
-
-		}
-		if (board.getNumberOfPlayers()== Strings.three) {
-			if (board.getMovingPlayer()== Strings.one  && !board.isPlayerOne()
-					) {
-				board.setMovingPlayer(Strings.two);
-				checkElimination(board);
-			}
-			else if (board.getMovingPlayer()== Strings.two && !board.isPlayerTwo()
-					) {
-				board.setMovingPlayer(Strings.three);
-				checkElimination(board);
-			}
-			else if (board.getMovingPlayer()== Strings.three && !board.isPlayerThree()
-					) {
-				board.setMovingPlayer(Strings.one);
+				board.setMovingPlayer(Constants.one);
 				checkElimination(board);
 			}
 
 		}
-		if (board.getNumberOfPlayers()== Strings.four) {
+		if (board.getNumberOfPlayers()== Constants.three) {
+			if (board.getMovingPlayer()== Constants.one  && !board.isPlayerOne()
+					) {
+				board.setMovingPlayer(Constants.two);
+				checkElimination(board);
+			}
+			else if (board.getMovingPlayer()== Constants.two && !board.isPlayerTwo()
+					) {
+				board.setMovingPlayer(Constants.three);
+				checkElimination(board);
+			}
+			else if (board.getMovingPlayer()== Constants.three && !board.isPlayerThree()
+					) {
+				board.setMovingPlayer(Constants.one);
+				checkElimination(board);
+			}
 
-			if (board.getMovingPlayer()== Strings.one && !board.isPlayerOne()
+		}
+		if (board.getNumberOfPlayers()== Constants.four) {
+
+			if (board.getMovingPlayer()== Constants.one && !board.isPlayerOne()
 					) {
-				board.setMovingPlayer(Strings.two);
+				board.setMovingPlayer(Constants.two);
 				checkElimination(board);
 			}
-			if (board.getMovingPlayer()== Strings.two && !board.isPlayerTwo()
+			if (board.getMovingPlayer()== Constants.two && !board.isPlayerTwo()
 					) {
-				board.setMovingPlayer(Strings.three);
+				board.setMovingPlayer(Constants.three);
 				checkElimination(board);
 			}
 
-			if (board.getMovingPlayer()== Strings.three && !board.isPlayerThree()
+			if (board.getMovingPlayer()== Constants.three && !board.isPlayerThree()
 					) {
-				board.setMovingPlayer(Strings.four);
+				board.setMovingPlayer(Constants.four);
 				checkElimination(board);
 			}
-			if (board.getMovingPlayer()== Strings.four && !board.isPlayerFour()
+			if (board.getMovingPlayer()== Constants.four && !board.isPlayerFour()
 					) {
-				board.setMovingPlayer(Strings.one);
+				board.setMovingPlayer(Constants.one);
 				checkElimination(board);
 			}
 		}

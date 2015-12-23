@@ -13,19 +13,19 @@ public class GameException extends Exception {
 	 */
 	public GameException(int code) {
 		if (code == 0) {
-			System.out.println(Strings.abort);
+			System.out.println(Constants.abort);
 		}
 		if (code == 1) {
-			System.out.println(Strings.invalidInput);
+			System.out.println(Constants.invalidInput);
 		}
 
 	}
 
 	public GameException(char code, String move, Board board) {
 
-		if (code == Strings.charr) {
-			System.out.println(Strings.invalidMove + ":" + move + Strings.bar);
-			System.out.println(Strings.lastOutput);
+		if (code == Constants.charr) {
+			System.out.println(Constants.invalidMove + ":" + move + Constants.bar);
+			System.out.println(Constants.lastOutput);
 			System.out.println(board.getOutput());
 		}
 
@@ -33,27 +33,27 @@ public class GameException extends Exception {
 
 	public GameException(int code, String bar, Board board) {
 		if (code == 1) {
-			System.out.println(Strings.invalidMove);
-			System.out.println(Strings.horBar + bar + Strings.inner);
-			System.out.println(Strings.lastOutput);
+			System.out.println(Constants.invalidMove);
+			System.out.println(Constants.horBar + bar + Constants.inner);
+			System.out.println(Constants.lastOutput);
 			System.out.println(board.getOutput());
 		}
 		if (code == 2) {
-			System.out.println(Strings.invalidMove);
-			System.out.println(Strings.horBar + bar + Strings.outer);
-			System.out.println(Strings.lastOutput);
+			System.out.println(Constants.invalidMove);
+			System.out.println(Constants.horBar + bar + Constants.outer);
+			System.out.println(Constants.lastOutput);
 			System.out.println(board.getOutput());
 		}
 		if (code == 3) {
-			System.out.println(Strings.invalidMove);
-			System.out.println(Strings.verBar + bar + Strings.inner);
-			System.out.println(Strings.lastOutput);
+			System.out.println(Constants.invalidMove);
+			System.out.println(Constants.verBar + bar + Constants.inner);
+			System.out.println(Constants.lastOutput);
 			System.out.println(board.getOutput());
 		}
 		if (code == 4) {
-			System.out.println(Strings.invalidMove);
-			System.out.println(Strings.verBar + bar + Strings.outer);
-			System.out.println(Strings.lastOutput);
+			System.out.println(Constants.invalidMove);
+			System.out.println(Constants.verBar + bar + Constants.outer);
+			System.out.println(Constants.lastOutput);
 			System.out.println(board.getOutput());
 		}
 

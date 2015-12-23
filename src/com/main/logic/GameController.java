@@ -11,7 +11,7 @@ public class GameController {
 	 */
 	public static void main(String[] args) throws Exception {
 		Board board = new Board();
-		System.out.println(Strings.pilot);
+		System.out.println(Constants.pilot);
 		do {
 			try {
 				BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -19,15 +19,15 @@ public class GameController {
 				board.setInput(br.readLine());
 				MoveController mvControl = new MoveController();
 				board.setOutput(mvControl.moveTest(board.getInput()));
-				System.out.println(Strings.next);
+				System.out.println(Constants.next);
 			} catch (Exception e) {
-				System.out.println(Strings.retry);
+				System.out.println(Constants.retry);
 			}
 			// the input can be given till there is only one player left
 		} while (board.getPlayerCount() > 1);
 
 		if (board.getWinner() != Integer.parseInt(null)) {
-			System.out.println(Strings.win + board.getWinner());
+			System.out.println(Constants.win + board.getWinner());
 		}
 	}
 

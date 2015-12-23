@@ -6,23 +6,23 @@ public class WinnerDecider {
 		beadConf.checkbeadConf(board);
 
 		if (!board.isPlayerFour() && !board.isPlayerThree() && !board.isPlayerTwo()) {
-			board.setWinner(Strings.one);
+			board.setWinner(Constants.one);
 			board.setPlayerCount(1);
 			board.setMovingPlayer(board.getLastMovingPlayer());
 
 		}
 		if (!board.isPlayerOne() && !board.isPlayerThree() && !board.isPlayerFour()) {
-			board.setWinner(Strings.two);
+			board.setWinner(Constants.two);
 			board.setPlayerCount(1);
 			board.setMovingPlayer(board.getLastMovingPlayer());
 		}
 		if (!board.isPlayerOne() && !board.isPlayerTwo() && !board.isPlayerFour()) {
-			board.setWinner(Strings.three);
+			board.setWinner(Constants.three);
 			board.setPlayerCount(1);
 			board.setMovingPlayer(board.getLastMovingPlayer());
 		}
 		if (!board.isPlayerOne() && !board.isPlayerThree() && !board.isPlayerTwo()) {
-			board.setWinner(Strings.four);
+			board.setWinner(Constants.four);
 			board.setPlayerCount(1);
 			board.setMovingPlayer(board.getLastMovingPlayer());
 		}

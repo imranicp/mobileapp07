@@ -728,7 +728,7 @@ public class TestMoveController {
 		testBoard.setPlayerTwo(true);
 		testBoard.setPlayerOne(false);
 		moveController.checkElimination(testBoard);
-		assertEquals(testBoard.getMovingPlayer(), Strings.two);
+		assertEquals(testBoard.getMovingPlayer(), Constants.two);
 
 	}
 
@@ -740,7 +740,7 @@ public class TestMoveController {
 		testBoard.setPlayerTwo(false);
 		testBoard.setPlayerOne(true);
 		moveController.checkElimination(testBoard);
-		assertEquals(testBoard.getMovingPlayer(), Strings.one);
+		assertEquals(testBoard.getMovingPlayer(), Constants.one);
 
 	}
 
@@ -754,7 +754,7 @@ public class TestMoveController {
 		testBoard.setPlayerTwo(true);
 		testBoard.setPlayerOne(false);
 		moveController.checkElimination(testBoard);
-		assertEquals(testBoard.getMovingPlayer(), Strings.two);
+		assertEquals(testBoard.getMovingPlayer(), Constants.two);
 
 	}
 
@@ -766,7 +766,7 @@ public class TestMoveController {
 		testBoard.setPlayerTwo(false);
 		testBoard.setPlayerThree(true);
 		moveController.checkElimination(testBoard);
-		assertEquals(testBoard.getMovingPlayer(), Strings.three);
+		assertEquals(testBoard.getMovingPlayer(), Constants.three);
 
 	}
 
@@ -778,7 +778,7 @@ public class TestMoveController {
 		testBoard.setPlayerThree(false);
 		testBoard.setPlayerOne(true);
 		moveController.checkElimination(testBoard);
-		assertEquals(testBoard.getMovingPlayer(), Strings.one);
+		assertEquals(testBoard.getMovingPlayer(), Constants.one);
 
 	}
 
@@ -792,7 +792,7 @@ public class TestMoveController {
 		testBoard.setPlayerTwo(true);
 		testBoard.setPlayerOne(false);
 		moveController.checkElimination(testBoard);
-		assertEquals(testBoard.getMovingPlayer(), Strings.two);
+		assertEquals(testBoard.getMovingPlayer(), Constants.two);
 
 	}
 
@@ -804,7 +804,7 @@ public class TestMoveController {
 		testBoard.setPlayerTwo(false);
 		testBoard.setPlayerThree(true);
 		moveController.checkElimination(testBoard);
-		assertEquals(testBoard.getMovingPlayer(), Strings.three);
+		assertEquals(testBoard.getMovingPlayer(), Constants.three);
 
 	}
 
@@ -816,7 +816,7 @@ public class TestMoveController {
 		testBoard.setPlayerThree(false);
 		testBoard.setPlayerFour(true);
 		moveController.checkElimination(testBoard);
-		assertEquals(testBoard.getMovingPlayer(), Strings.four);
+		assertEquals(testBoard.getMovingPlayer(), Constants.four);
 
 	}
 
@@ -828,7 +828,7 @@ public class TestMoveController {
 		testBoard.setPlayerFour(false);
 		testBoard.setPlayerOne(true);
 		moveController.checkElimination(testBoard);
-		assertEquals(testBoard.getMovingPlayer(), Strings.one);
+		assertEquals(testBoard.getMovingPlayer(), Constants.one);
 
 	}
 
