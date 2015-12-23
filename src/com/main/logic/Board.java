@@ -4,8 +4,8 @@ public class Board {
 
 	private String input;
 	private String output;
-	private String numberOfPlayers;
-	private String movingPlayer;
+	private int numberOfPlayers;
+	private int movingPlayer;
 	private String postionsOfHorizontalBars;
 	private String postionsOfVerticalBars;
 	private String sequenceOfMoves;
@@ -19,9 +19,9 @@ public class Board {
 	private String moveTwo;
 	private String moveThree;
 	private String moveFour;
-	private String winner;
+	private int winner;
 	private int playerCount;
-
+	private int lastMovingPlayer;
 	/**
 	 * @param playerOne
 	 * @param playerTwo
@@ -70,7 +70,7 @@ public class Board {
 	/**
 	 * @return the numberOfPlayers
 	 */
-	public String getNumberOfPlayers() {
+	public int getNumberOfPlayers() {
 		return numberOfPlayers;
 	}
 
@@ -78,14 +78,14 @@ public class Board {
 	 * @param numberOfPlayers
 	 *            the numberOfPlayers to set
 	 */
-	public void setNumberOfPlayers(String numberOfPlayers) {
+	public void setNumberOfPlayers(int numberOfPlayers) {
 		this.numberOfPlayers = numberOfPlayers;
 	}
 
 	/**
 	 * @return the movingPlayer
 	 */
-	public String getMovingPlayer() {
+	public int getMovingPlayer() {
 		return movingPlayer;
 	}
 
@@ -93,7 +93,7 @@ public class Board {
 	 * @param movingPlayer
 	 *            the movingPlayer to set
 	 */
-	public void setMovingPlayer(String movingPlayer) {
+	public void setMovingPlayer(int movingPlayer) {
 		this.movingPlayer = movingPlayer;
 	}
 
@@ -295,7 +295,7 @@ public class Board {
 	/**
 	 * @return the winner
 	 */
-	public String getWinner() {
+	public int getWinner() {
 		return winner;
 	}
 
@@ -303,7 +303,7 @@ public class Board {
 	 * @param winner
 	 *            the winner to set
 	 */
-	public void setWinner(String winner) {
+	public void setWinner(int winner) {
 		this.winner = winner;
 	}
 
@@ -320,5 +320,13 @@ public class Board {
 	 */
 	public void setPlayerCount(int playerCount) {
 		this.playerCount = playerCount;
+	}
+
+	public int getLastMovingPlayer() {
+		return lastMovingPlayer;
+	}
+
+	public void setLastMovingPlayer(int lastMovingPlayer) {
+		this.lastMovingPlayer = lastMovingPlayer;
 	}
 }

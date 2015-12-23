@@ -8,10 +8,10 @@ public class Strings {
 	public static final String abort = "Aborting Execution";
 	public static final String invalidInput = "Input is invalid";
 	public static final String invalidMove = "Invalid Move";
-	public static final String one = "1";
-	public static final String two = "2";
-	public static final String three = "3";
-	public static final String four = "4";
+	public static final int one = 1;
+	public static final int two = 2;
+	public static final int three = 3;
+	public static final int four = 4;
 	public static final String h = "h";
 	public static final String v = "v";
 	public static final String red = "r";

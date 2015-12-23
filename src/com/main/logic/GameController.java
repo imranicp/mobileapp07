@@ -26,7 +26,7 @@ public class GameController {
 			// the input can be given till there is only one player left
 		} while (board.getPlayerCount() > 1);
 
-		if (board.getWinner() != null) {
+		if (board.getWinner() != Integer.parseInt(null)) {
 			System.out.println(Strings.win + board.getWinner());
 		}
 	}
