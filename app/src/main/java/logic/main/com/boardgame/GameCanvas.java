@@ -13,8 +13,6 @@ import android.view.View;
 
 import com.SampleCanvas.R;
 
-import java.lang.reflect.Type;
-
 
 public class GameCanvas extends View {
 
@@ -28,6 +26,8 @@ public class GameCanvas extends View {
     Bitmap barLeft_ho, scaled_left_barho,barRight_ho, scaled_right_barho;
     Bitmap barTop_vc, scaled_top_barvc,barTop_vi, scaled_top_barvi,barTop_vo, scaled_top_barvo;
     Bitmap barBottom_vc, scaled_Bottom_barvc,barBottom_vi, scaled_Bottom_barvi,barBottom_vo,scaled_Bottom_barvo;
+    Bitmap top,bottom,leftSide,rightSide,scaled_top,scaled_bottom,background,player,playerscore,scaled_player,scaled_playerscore;
+    Bitmap beadblack,beadred,scaled_beadblack,scaled_beadred;
     String output[] = {"R","B","H","R","B","H","R","R","B","H","R","B","H","R","R","B","H","R","B","H","R","R","B","H","R","B","H","R","R","B","H","R","B","H","R","R","B","H","R","B","H","R","R","B","H","R","B","H","R"};
     int c = 400;
     int p = 300;
@@ -41,6 +41,11 @@ public class GameCanvas extends View {
         super(context);
         final int width=(int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,35,getResources().getDisplayMetrics());
         final int height=(int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,35,getResources().getDisplayMetrics());
+        final int heighttop=(int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,120,getResources().getDisplayMetrics());
+        final int widthtop=(int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,340,getResources().getDisplayMetrics());
+        final int heightbot=(int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,100,getResources().getDisplayMetrics());
+        final int playerht=(int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,60,getResources().getDisplayMetrics());
+        final int playerwd=(int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,120,getResources().getDisplayMetrics());
 
 
         //Loading three textures for squares and bars
@@ -59,7 +64,16 @@ public class GameCanvas extends View {
         barBottom_vi= BitmapFactory.decodeResource(getResources(), R.drawable.vi2);
         barTop_vo= BitmapFactory.decodeResource(getResources(), R.drawable.vo1);
         barBottom_vo= BitmapFactory.decodeResource(getResources(), R.drawable.vo2);
-
+        bottom=BitmapFactory.decodeResource(getResources(),R.drawable.bottom);
+        top=BitmapFactory.decodeResource(getResources(),R.drawable.top);
+        leftSide=BitmapFactory.decodeResource(getResources(),R.drawable.leftside);
+        rightSide=BitmapFactory.decodeResource(getResources(), R.drawable.rightside);
+        background=BitmapFactory.decodeResource(getResources(), R.drawable.background);
+        bottom=BitmapFactory.decodeResource(getResources(), R.drawable.bottom);
+        player=BitmapFactory.decodeResource(getResources(), R.drawable.player);
+        playerscore=BitmapFactory.decodeResource(getResources(), R.drawable.playerscore);
+        beadred=BitmapFactory.decodeResource(getResources(), R.drawable.redpiece);
+        beadblack=BitmapFactory.decodeResource(getResources(), R.drawable.blackpiece);
         //Scaling textures
         scaled_h_square = Bitmap.createScaledBitmap(h_square, width, height, true);
         scaled_v_square = Bitmap.createScaledBitmap(v_square, width, height, true);
@@ -76,7 +90,12 @@ public class GameCanvas extends View {
         scaled_Bottom_barvi=  Bitmap.createScaledBitmap(barBottom_vi, width, height, true);
         scaled_top_barvo= Bitmap.createScaledBitmap(barTop_vo, width, height, true);
         scaled_Bottom_barvo=  Bitmap.createScaledBitmap(barBottom_vo, width, height, true);
-
+        scaled_top=  Bitmap.createScaledBitmap(top, widthtop, heighttop, true);
+        scaled_bottom=Bitmap.createScaledBitmap(bottom, widthtop, heightbot, true);
+        scaled_player=Bitmap.createScaledBitmap(player, playerwd,playerht, true);
+        scaled_playerscore=Bitmap.createScaledBitmap(playerscore, playerht,playerht, true);
+        scaled_beadred=Bitmap.createScaledBitmap(beadred, width,height, true);
+        scaled_beadblack=Bitmap.createScaledBitmap(beadblack, width,height, true);
     }
 
 
@@ -88,15 +107,39 @@ public class GameCanvas extends View {
         int x = getWidth();
         int y = getHeight();
 
-        //Drawing the board
-        for(int r=0; r<49; r++){
 
-            if (output[r] == "R")
-                canvas.drawBitmap(scaled_h_square, (x / 2) -r1 + (row * c1), (y / 2) - c2, null);
-            else if (output[r] == "B")
-                canvas.drawBitmap(scaled_v_square, (x / 2) - r1 + (row * c1), (y / 2) - c2, null);
+        canvas.drawBitmap(background,0,0,null);
+        canvas.drawBitmap(scaled_bottom,0+30,y/2 + 450,null);
+        canvas.drawBitmap(leftSide,0,0,null);
+        canvas.drawBitmap(rightSide,x-35,0,null);
+        canvas.drawBitmap(scaled_top,0+30,0,null);
+
+        canvas.drawBitmap(scaled_player,0+50,50,null);
+        canvas.drawBitmap(scaled_playerscore,0+380,50,null);
+        canvas.drawBitmap(scaled_player,0+680,50,null);
+        canvas.drawBitmap(scaled_playerscore,0+530,50,null);
+
+        canvas.drawBitmap(scaled_player,0+50,170,null);
+        canvas.drawBitmap(scaled_playerscore,0+380,170,null);
+        canvas.drawBitmap(scaled_player,0+680,170,null);
+        canvas.drawBitmap(scaled_playerscore,0+530,170,null);
+
+
+        Log.i(" " + x, "onDraw: ");
+        Log.i(" "+y, "onDraw: ");
+
+        //Drawing the board
+       for(int r=0; r<49; r++){
+
+            if (output[r] == "R"){
+                canvas.drawBitmap(scaled_h_square, ((x / 2)-60) -r1 + (row * c1), (y / 2) - c2, null);
+                canvas.drawBitmap(scaled_beadred, ((x / 2)-60) -r1 + (row * c1), (y / 2) - c2, null);
+            }
+            else if (output[r] == "B"){
+                canvas.drawBitmap(scaled_v_square, ((x / 2)-60) - r1 + (row * c1), (y / 2) - c2, null);
+                canvas.drawBitmap(scaled_beadblack, ((x / 2)-60) - r1 + (row * c1), (y / 2) - c2, null);}
             else if (output[r] == "H")
-                canvas.drawBitmap(scaled_hole, (x / 2) - r1 + (row * c1), (y / 2) - c2, null);
+                canvas.drawBitmap(scaled_hole, ((x / 2)-60) - r1 + (row * c1), (y / 2) - c2, null);
             row++;
             if((r==6)||(r==13)||(r==20)||(r==27)||(r==34)||(r==41)||(r==48)){
             c2=c2-c1;
@@ -107,41 +150,42 @@ public class GameCanvas extends View {
 
 
 
-        //Top Bars Of the Board
-        canvas.drawBitmap(scaled_top_barvi, (x/2) -300, (y/2) -505, null);
-        canvas.drawBitmap(scaled_top_barvc, (x/2) -200, (y/2) -505, null);
-        canvas.drawBitmap(scaled_top_barvi, (x/2) -100, (y/2) -505, null);
-        canvas.drawBitmap(scaled_top_barvo, (x/2) , (y/2) -505, null);
-        canvas.drawBitmap(scaled_top_barvo, (x/2) + 100, (y/2) -505, null);
-        canvas.drawBitmap(scaled_top_barvc, (x/2) + 200, (y/2) -505, null);
-        canvas.drawBitmap(scaled_top_barvi, (x/2) + 300, (y/2) -505, null);
+      //Top Bars Of the Board
+        canvas.drawBitmap(scaled_top_barvi, (x/2) -360, (y/2) -505, null);
+        canvas.drawBitmap(scaled_top_barvc, (x/2) -255, (y/2) -505, null);
+        canvas.drawBitmap(scaled_top_barvi, (x/2) -150, (y/2) -505, null);
+        canvas.drawBitmap(scaled_top_barvo, (x/2) -45, (y/2) -505, null);
+        canvas.drawBitmap(scaled_top_barvo, (x/2) + 60, (y/2) -505, null);
+        canvas.drawBitmap(scaled_top_barvc, (x/2) + 165, (y/2) -505, null);
+        canvas.drawBitmap(scaled_top_barvi, (x/2) + 270, (y/2) -505, null);
 
 
         //Right bars of the board
-        canvas.drawBitmap(scaled_right_barhc, (x/2) + 400, (y/2) -400, null);
-        canvas.drawBitmap(scaled_right_barho, (x/2) + 400,(y/2) -295, null);
-        canvas.drawBitmap(scaled_right_barhc, (x/2)+ 400, (y/2) -190, null);
-        canvas.drawBitmap(scaled_right_barhi, (x/2) + 400, (y/2 )-85, null);
-        canvas.drawBitmap(scaled_right_barho, (x/2) + 400, (y/2), null);
-        canvas.drawBitmap(scaled_right_barhc, (x/2) + 400,(y/2) + 95, null);
-        canvas.drawBitmap(scaled_right_barhi, (x/2)+ 400, (y/2) +195, null);
+        canvas.drawBitmap(scaled_right_barhc, (x/2) + 375, (y/2) -400, null);
+        canvas.drawBitmap(scaled_right_barho, (x/2) + 375,(y/2) -295, null);
+        canvas.drawBitmap(scaled_right_barhc, (x/2)+ 375, (y/2) -190, null);
+        canvas.drawBitmap(scaled_right_barhi, (x/2) + 375, (y/2 )-85, null);
+        canvas.drawBitmap(scaled_right_barho, (x/2) + 375, (y/2)+20 , null);
+        canvas.drawBitmap(scaled_right_barhc, (x/2) + 375,(y/2) + 125, null);
+        canvas.drawBitmap(scaled_right_barhi, (x/2)+ 375, (y/2) +230, null);
 
         //Left Bars of the board
-        canvas.drawBitmap(scaled_left_barhc, (x/2) - 400, (y/2) -400, null);
-        canvas.drawBitmap(scaled_left_barhi, (x/2)-400, (y/2) -295, null);
-        canvas.drawBitmap(scaled_left_barhc, (x/2)-400, (y/2) -190, null);
-        canvas.drawBitmap(scaled_left_barho, (x/2)-400, (y/2 )-85, null);
-        canvas.drawBitmap(scaled_left_barhi, (x/2) -400, (y/2), null);
-        canvas.drawBitmap(scaled_left_barhc, (x/2)-400, (y/2) + 95, null);
-        canvas.drawBitmap(scaled_left_barho, (x/2)-400, (y/2) +195, null);
+        canvas.drawBitmap(scaled_left_barhc, (x/2) - 460, (y/2) -400, null);
+        canvas.drawBitmap(scaled_left_barhi, (x/2)-460, (y/2) -295, null);
+        canvas.drawBitmap(scaled_left_barhc, (x/2)-460, (y/2) -190, null);
+        canvas.drawBitmap(scaled_left_barho, (x/2)-460, (y/2 )-85, null);
+        canvas.drawBitmap(scaled_left_barhi, (x/2) -460, (y/2)+20, null);
+        canvas.drawBitmap(scaled_left_barhc, (x/2)-460, (y/2) + 125, null);
+        canvas.drawBitmap(scaled_left_barho, (x/2)-460, (y/2) +230, null);
 
         //Bottom Bars of the Board
-        canvas.drawBitmap(scaled_Bottom_barvc, (x/2) -300, (y/2) +300, null);
-        canvas.drawBitmap(scaled_Bottom_barvi, (x/2) -200, (y/2) +300, null);
-        canvas.drawBitmap(scaled_Bottom_barvc, (x/2) -100, (y/2) +300, null);
-        canvas.drawBitmap(scaled_Bottom_barvo, (x/2) , (y/2) +300, null);
-        canvas.drawBitmap(scaled_Bottom_barvo, (x/2) + 100, (y/2) +300, null);
-        canvas.drawBitmap(scaled_Bottom_barvi, (x/2) + 200, (y/2) +300, null);
-        canvas.drawBitmap(scaled_Bottom_barvc, (x/2) + 300, (y/2) +300, null);
+        canvas.drawBitmap(scaled_Bottom_barvc, (x/2) -360, (y/2) +335, null);
+        canvas.drawBitmap(scaled_Bottom_barvi, (x/2) -255, (y/2) +335, null);
+        canvas.drawBitmap(scaled_Bottom_barvc, (x/2) -150, (y/2) +335, null);
+        canvas.drawBitmap(scaled_Bottom_barvo, (x/2) -45, (y/2) +335, null);
+        canvas.drawBitmap(scaled_Bottom_barvo, (x/2) + 60, (y/2) +335, null);
+        canvas.drawBitmap(scaled_Bottom_barvi, (x/2) + 165, (y/2) +335, null);
+        canvas.drawBitmap(scaled_Bottom_barvc, (x/2) + 270, (y/2) +335, null);
+
     }
 }
