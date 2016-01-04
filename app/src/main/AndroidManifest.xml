@@ -9,7 +9,6 @@
         android:label="@string/app_name" >
         <activity
             android:name="logic.main.com.boardgame.MainActivity"
-            android:label="@string/app_name"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

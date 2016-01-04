@@ -7,6 +7,8 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import com.SampleCanvas.R;
+
 public class MainActivity extends Activity {
     GameCanvas drawView;
 
@@ -14,9 +16,9 @@ public class MainActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        drawView = new GameCanvas(this);
-        drawView.setBackgroundColor(Color.WHITE);
-        setContentView(drawView);
+        /*drawView = new GameCanvas(this);
+        drawView.setBackgroundColor(Color.WHITE);*/
+        setContentView(R.layout.layout_main);
 
     }
 }
