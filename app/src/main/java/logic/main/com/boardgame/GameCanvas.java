@@ -180,44 +180,7 @@ public class GameCanvas extends View {
                 canvas.drawBitmap(scaled_Bottom_barvi, (x / 2) - r1 + (c * c1), (y / 2) + r1, null);
             }
         }
-
-
-//      //Top Bars Of the Board
-//        canvas.drawBitmap(scaled_top_barvi, (x/2) -360, (y/2) -505, null);
-//        canvas.drawBitmap(scaled_top_barvc, (x/2) -255, (y/2) -505, null);
-//        canvas.drawBitmap(scaled_top_barvi, (x/2) -150, (y/2) -505, null);
-//        canvas.drawBitmap(scaled_top_barvo, (x/2) -45, (y/2) -505, null);
-//        canvas.drawBitmap(scaled_top_barvo, (x/2) + 60, (y/2) -505, null);
-//        canvas.drawBitmap(scaled_top_barvc, (x/2) + 165, (y/2) -505, null);
-//        canvas.drawBitmap(scaled_top_barvi, (x/2) + 270, (y/2) -505, null);
-//
-//
-//        //Right bars of the board
-//        canvas.drawBitmap(scaled_right_barhc, (x/2) + 375, (y/2) -400, null);
-//        canvas.drawBitmap(scaled_right_barho, (x/2) + 375,(y/2) -295, null);
-//        canvas.drawBitmap(scaled_right_barhc, (x/2)+ 375, (y/2) -190, null);
-//        canvas.drawBitmap(scaled_right_barhi, (x/2) + 375, (y/2 )-85, null);
-//        canvas.drawBitmap(scaled_right_barho, (x/2) + 375, (y/2)+20 , null);
-//        canvas.drawBitmap(scaled_right_barhc, (x/2) + 375,(y/2) + 125, null);
-//        canvas.drawBitmap(scaled_right_barhi, (x/2)+ 375, (y/2) +230, null);
-//
-//        //Left Bars of the board
-//        canvas.drawBitmap(scaled_left_barhc, (x/2) - 460, (y/2) -400, null);
-//        canvas.drawBitmap(scaled_left_barhi, (x/2)-460, (y/2) -295, null);
-//        canvas.drawBitmap(scaled_left_barhc, (x/2)-460, (y/2) -190, null);
-//        canvas.drawBitmap(scaled_left_barho, (x/2)-460, (y/2 )-85, null);
-//        canvas.drawBitmap(scaled_left_barhi, (x/2) -460, (y/2)+20, null);
-//        canvas.drawBitmap(scaled_left_barhc, (x/2)-460, (y/2) + 125, null);
-//        canvas.drawBitmap(scaled_left_barho, (x/2)-460, (y/2) +230, null);
-//
-//        //Bottom Bars of the Board
-//        canvas.drawBitmap(scaled_Bottom_barvc, (x/2) -360, (y/2) +335, null);
-//        canvas.drawBitmap(scaled_Bottom_barvi, (x/2) -255, (y/2) +335, null);
-//        canvas.drawBitmap(scaled_Bottom_barvc, (x/2) -150, (y/2) +335, null);
-//        canvas.drawBitmap(scaled_Bottom_barvo, (x/2) -45, (y/2) +335, null);
-//        canvas.drawBitmap(scaled_Bottom_barvo, (x/2) + 60, (y/2) +335, null);
-//        canvas.drawBitmap(scaled_Bottom_barvi, (x/2) + 165, (y/2) +335, null);
-//        canvas.drawBitmap(scaled_Bottom_barvc, (x/2) + 270, (y/2) +335, null);
+        
 
     }
 }
