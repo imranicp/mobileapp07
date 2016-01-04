@@ -35,9 +35,13 @@ public class GameCanvas extends View {
     int row=0;
     int c1 = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,35,getResources().getDisplayMetrics());
     int r1 = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,100,getResources().getDisplayMetrics());
+    int r2 = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,120,getResources().getDisplayMetrics());
     int c2 = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,133,getResources().getDisplayMetrics());
     int row1 = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,0,getResources().getDisplayMetrics());
-    int h = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,134,getResources().getDisplayMetrics());
+    int h1 = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,154,getResources().getDisplayMetrics());
+    int h2 = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,118,getResources().getDisplayMetrics());
+    int v1 = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,134,getResources().getDisplayMetrics());
+    int v2 = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,110,getResources().getDisplayMetrics());
     int v = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,168,getResources().getDisplayMetrics());
 
     public GameCanvas(Context context) {
@@ -154,33 +158,33 @@ public class GameCanvas extends View {
         //Drawing horizontal bars
         for (int r=0; r<7; r++){
             if (barPos[r] == "0"){
-                canvas.drawBitmap(scaled_left_barhi, (x/2) - h , (y/2) - h + (r * c1), null);
-                canvas.drawBitmap(scaled_right_barho, (x/2) + h, (y/2) - h + (r * c1), null);
+                canvas.drawBitmap(scaled_left_barhi, (x/2) - h1 , (y/2) - v1 + (r * c1), null);
+                canvas.drawBitmap(scaled_right_barho, (x/2) + h2, (y/2) - v1 + (r * c1), null);
             }
             else if (barPos[r] == "1") {
-                canvas.drawBitmap(scaled_left_barhc, (x/2) - h , (y/2) - h + (r * c1), null);
-                canvas.drawBitmap(scaled_right_barhc, (x/2) + h, (y/2) - h + (r * c1), null);
+                canvas.drawBitmap(scaled_left_barhc, (x/2) - h1 , (y/2) - v1 + (r * c1), null);
+                canvas.drawBitmap(scaled_right_barhc, (x/2) + h2, (y/2) - v1 + (r * c1), null);
             }
             else if (barPos[r] == "2"){
-                canvas.drawBitmap(scaled_left_barho, (x/2) - h , (y/2) - h + (r * c1), null);
-                canvas.drawBitmap(scaled_right_barhi, (x/2) + h, (y/2) - h + (r * c1), null);
+                canvas.drawBitmap(scaled_left_barho, (x/2) - h1 , (y/2) - v1 + (r * c1), null);
+                canvas.drawBitmap(scaled_right_barhi, (x/2) + h2, (y/2) - v1 + (r * c1), null);
             }
         }
 
         //Drawing vertical bars
         for (int c=0; c<7; c++) {
             if (barPos[c + 7] == "0") {
-                canvas.drawBitmap(scaled_top_barvi, (x / 2) - r1 + (c * c1), (y / 2) - v, null);
-                canvas.drawBitmap(scaled_Bottom_barvo, (x / 2) - r1 + (c * c1), (y / 2) + r1, null);
+                canvas.drawBitmap(scaled_top_barvi, (x / 2) - r2 + (c * c1), (y / 2) - v, null);
+                canvas.drawBitmap(scaled_Bottom_barvo, (x / 2) - r2 + (c * c1), (y / 2) + v2, null);
             } else if (barPos[c + 7] == "1") {
-                canvas.drawBitmap(scaled_top_barvc, (x / 2) - r1 + (c * c1), (y / 2) - v, null);
-                canvas.drawBitmap(scaled_Bottom_barvc, (x / 2) - r1 + (c * c1), (y / 2) + r1, null);
+                canvas.drawBitmap(scaled_top_barvc, (x / 2) - r2 + (c * c1), (y / 2) - v, null);
+                canvas.drawBitmap(scaled_Bottom_barvc, (x / 2) - r2 + (c * c1), (y / 2) + v2, null);
             } else if (barPos[c + 7] == "2") {
-                canvas.drawBitmap(scaled_top_barvo, (x / 2) - r1 + (c * c1), (y / 2) - v, null);
-                canvas.drawBitmap(scaled_Bottom_barvi, (x / 2) - r1 + (c * c1), (y / 2) + r1, null);
+                canvas.drawBitmap(scaled_top_barvo, (x / 2) - r2 + (c * c1), (y / 2) - v, null);
+                canvas.drawBitmap(scaled_Bottom_barvi, (x / 2) - r2 + (c * c1), (y / 2) + v2, null);
             }
         }
-        
+
 
     }
 }
