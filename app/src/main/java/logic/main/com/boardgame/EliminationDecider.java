@@ -5,7 +5,7 @@ public class EliminationDecider {
 	 * This function recursively checks whether the current player who has the
 	 * turn is eliminated or not, if the player is eliminated then the next
 	 * eligible player will get the turn.
-	 * 
+	 *
 	 * @param board
 	 */
 
@@ -17,7 +17,7 @@ public class EliminationDecider {
 		{
 			winnerDecider.checkWin(board);
 		}
-		if (board.getNumberOfPlayers()== Constants.two) {
+		if (board.getNumberOfPlayers()== Constants.two&&board.getPlayerCount()!=1) {
 			if (board.getMovingPlayer()== Constants.one && !board.isPlayerOne()
 					) {
 				board.setMovingPlayer(Constants.two);
@@ -30,7 +30,7 @@ public class EliminationDecider {
 			}
 
 		}
-		if (board.getNumberOfPlayers()== Constants.three) {
+		if (board.getNumberOfPlayers()== Constants.three&&board.getPlayerCount()!=1) {
 			if (board.getMovingPlayer()== Constants.one  && !board.isPlayerOne()
 					) {
 				board.setMovingPlayer(Constants.two);
@@ -48,7 +48,7 @@ public class EliminationDecider {
 			}
 
 		}
-		if (board.getNumberOfPlayers()== Constants.four) {
+		if (board.getNumberOfPlayers()== Constants.four&&board.getPlayerCount()!=1) {
 
 			if (board.getMovingPlayer()== Constants.one && !board.isPlayerOne()
 					) {
