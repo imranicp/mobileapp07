@@ -11,7 +11,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 
-import com.SampleCanvas.R;
+
 
 
 public class GameCanvas extends View {
@@ -56,7 +56,7 @@ public class GameCanvas extends View {
 
 
         //Loading three textures for squares and bars
-        h_square = BitmapFactory.decodeResource(getResources(), R.drawable.h);
+        /*h_square = BitmapFactory.decodeResource(getResources(), R.drawable.h);
         v_square = BitmapFactory.decodeResource(getResources(), R.drawable.v);
         hole = BitmapFactory.decodeResource(getResources(), R.drawable.b);
         barLeft_ho = BitmapFactory.decodeResource(getResources(), R.drawable.hc2);
@@ -71,16 +71,16 @@ public class GameCanvas extends View {
         barBottom_vi= BitmapFactory.decodeResource(getResources(), R.drawable.vi2);
         barTop_vo= BitmapFactory.decodeResource(getResources(), R.drawable.vo1);
         barBottom_vo= BitmapFactory.decodeResource(getResources(), R.drawable.vo2);
-        //bottom=BitmapFactory.decodeResource(getResources(),R.drawable.bottom);
-        //top=BitmapFactory.decodeResource(getResources(),R.drawable.top);
-        //leftSide=BitmapFactory.decodeResource(getResources(),R.drawable.leftside);
-       //// rightSide=BitmapFactory.decodeResource(getResources(), R.drawable.rightside);
-        //background=BitmapFactory.decodeResource(getResources(), R.drawable.background);
-        //bottom=BitmapFactory.decodeResource(getResources(), R.drawable.bottom);
-        player=BitmapFactory.decodeResource(getResources(), R.drawable.player);
+        bottom=BitmapFactory.decodeResource(getResources(),R.drawable.bottom);
+        top=BitmapFactory.decodeResource(getResources(),R.drawable.top);
+        leftSide=BitmapFactory.decodeResource(getResources(),R.drawable.leftside);
+        rightSide=BitmapFactory.decodeResource(getResources(), R.drawable.rightside);
+        background=BitmapFactory.decodeResource(getResources(), R.drawable.background);
+        bottom=BitmapFactory.decodeResource(getResources(), R.drawable.bottom);
+        player=BitmapFactory.decodeResource(getResources(), R.drawable.player);*/
         playerscore=BitmapFactory.decodeResource(getResources(), R.drawable.playerscore);
-        beadred=BitmapFactory.decodeResource(getResources(), R.drawable.redpiece);
-        beadblack=BitmapFactory.decodeResource(getResources(), R.drawable.blackpiece);
+       // beadred=BitmapFactory.decodeResource(getResources(), R.drawable.redpiece);
+       // beadblack=BitmapFactory.decodeResource(getResources(), R.drawable.blackpiece);
         //Scaling textures
         scaled_h_square = Bitmap.createScaledBitmap(h_square, width, height, true);
         scaled_v_square = Bitmap.createScaledBitmap(v_square, width, height, true);

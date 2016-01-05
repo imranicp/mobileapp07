@@ -18,7 +18,7 @@ public class GameController {
 				// set the given input into the board object
 				board.setInput(br.readLine());
 				MoveController mvControl = new MoveController();
-				board.setOutput(mvControl.moveTest(board.getInput()));
+				mvControl.moveTest(board);
 				System.out.println(Constants.next);
 			} catch (Exception e) {
 				System.out.println(Constants.retry);

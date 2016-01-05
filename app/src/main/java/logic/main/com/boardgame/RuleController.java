@@ -15,7 +15,7 @@ public class RuleController {
 	 */
 
 	public Board rulesCheck(String move, Board board) throws GameException {
-
+		GameException gameException=new GameException();
 		BeadConf beadConf =new BeadConf();
 		board = beadConf.checkbeadConf(board);
 		// counter is to check the number of players currently available to
@@ -43,15 +43,18 @@ public class RuleController {
 			if (board.getMoveOne() != null
 					&& board.getMovingPlayer()!=Integer.parseInt((board.getMoveOne().substring(3, 4)))
 					&& (move.substring(0, 2).equals(board.getMoveOne().substring(0, 2)))) {
-				throw new GameException(Constants.charr, move, board);
+				board.setExceptionMessage(gameException.exception(Constants.charr, move, board));
+				throw new GameException();
 			} else if (board.getMoveTwo() != null
 					&& board.getMovingPlayer()!=Integer.parseInt((board.getMoveTwo().substring(3, 4)))
 					&& move.substring(0, 2).equals(board.getMoveTwo().substring(0, 2))) {
-				throw new GameException(Constants.charr, move, board);
+				board.setExceptionMessage(gameException.exception(Constants.charr, move, board));
+				throw new GameException();
 			} else if (board.getMoveThree() != null
 					&& board.getMovingPlayer()!=Integer.parseInt((board.getMoveThree().substring(3, 4)))
 					&& move.substring(0, 2).equals(board.getMoveThree().substring(0, 2))) {
-				throw new GameException(Constants.charr, move, board);
+				board.setExceptionMessage(gameException.exception(Constants.charr, move, board));
+				throw new GameException();
 			}
 		}
 		// here we check whether the move is valid or not, the bar which is
@@ -62,11 +65,13 @@ public class RuleController {
 			if (board.getMoveOne() != null
 					&& board.getMovingPlayer()!=Integer.parseInt((board.getMoveOne().substring(3, 4)))
 					&& (move.substring(0, 2).equals(board.getMoveOne().substring(0, 2)))) {
-				throw new GameException(Constants.charr, move, board);
+				board.setExceptionMessage(gameException.exception(Constants.charr, move, board));
+				throw new GameException();
 			} else if (board.getMoveTwo() != null
 					&& board.getMovingPlayer()!=Integer.parseInt((board.getMoveTwo().substring(3, 4)))
 					&& move.substring(0, 2).equals(board.getMoveTwo().substring(0, 2))) {
-				throw new GameException(Constants.charr, move, board);
+				board.setExceptionMessage(gameException.exception(Constants.charr, move, board));
+				throw new GameException();
 			}
 		}
 
@@ -87,7 +92,8 @@ public class RuleController {
 			if (board.getMoveOne()!= null 
 					&& (move.substring(0,2).equals(board.getMoveOne().substring(0,2)))
 					&& board.getMovingPlayer()!=Integer.parseInt((board.getMoveOne().substring(3, 4)))){
-				throw new GameException(Constants.charr, move, board);
+
+				throw new GameException();
 			}
 
 			// this is the check for two consecutive turns on the same bar
@@ -97,7 +103,8 @@ public class RuleController {
 					&& (board.getMovingPlayer()==Integer.parseInt((board.getMoveFour().substring(3, 4))))
 					&& (move.substring(0, 2).equals(board.getMoveTwo().substring(0, 2)) && move
 							.substring(0, 2).equals(board.getMoveFour().substring(0, 2)))) {
-				throw new GameException(Constants.charr, move, board);
+				board.setExceptionMessage(gameException.exception(Constants.charr, move, board));
+				throw new GameException();
 			}
 
 

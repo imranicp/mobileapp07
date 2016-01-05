@@ -3,8 +3,10 @@ package logic.main.com.boardgame;
 import java.util.regex.Pattern;
 
 public class MoveController {
+
+
 	/**
-	 * @param input
+	 * @param board
 	 *            The input is expected to be the configuration of the game. The
 	 *            input must be set into the board object
 	 * @return The result of the moveTest operation, the state of the game after
@@ -13,14 +15,14 @@ public class MoveController {
 	 * 
 	 */
 
-	public String moveTest(String input) throws Exception {
-		Board board = new Board();
+	public Board moveTest(Board board) throws Exception {
+
 		RuleController ruleController = new RuleController();
 		BeadConf beadConf= new BeadConf();
 		BoardConf boardConf = new BoardConf();
 		WinnerDecider winner = new WinnerDecider();
 		EliminationDecider eliminationDecider = new EliminationDecider();
-		board.setInput(input);
+		GameException gameException=new GameException();
 
 
 		try {
@@ -78,7 +80,7 @@ public class MoveController {
 
 						// set the next possible moving player
 
-						setMovingPlayer(board);
+						board =setMovingPlayer(board);
 
 						// check if the player is eliminated, if yes set
 						// movingPlayer to the eligible player
@@ -107,14 +109,15 @@ public class MoveController {
 				System.out.println(board.getOutput());
 			} else {
 				// throw exception that the input is not valid
-				throw new GameException(1);
+				board.setExceptionMessage(gameException.exception(1));
+				throw new GameException();
 
 			}
 		} catch (Exception e) {
-			throw e;
+			throw new Exception(board.getExceptionMessage(),e);
 		}
 
-		return board.getOutput();
+		return board;
 	}
 
 	/**
@@ -168,7 +171,7 @@ public class MoveController {
 	 * @throws GameException
 	 */
 	public String makeMove(String move, String bar, Board board) throws GameException {
-
+		GameException gameException=new GameException();
 		if (move.charAt(0) == Constants.charh && move.charAt(2) == Constants.chari) {
 			// position of bar in the barConfig string will be 1 less than the
 			// specified position
@@ -188,7 +191,8 @@ public class MoveController {
 				bar = newBarConfig.toString();
 
 			} else {
-				throw new GameException(1, String.valueOf(move.charAt(1)), board);
+				board.setExceptionMessage(  gameException.exception(1, String.valueOf(move.charAt(1)), board));
+				throw new GameException();
 			}
 		} else if (move.charAt(0) == Constants.charh && move.charAt(2) == Constants.charo) {
 			int position = Integer.valueOf(String.valueOf(move.charAt(1))) - 1;
@@ -208,7 +212,8 @@ public class MoveController {
 				bar = newBarConfig.toString();
 
 			} else {
-				throw new GameException(2, String.valueOf(move.charAt(1)), board);
+				board.setExceptionMessage(gameException.exception(2, String.valueOf(move.charAt(1)), board));
+				throw new GameException();
 			}
 		} else if (move.charAt(0) == Constants.charv && move.charAt(2) == Constants.chari) {
 			int position = Integer.valueOf(String.valueOf(move.charAt(1))) - 1;
@@ -227,7 +232,8 @@ public class MoveController {
 				bar = newBarConfig.toString();
 
 			} else {
-				throw new GameException(3, String.valueOf(move.charAt(1)), board);
+				board.setExceptionMessage(gameException.exception(3, String.valueOf(move.charAt(1)), board));
+				throw new GameException();
 			}
 		} else if (move.charAt(0) == Constants.charv && move.charAt(2) == Constants.charo) {
 			int position = Integer.valueOf(String.valueOf(move.charAt(1))) - 1;
@@ -247,7 +253,8 @@ public class MoveController {
 				bar = newBarConfig.toString();
 
 			} else {
-				throw new GameException(4, String.valueOf(move.charAt(1)), board);
+				board.setExceptionMessage(gameException.exception(4, String.valueOf(move.charAt(1)), board));
+				throw new GameException();
 			}
 		}
 
@@ -258,10 +265,10 @@ public class MoveController {
 
 	/**
 	 * This function determines the next player who must perform the move
-	 * 
+	 *
 	 * @param board
 	 */
-	public void setMovingPlayer(Board board) {
+	public Board setMovingPlayer(Board board) {
 		board.setLastMovingPlayer(board.getMovingPlayer());
 		if (board.getNumberOfPlayers()==Constants.two ) {
 			if (board.getMovingPlayer()== Constants.one) {
@@ -291,5 +298,6 @@ public class MoveController {
 
 		}
 
+		return board;
 	}
 }

@@ -22,6 +22,10 @@ public class Board {
 	private int winner;
 	private int playerCount;
 	private int lastMovingPlayer;
+	private String exceptionMessage;
+
+
+
 	/**
 	 * @param playerOne
 	 * @param playerTwo
@@ -328,5 +332,13 @@ public class Board {
 
 	public void setLastMovingPlayer(int lastMovingPlayer) {
 		this.lastMovingPlayer = lastMovingPlayer;
+	}
+
+	public String getExceptionMessage() {
+		return exceptionMessage;
+	}
+
+	public void setExceptionMessage(String exceptionMessage) {
+		this.exceptionMessage = exceptionMessage;
 	}
 }
