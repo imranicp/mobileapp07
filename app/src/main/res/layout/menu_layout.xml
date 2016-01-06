@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/menu_bg"
+    android:layout_width="match_parent"
+    android:gravity="center"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/menuContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ImageView
+        android:id="@+id/soundIcon"
+        android:src="@drawable/menu_sound_on"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="15dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"/>
+
+    <ImageView
+        android:id="@+id/musicIcon"
+        android:src="@drawable/menu_music_on"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="15dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"/>
+
+    <ImageView
+        android:id="@+id/gameTitle"
+        android:src="@drawable/menu_main_title"
+        android:layout_below="@+id/soundIcon"
+        android:layout_centerHorizontal="true"
+        android:layout_width="300dp"
+        android:layout_height="150dp"/>
+
+    <Button
+        android:id="@+id/startBtn"
+        android:onClick="goToPlayerMenu"
+        android:layout_below="@+id/gameTitle"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/menu_start_btn"
+        android:layout_marginTop="20dp"
+        android:layout_width="150dp"
+        android:layout_height="75dp" />
+
+    <Button
+        android:id="@+id/scoreBtn"
+        android:layout_below="@+id/startBtn"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/menu_score_btn"
+        android:layout_marginTop="20dp"
+        android:layout_width="150dp"
+        android:layout_height="75dp" />
+
+    <Button
+        android:id="@+id/aboutBtn"
+        android:layout_below="@+id/scoreBtn"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/menu_about_btn"
+        android:layout_marginTop="20dp"
+        android:layout_width="150dp"
+        android:layout_height="75dp" />
+
+</RelativeLayout>
