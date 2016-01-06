@@ -48,6 +48,7 @@
 
     <Button
         android:id="@+id/scoreBtn"
+        android:onClick="goToScore"
         android:layout_below="@+id/startBtn"
         android:layout_centerHorizontal="true"
         android:background="@drawable/menu_score_btn"
@@ -57,6 +58,7 @@
 
     <Button
         android:id="@+id/aboutBtn"
+        android:onClick="goToAbout"
         android:layout_below="@+id/scoreBtn"
         android:layout_centerHorizontal="true"
         android:background="@drawable/menu_about_btn"

@@ -4,10 +4,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+    <ImageView
+        android:id="@+id/playerSelectionContainer"
+        android:layout_centerInParent="true"
+        android:layout_width="200dp"
+        android:layout_height="500dp" />
     <Button
+        android:id="@+id/onePlayer"
+        android:background="@drawable/players_one"
+        android:layout_width="200dp"
+        android:layout_height="75dp"
+        android:layout_alignTop="@+id/playerSelectionContainer"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp" />
+
+    <Button
+        android:id="@+id/twoPlayer"
+        android:background="@drawable/players_two"
+        android:layout_width="200dp"
+        android:layout_height="75dp"
+        android:layout_below="@+id/onePlayer"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/threePlayer"
+        android:background="@drawable/players_three"
+        android:layout_width="200dp"
+        android:layout_height="75dp"
+        android:layout_below="@+id/twoPlayer"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/fourPlayer"
         android:onClick="goToGame"
-        android:background="@drawable/menu_about_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:background="@drawable/players_four"
+        android:layout_width="200dp"
+        android:layout_height="75dp"
+        android:layout_below="@+id/threePlayer"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

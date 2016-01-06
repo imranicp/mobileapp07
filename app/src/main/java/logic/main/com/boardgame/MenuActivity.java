@@ -21,4 +21,14 @@ public class MenuActivity extends Activity {
         startActivity(intent);
 
     }
+
+    public void goToScore(View view){
+        Intent intent = new Intent(this,ScoreActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToAbout(View view){
+        Intent intent = new Intent(this,AboutActivity.class);
+        startActivity(intent);
+    }
 }
