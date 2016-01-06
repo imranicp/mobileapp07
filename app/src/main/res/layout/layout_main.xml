@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/mainLayout"
-    android:background="@drawable/fullbg1"
+    android:background="@drawable/fullbg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:textAlignment="center"
@@ -647,9 +647,6 @@
         android:layout_alignParentEnd="true"
         android:layout_toEndOf="@id/g7"
         android:layout_alignParentStart="false" />
-
-
-
 
 
 
