@@ -1,12 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/mainLayout"
-    android:background="@drawable/fullbg"
+    android:background="@drawable/fullbg1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <RelativeLayout
+        android:id="@+id/score"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/player1tile"
+            android:src="@drawable/player1actv"
+            android:layout_width="90dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="30dp"
+            />
+        <ImageView
+            android:id="@+id/player1score"
+            android:src="@drawable/playerscore5"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_toRightOf="@id/player1tile"
+            android:layout_marginTop="25dp"
+            />
+        <ImageView
+            android:id="@+id/player2tile"
+            android:src="@drawable/player2actv"
+            android:layout_width="90dp"
+            android:layout_height="45dp"
+            android:layout_toRightOf="@id/player1tile"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="25dp"
+            />
+        <ImageView
+            android:id="@+id/player2score"
+            android:src="@drawable/playerscore5"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_toRightOf="@id/player1score"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="30dp"
+            />
+        <ImageView
+            android:id="@+id/player3tile"
+            android:src="@drawable/player3actv"
+            android:layout_width="90dp"
+            android:layout_height="45dp"
+            android:layout_below="@id/player1tile"
+            android:layout_marginLeft="30dp"
+            />
+        <ImageView
+            android:id="@+id/player3score"
+            android:src="@drawable/playerscore5"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_below="@id/player1score"
+            android:layout_toRightOf="@id/player3tile"
+            />
+        <ImageView
+            android:id="@+id/player4tile"
+            android:src="@drawable/player4actv"
+            android:layout_width="90dp"
+            android:layout_height="45dp"
+            android:layout_toRightOf="@id/player3tile"
+            android:layout_below="@id/player2tile"
+            android:layout_marginLeft="120dp"
+            />
+        <ImageView
+            android:id="@+id/player4score"
+            android:src="@drawable/playerscore5"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_toRightOf="@id/player3score"
+            android:layout_below="@id/player2score"
+            android:layout_marginLeft="30dp"
+            />
+
+    </RelativeLayout>
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:textAlignment="center"
     android:gravity="center">
-
     <!--first line squares of the board-->
     <ImageView
         android:id="@+id/a1"
@@ -648,6 +725,7 @@
         android:layout_toEndOf="@id/g7"
         android:layout_alignParentStart="false" />
 
+</RelativeLayout>
 
 
 </RelativeLayout>
