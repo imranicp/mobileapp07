@@ -22,7 +22,7 @@ public class MoveController {
 		BoardConf boardConf = new BoardConf();
 		WinnerDecider winner = new WinnerDecider();
 		EliminationDecider eliminationDecider = new EliminationDecider();
-		GameException gameException=new GameException();
+		GameException gameException = new GameException();
 
 
 		try {
@@ -80,7 +80,7 @@ public class MoveController {
 
 						// set the next possible moving player
 
-						board =setMovingPlayer(board);
+						board = setMovingPlayer(board);
 
 						// check if the player is eliminated, if yes set
 						// movingPlayer to the eligible player
@@ -95,7 +95,8 @@ public class MoveController {
 								+ board.getPostionsOfVerticalBars() + board.getBeadConfiguration());
 
 					}
-				} else {
+				}
+				else {
 					// in case there are no moves to perform check for a winning
 					// condition
 					board = winner.checkWin(board);

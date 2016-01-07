@@ -5,6 +5,7 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/textview"
         android:text="High Scores!!"
         android:layout_centerInParent="true"
         android:textSize="45dp"
