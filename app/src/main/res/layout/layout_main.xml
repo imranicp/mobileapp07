@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/mainLayout"
-    android:background="@drawable/fullbg"
+    android:background="@drawable/fullbg1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
     <RelativeLayout
+        android:id="@+id/score"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <ImageView
@@ -18,7 +19,7 @@
             />
         <ImageView
             android:id="@+id/player1score"
-            android:src="@drawable/playerScore5"
+            android:src="@drawable/playerscore5"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_toRightOf="@id/player1tile"
@@ -35,7 +36,7 @@
             />
         <ImageView
             android:id="@+id/player2score"
-            android:src="@drawable/playerScore5"
+            android:src="@drawable/playerscore5"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_toRightOf="@id/player1score"
@@ -52,7 +53,7 @@
             />
         <ImageView
             android:id="@+id/player3score"
-            android:src="@drawable/playerScore5"
+            android:src="@drawable/playerscore5"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_below="@id/player1score"
@@ -69,7 +70,7 @@
             />
         <ImageView
             android:id="@+id/player4score"
-            android:src="@drawable/playerScore5"
+            android:src="@drawable/playerscore5"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_toRightOf="@id/player3score"
