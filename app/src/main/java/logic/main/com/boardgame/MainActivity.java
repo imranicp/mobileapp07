@@ -32,6 +32,7 @@ public class MainActivity extends Activity implements View.OnTouchListener {
     BeadConfingSetter beadConfingSetter=new BeadConfingSetter();
     MoveGenerator moveGenerator=new MoveGenerator();
     BeadPlacer beadPlacer=new BeadPlacer();
+    DataBaseHelper  dataBaseHelper= new DataBaseHelper(this);
     String flingType="";
 
     @Override
@@ -118,6 +119,8 @@ public class MainActivity extends Activity implements View.OnTouchListener {
                 if(String.valueOf(board.getWinner())!="0"){
                     Toast toast = Toast.makeText(getApplicationContext(), "Winner is Player: "+String.valueOf(board.getWinner()), Toast.LENGTH_SHORT);
                     toast.show();
+                    dataBaseHelper.updateScore(board);
+
                     // Intent intent = new Intent(getApplicationContext(), FullscreenActivity.class);
                     // startActivity(intent);
 

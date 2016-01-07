@@ -5,6 +5,7 @@ public class WinnerDecider {
 		BeadConf beadConf =new BeadConf();
 		beadConf.checkbeadConf(board);
 
+
 		if (!board.isPlayerFour() && !board.isPlayerThree() && !board.isPlayerTwo()) {
 			board.setWinner(Constants.one);
 			board.setPlayerCount(1);
