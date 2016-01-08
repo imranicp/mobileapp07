@@ -3,11 +3,7 @@ package logic.main.com.boardgame;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
-import android.widget.Button;
-
-import java.io.Serializable;
 
 
 public class SelectPlayerActivity extends Activity {
@@ -16,7 +12,14 @@ public class SelectPlayerActivity extends Activity {
 
     public void onClick(View v) {
         Intent newActivity = new Intent(this, MainActivity.class);
+        Intent vsComputerActivity = new Intent(this, VsComputerActivity.class);
         switch(v.getId()) {
+            case R.id.onePlayer:
+
+                vsComputerActivity.putExtra("numberOfPlayers", 2);
+                startActivity(vsComputerActivity);
+
+                break;
             case R.id.twoPlayer:
 
                 newActivity.putExtra("numberOfPlayers", 2);
@@ -42,6 +45,6 @@ public class SelectPlayerActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.select_palyer_layout);
+        setContentView(R.layout.select_player_layout);
     }
 }

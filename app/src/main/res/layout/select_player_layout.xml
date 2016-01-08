@@ -1,53 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@drawable/menu_bg"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/menu_bg">
 
 
     <ImageView
         android:id="@+id/playerSelectionContainer"
-        android:layout_centerInParent="true"
         android:layout_width="200dp"
-        android:layout_height="500dp" />
+        android:layout_height="500dp"
+        android:layout_centerInParent="true" />
     <Button
         android:id="@+id/onePlayer"
-        android:onClick="onClick"
-        android:background="@drawable/players_one"
         android:layout_width="200dp"
         android:layout_height="75dp"
         android:layout_alignTop="@+id/playerSelectionContainer"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp" />
+        android:layout_marginTop="30dp"
+        android:background="@drawable/players_one"
+        android:onClick="onClick" />
 
     <Button
         android:id="@+id/twoPlayer"
-        android:onClick="onClick"
-        android:background="@drawable/players_two"
         android:layout_width="200dp"
         android:layout_height="75dp"
         android:layout_below="@+id/onePlayer"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:layout_centerHorizontal="true"/>
+        android:background="@drawable/players_two"
+        android:onClick="onClick" />
 
     <Button
         android:id="@+id/threePlayer"
-        android:onClick="onClick"
-        android:background="@drawable/players_three"
         android:layout_width="200dp"
         android:layout_height="75dp"
         android:layout_below="@+id/twoPlayer"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:layout_centerHorizontal="true"/>
+        android:background="@drawable/players_three"
+        android:onClick="onClick" />
 
     <Button
         android:id="@+id/fourPlayer"
-        android:onClick="onClick"
-        android:background="@drawable/players_four"
         android:layout_width="200dp"
         android:layout_height="75dp"
         android:layout_below="@+id/threePlayer"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:layout_centerHorizontal="true"/>
+        android:background="@drawable/players_four"
+        android:onClick="onClick" />
 
 </RelativeLayout>
