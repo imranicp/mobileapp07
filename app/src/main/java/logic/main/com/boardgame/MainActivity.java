@@ -1,25 +1,20 @@
 package logic.main.com.boardgame;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
-
-import java.util.Random;
 
 
 public class MainActivity extends Activity implements View.OnTouchListener {
 
+    private static final int SWIPE_MIN_DISTANCE = 30;
+    private static final int SWIPE_THRESHOLD_VELOCITY = 100;
     GestureDetector gdt;
-    ImageView imageView;
-
     int beadCount2=10;
     int beadCount3=15;
     int beadCount4=20;
@@ -50,8 +45,8 @@ public class MainActivity extends Activity implements View.OnTouchListener {
         board.setMovingPlayer(1);
 
 
-        BarConfigGenerator barConfigGenerator=new BarConfigGenerator();
-        board= barConfigGenerator.generateBarConfig(board);
+        BarConfigGenerator barConfigGenerator = new BarConfigGenerator();
+        board = barConfigGenerator.generateBarConfig(board);
 
         // Log.e("postionsOfVerticalBars", postionsOfVerticalBars);
         // Log.e("postionsOfHorizonlBars", postionsOfHorizontalBars);
@@ -134,10 +129,6 @@ public class MainActivity extends Activity implements View.OnTouchListener {
 
         return true;
     }
-
-
-    private static final int SWIPE_MIN_DISTANCE = 30;
-    private static final int SWIPE_THRESHOLD_VELOCITY = 100;
 
     private class GestureListener extends GestureDetector.SimpleOnGestureListener {
 
