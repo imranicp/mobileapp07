@@ -7,9 +7,11 @@
     <TextView
         android:id="@+id/textview"
         android:text="High Scores!!"
-        android:layout_centerInParent="true"
         android:textSize="45dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="76dp" />
 
 </RelativeLayout>

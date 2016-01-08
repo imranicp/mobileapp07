@@ -77,11 +77,26 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     // Updating single contact
     public int updateScore(Board board) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
         String countQuery = "SELECT " + KEY_SCORE + " FROM " + TABLE_SCORE + " WHERE " + KEY_NAME + " = PLAYER" + board.getWinner();
-        int updatescore = Integer.parseInt(countQuery) + 1;
+        Cursor cursor = db.rawQuery(countQuery, null);
+        String column1="";
+        if(cursor.moveToFirst()) {
+            do {
+                //assing values
+
+
+                 column1 = cursor.getString(1);
+                //Do something Here with values
+
+            }while(cursor.moveToNext());
+        }
+        cursor.close();
+
+        int updateScore = Integer.parseInt(column1) + 1;
+
         ContentValues values = new ContentValues();
-        values.put(KEY_SCORE, updatescore);
+        values.put(KEY_SCORE, updateScore);
         // updating row
         return db.update(TABLE_SCORE, values, KEY_NAME + " = " + board.getWinner(),null);
     }

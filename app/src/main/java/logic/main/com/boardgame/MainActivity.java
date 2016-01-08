@@ -16,9 +16,8 @@ import java.util.Random;
 
 
 public class MainActivity extends Activity implements View.OnTouchListener {
-    //GameCanvas drawView;
+
     GestureDetector gdt;
-    // ImageView a1,a2,a3,a4,a5,a6,a7,b1,b2,b3,b4,b5,b6,b7,c1,c2,c3,c4,c5,c6,c7,d1,d2,d3,d4,d5,d6,d7,e1,e2,e3,e4,e5,e6,e7,f1,f2,f3,f4,f5,f6,f7,g1,g2,g3,g4,g5,g6,g7;
     ImageView imageView;
 
     int beadCount2=10;
@@ -45,13 +44,12 @@ public class MainActivity extends Activity implements View.OnTouchListener {
         gdt = new GestureDetector(this, new GestureListener());
 
         BoardConf boardConf = new BoardConf();
-        board.setMovingPlayer(1);
-        board.setNumberOfPlayers(2);
-       // Intent myIntent = getIntent();
-       // Board board = (Board)myIntent.getParcelableExtra("numberOfPlayer");
-       // int a  = myIntent.getIntExtra("numberOfPlayer",4);
 
-        //board.setNumberOfPlayers(a);
+        int value = getIntent().getExtras().getInt("numberOfPlayers");
+        board.setNumberOfPlayers(value);
+        board.setMovingPlayer(1);
+
+
         BarConfigGenerator barConfigGenerator=new BarConfigGenerator();
         board= barConfigGenerator.generateBarConfig(board);
 

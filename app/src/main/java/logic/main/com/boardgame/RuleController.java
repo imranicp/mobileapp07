@@ -92,7 +92,7 @@ public class RuleController {
 			if (board.getMoveOne()!= null 
 					&& (move.substring(0,2).equals(board.getMoveOne().substring(0,2)))
 					&& board.getMovingPlayer()!=Integer.parseInt((board.getMoveOne().substring(3, 4)))){
-
+				board.setExceptionMessage(gameException.exception(Constants.charr, move, board));
 				throw new GameException();
 			}
 
