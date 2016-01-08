@@ -1,11 +1,10 @@
 package logic.main.com.boardgame;
 
-/**
- * Created by Pawan on 07-01-2016.
- */
-public class Database {
+
+public class PlayerScore {
 
     private String name;
+
     private int score;
 
     public int getScore() {

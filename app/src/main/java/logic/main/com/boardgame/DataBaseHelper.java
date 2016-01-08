@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * Created by Pawan on 06-01-2016.
@@ -103,13 +104,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     // Getting Scores
 
-    public Database[] retriveScores() {
+    public PlayerScore[] retrieveScores() {
 
-       Database[] database = new Database[4];
+       PlayerScore[] playerScore = new PlayerScore[4];
         int i=0;
-
-
-
 
         String countQuery = "SELECT * FROM " + TABLE_SCORE + " ORDER BY " + KEY_SCORE +" DESC;"  ;
     //    String countQuery = "SELECT"+ KEY_NAME +","+KEY_SCORE +" FROM " + TABLE_SCORE + " ORDER BY " + KEY_SCORE +" DESC;"  ;
@@ -118,13 +116,14 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(countQuery, null);
         if(cursor.moveToFirst()){
             do{
-                //assing values
-
                 String column2 = cursor.getString(1);
                 String column3 = cursor.getString(2);
+                Log.e("column2",column2);
+                Log.e("column3",column3);
                 //Do something Here with values
-                database[i].setName(column2);
-                database[i].setScore(Integer.parseInt(column3));
+                playerScore[i] = new PlayerScore();
+                playerScore[i].setName(column2);
+                playerScore[i].setScore(Integer.parseInt(column3));
                 i++;
             }while(cursor.moveToNext());
         }
@@ -132,7 +131,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.close();
 
 
-        return database;
+        return playerScore;
     }
 
 
