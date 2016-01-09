@@ -24,7 +24,7 @@
             android:layout_height="45dp"
             android:layout_marginTop="25dp"
             android:layout_toRightOf="@id/player1tile"
-            android:src="@drawable/playerscore5" />
+            android:src="@drawable/playerscore" />
 
 
     </RelativeLayout>
