@@ -17,13 +17,40 @@
             android:layout_marginTop="25dp"
             android:layout_marginLeft="30dp"
             />
+        <logic.main.com.boardgame.CustomTextView
+            android:id="@+id/player1text"
+            android:layout_width="50dp"
+            android:layout_height="35dp"
+            android:layout_above="@+id/player3tile"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="37dp"
+            android:text="Imran"
+            android:textSize="15sp"
+            android:textColor="@color/fontcolor"
+
+            />
+
+
         <ImageView
             android:id="@+id/player1score"
-            android:src="@drawable/playerscore5"
+            android:src="@drawable/playerscore"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_toRightOf="@id/player1tile"
             android:layout_marginTop="25dp"
+            />
+        <logic.main.com.boardgame.CustomTextView
+            android:id="@+id/player1txtscr"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_toRightOf="@id/player1tile"
+            android:layout_above="@+id/player3tile"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="17dp"
+            android:text="1"
+            android:textSize="15sp"
+            android:textColor="@color/fontcolor"
+
             />
         <ImageView
             android:id="@+id/player2tile"
@@ -34,14 +61,39 @@
             android:layout_marginLeft="120dp"
             android:layout_marginTop="25dp"
             />
+        <logic.main.com.boardgame.CustomTextView
+            android:id="@+id/player2text"
+            android:layout_width="50dp"
+            android:layout_height="35dp"
+            android:layout_above="@+id/player3tile"
+            android:layout_toRightOf="@id/player2score"
+            android:layout_marginLeft="10dp"
+            android:text="Jain"
+            android:textSize="15sp"
+            android:textColor="@color/fontcolor"
+
+            />
         <ImageView
             android:id="@+id/player2score"
-            android:src="@drawable/playerscore5"
+            android:src="@drawable/playerscore"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_toRightOf="@id/player1score"
             android:layout_marginTop="25dp"
             android:layout_marginLeft="30dp"
+            />
+        <logic.main.com.boardgame.CustomTextView
+            android:id="@+id/player2txtscr"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_above="@id/player3score"
+            android:layout_toLeftOf="@id/player2text"
+            android:layout_marginBottom="15dp"
+            android:layout_marginRight="8dp"
+            android:text="2"
+            android:textSize="15sp"
+            android:textColor="@color/fontcolor"
+
             />
         <ImageView
             android:id="@+id/player3tile"
@@ -51,13 +103,36 @@
             android:layout_below="@id/player1tile"
             android:layout_marginLeft="30dp"
             />
+        <logic.main.com.boardgame.CustomTextView
+            android:id="@+id/player3text"
+            android:layout_width="50dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/player1tile"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="37dp"
+            android:text="Vahid"
+            android:textSize="15sp"
+            android:textColor="@color/fontcolor"
+            />
         <ImageView
             android:id="@+id/player3score"
-            android:src="@drawable/playerscore5"
+            android:src="@drawable/playerscore"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_below="@id/player1score"
             android:layout_toRightOf="@id/player3tile"
+            />
+        <logic.main.com.boardgame.CustomTextView
+            android:id="@+id/player3txtscr"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_below="@+id/player1txtscr"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/player3tile"
+            android:layout_marginLeft="17dp"
+            android:text="3"
+            android:textSize="15sp"
+            android:textColor="@color/fontcolor"
             />
         <ImageView
             android:id="@+id/player4tile"
@@ -68,14 +143,40 @@
             android:layout_below="@id/player2tile"
             android:layout_marginLeft="120dp"
             />
+        <logic.main.com.boardgame.CustomTextView
+            android:id="@+id/player4text"
+            android:layout_width="50dp"
+            android:layout_height="35dp"
+            android:layout_below="@id/player2tile"
+            android:layout_toRightOf="@id/player4score"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="Pawan"
+            android:textSize="15sp"
+            android:textColor="@color/fontcolor"
+
+            />
         <ImageView
             android:id="@+id/player4score"
-            android:src="@drawable/playerscore5"
+            android:src="@drawable/playerscore"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_toRightOf="@id/player3score"
             android:layout_below="@id/player2score"
             android:layout_marginLeft="30dp"
+            />
+        <logic.main.com.boardgame.CustomTextView
+            android:id="@+id/player4txtscr"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_below="@id/player2score"
+            android:layout_toLeftOf="@id/player4text"
+            android:layout_marginBottom="15dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="10dp"
+            android:text="4"
+            android:textSize="15sp"
+            android:textColor="@color/fontcolor"
             />
 
     </RelativeLayout>
