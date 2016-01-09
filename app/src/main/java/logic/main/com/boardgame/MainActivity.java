@@ -1,27 +1,24 @@
 package logic.main.com.boardgame;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
-
-import java.util.Random;
 
 
 public class MainActivity extends Activity implements View.OnTouchListener {
-    //GameCanvas drawView;
-    GestureDetector gdt;
-    // ImageView a1,a2,a3,a4,a5,a6,a7,b1,b2,b3,b4,b5,b6,b7,c1,c2,c3,c4,c5,c6,c7,d1,d2,d3,d4,d5,d6,d7,e1,e2,e3,e4,e5,e6,e7,f1,f2,f3,f4,f5,f6,f7,g1,g2,g3,g4,g5,g6,g7;
-    ImageView imageView;
 
-    int beadCount = 20;
+    private static final int SWIPE_MIN_DISTANCE = 30;
+    private static final int SWIPE_THRESHOLD_VELOCITY = 100;
+    GestureDetector gdt;
+    int beadCount2=10;
+    int beadCount3=15;
+    int beadCount4=20;
+    int beadCount;
     Board board = new Board();
     MoveController moveController = new MoveController();
     BoardImageSetter boardImageSetter=new BoardImageSetter();
@@ -29,6 +26,7 @@ public class MainActivity extends Activity implements View.OnTouchListener {
     BeadConfingSetter beadConfingSetter=new BeadConfingSetter();
     MoveGenerator moveGenerator=new MoveGenerator();
     BeadPlacer beadPlacer=new BeadPlacer();
+    DataBaseHelper  dataBaseHelper= new DataBaseHelper(this);
     String flingType="";
 
     @Override
@@ -41,11 +39,14 @@ public class MainActivity extends Activity implements View.OnTouchListener {
         gdt = new GestureDetector(this, new GestureListener());
 
         BoardConf boardConf = new BoardConf();
-        board.setMovingPlayer(1);
-        board.setNumberOfPlayers(4);
 
-        BarConfigGenerator barConfigGenerator=new BarConfigGenerator();
-        board= barConfigGenerator.generateBarConfig(board);
+        int value = getIntent().getExtras().getInt("numberOfPlayers");
+        board.setNumberOfPlayers(value);
+        board.setMovingPlayer(1);
+
+
+        BarConfigGenerator barConfigGenerator = new BarConfigGenerator();
+        board = barConfigGenerator.generateBarConfig(board);
 
         // Log.e("postionsOfVerticalBars", postionsOfVerticalBars);
         // Log.e("postionsOfHorizonlBars", postionsOfHorizontalBars);
@@ -71,11 +72,26 @@ public class MainActivity extends Activity implements View.OnTouchListener {
         //  Log.e("id", idString);
 
         //Placing beads
-        beadCount= beadPlacer.placeBeads(beadCount,tag,view.getId(),board,this);
+        if(board.getNumberOfPlayers()==2){
+
+            beadCount2= beadPlacer.placeBeads(beadCount2,tag,view.getId(),board,this);
+            beadCount=beadCount2;
+        }else if(board.getNumberOfPlayers()==3){
+
+            beadCount3= beadPlacer.placeBeads(beadCount3,tag,view.getId(),board,this);
+            beadCount=beadCount3;
+        }else if(board.getNumberOfPlayers()==4){
+
+            beadCount4= beadPlacer.placeBeads(beadCount4,tag,view.getId(),board,this);
+            beadCount=beadCount4;
+        }
+
+
+
 
         gdt.onTouchEvent(event);
 
-        if ((flingType.equals("topToBottom")||flingType .equals( "bottomToTop")||flingType .equals("rightToLeft")||flingType .equals( "leftToRight"))&&beadCount==0) {
+        if ((flingType.equals("topToBottom")||flingType .equals( "bottomToTop")||flingType .equals("rightToLeft")||flingType .equals( "leftToRight"))&& beadCount==0) {
             Log.e("flingid", idString);
             Log.e("flingtag", (String) view.getTag());
             beadConfingSetter.setBeadConfig(board,getApplicationContext(),this);
@@ -96,6 +112,8 @@ public class MainActivity extends Activity implements View.OnTouchListener {
                 if(String.valueOf(board.getWinner())!="0"){
                     Toast toast = Toast.makeText(getApplicationContext(), "Winner is Player: "+String.valueOf(board.getWinner()), Toast.LENGTH_SHORT);
                     toast.show();
+                    dataBaseHelper.updateScore(board);
+
                     // Intent intent = new Intent(getApplicationContext(), FullscreenActivity.class);
                     // startActivity(intent);
 
@@ -111,10 +129,6 @@ public class MainActivity extends Activity implements View.OnTouchListener {
 
         return true;
     }
-
-
-    private static final int SWIPE_MIN_DISTANCE = 30;
-    private static final int SWIPE_THRESHOLD_VELOCITY = 100;
 
     private class GestureListener extends GestureDetector.SimpleOnGestureListener {
 

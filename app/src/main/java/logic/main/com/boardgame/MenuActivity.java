@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 /**
  * Created by Vahiiid on 1/6/2016.
@@ -14,6 +15,8 @@ public class MenuActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_layout);
+        Button next= (Button) findViewById(R.id.aboutBtn);
+
     }
 
     public void goToPlayerMenu(View view){
@@ -27,7 +30,7 @@ public class MenuActivity extends Activity {
         startActivity(intent);
     }
 
-    public void goToAbout(View view){
+   public void goToAbout(View view){
         Intent intent = new Intent(this,AboutActivity.class);
         startActivity(intent);
     }

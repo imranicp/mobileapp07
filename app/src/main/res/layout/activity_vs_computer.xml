@@ -1,0 +1,747 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fullbg1">
+
+    <RelativeLayout
+        android:id="@+id/score"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/player1tile"
+            android:layout_width="90dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="25dp"
+            android:src="@drawable/player1actv" />
+
+        <ImageView
+            android:id="@+id/player1score"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="25dp"
+            android:layout_toRightOf="@id/player1tile"
+            android:src="@drawable/playerscore5" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textAlignment="center">
+        <!--first line squares of the board-->
+        <ImageView
+            android:id="@+id/a1"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/a2"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/a2"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_toStartOf="@+id/a3"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/a3"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_toStartOf="@+id/a4"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/a4"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_toStartOf="@+id/a5"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/a5"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_toStartOf="@+id/a6"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/a6"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_toStartOf="@+id/a7"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/a7"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_toStartOf="@+id/r1"
+            android:src="@drawable/hole" />
+
+        <!--second line squares of the board-->
+        <ImageView
+            android:id="@+id/b1"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_above="@+id/c2"
+            android:layout_alignStart="@+id/a1"
+            android:layout_gravity="center"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/b2"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/a2"
+            android:layout_gravity="center"
+            android:layout_toStartOf="@+id/a3"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/b3"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignStart="@+id/a3"
+            android:layout_below="@+id/a3"
+            android:layout_gravity="center"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/b4"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/a3"
+            android:layout_gravity="center"
+            android:layout_toEndOf="@+id/a3"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/b5"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_above="@+id/c4"
+            android:layout_alignStart="@+id/a5"
+            android:layout_gravity="center"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/b6"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/a5"
+            android:layout_gravity="center"
+            android:layout_toEndOf="@+id/a5"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/b7"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/a6"
+            android:layout_gravity="center"
+            android:layout_toEndOf="@+id/a6"
+            android:src="@drawable/hole" />
+
+        <!--third line squares of the board-->
+        <ImageView
+            android:id="@+id/c1"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/b1"
+            android:layout_gravity="center"
+            android:layout_toStartOf="@+id/b2"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/c2"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/b2"
+            android:layout_gravity="center"
+            android:layout_toStartOf="@+id/b3"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/c3"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignStart="@+id/b3"
+            android:layout_below="@+id/b3"
+            android:layout_gravity="center"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/c4"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/b4"
+            android:layout_gravity="center"
+            android:layout_toStartOf="@+id/b5"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/c5"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/b5"
+            android:layout_gravity="center"
+            android:layout_toStartOf="@+id/b6"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/c6"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/b6"
+            android:layout_gravity="center"
+            android:layout_toStartOf="@+id/b7"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/c7"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignStart="@+id/b7"
+            android:layout_below="@+id/b7"
+            android:layout_gravity="center"
+            android:src="@drawable/hole" />
+
+        <!--forth line squares of the board-->
+        <ImageView
+            android:id="@+id/d1"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/c1"
+            android:layout_gravity="center"
+            android:layout_toStartOf="@+id/c2"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/d2"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/c1"
+            android:layout_gravity="center"
+            android:layout_toEndOf="@+id/c1"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/d3"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/c3"
+            android:layout_gravity="center"
+            android:layout_toStartOf="@+id/c4"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/d4"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignStart="@+id/c4"
+            android:layout_below="@+id/c4"
+            android:layout_gravity="center"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/d5"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/c4"
+            android:layout_gravity="center"
+            android:layout_toEndOf="@+id/c4"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/d6"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/c6"
+            android:layout_gravity="center"
+            android:layout_toStartOf="@+id/c7"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/d7"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignStart="@+id/c7"
+            android:layout_below="@+id/c7"
+            android:layout_gravity="center"
+            android:src="@drawable/hole" />
+
+        <!--fifth line squares of the board-->
+        <ImageView
+            android:id="@+id/e1"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignStart="@+id/f1"
+            android:layout_alignTop="@+id/e2"
+            android:layout_gravity="center"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/e2"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignStart="@+id/d2"
+            android:layout_below="@+id/d2"
+            android:layout_gravity="center"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/e3"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/d2"
+            android:layout_gravity="center"
+            android:layout_toEndOf="@+id/d2"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/e4"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignTop="@+id/e3"
+            android:layout_gravity="center"
+            android:layout_toEndOf="@+id/e3"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/e5"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/d4"
+            android:layout_gravity="center"
+            android:layout_toEndOf="@+id/d4"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/e6"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/d5"
+            android:layout_gravity="center"
+            android:layout_toEndOf="@+id/d5"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/e7"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/d6"
+            android:layout_gravity="center"
+            android:layout_toEndOf="@+id/d6"
+            android:src="@drawable/hole" />
+
+        <!--sixth line squares of the board-->
+        <ImageView
+            android:id="@+id/f1"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/e1"
+            android:layout_gravity="center"
+            android:layout_toStartOf="@+id/e2"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/f2"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignStart="@+id/e2"
+            android:layout_below="@+id/e2"
+            android:layout_gravity="center"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/f3"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/e3"
+            android:layout_gravity="center"
+            android:layout_toStartOf="@+id/e4"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/f4"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/e3"
+            android:layout_gravity="center"
+            android:layout_toEndOf="@+id/e3"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/f5"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignStart="@+id/e5"
+            android:layout_below="@+id/e5"
+            android:layout_gravity="center"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/f6"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/e6"
+            android:layout_gravity="center"
+            android:layout_toStartOf="@+id/e7"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/f7"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_above="@+id/g7"
+            android:layout_gravity="center"
+            android:layout_toStartOf="@+id/r7"
+            android:src="@drawable/hole" />
+
+        <!--seventh line squares of the board-->
+        <ImageView
+            android:id="@+id/g1"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignTop="@+id/g2"
+            android:layout_gravity="center"
+            android:layout_toStartOf="@+id/g2"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/g2"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/f1"
+            android:layout_gravity="center"
+            android:layout_toEndOf="@+id/f1"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/g3"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignTop="@+id/g2"
+            android:layout_gravity="center"
+            android:layout_toEndOf="@+id/g2"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/g4"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/f3"
+            android:layout_gravity="center"
+            android:layout_toEndOf="@+id/f3"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/g5"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_above="@+id/bot6"
+            android:layout_gravity="center"
+            android:layout_toStartOf="@+id/g6"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/g6"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignStart="@+id/f6"
+            android:layout_below="@+id/f6"
+            android:layout_gravity="center"
+            android:src="@drawable/hole" />
+
+        <ImageView
+            android:id="@+id/g7"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/f6"
+            android:layout_gravity="center"
+            android:layout_toEndOf="@+id/f6"
+            android:src="@drawable/hole" />
+
+        <!--top bars-->
+        <ImageView
+            android:id="@+id/top1"
+            android:layout_width="35dp"
+            android:layout_height="40dp"
+            android:layout_above="@+id/a1"
+            android:layout_gravity="center"
+            android:layout_toEndOf="@+id/l1"
+            android:src="@drawable/topinner" />
+
+        <ImageView
+            android:id="@+id/top2"
+            android:layout_width="35dp"
+            android:layout_height="40dp"
+            android:layout_above="@+id/a1"
+            android:layout_gravity="center"
+            android:layout_toEndOf="@+id/a1"
+            android:src="@drawable/topinner" />
+
+        <ImageView
+            android:id="@+id/top3"
+            android:layout_width="35dp"
+            android:layout_height="40dp"
+            android:layout_above="@+id/a3"
+            android:layout_gravity="center"
+            android:layout_toEndOf="@+id/a2"
+            android:src="@drawable/topinner" />
+
+        <ImageView
+            android:id="@+id/top4"
+            android:layout_width="35dp"
+            android:layout_height="40dp"
+            android:layout_above="@+id/a3"
+            android:layout_gravity="center"
+            android:layout_toEndOf="@+id/a3"
+            android:src="@drawable/topinner" />
+
+        <ImageView
+            android:id="@+id/top5"
+            android:layout_width="35dp"
+            android:layout_height="40dp"
+            android:layout_above="@+id/a5"
+            android:layout_gravity="center"
+            android:layout_toEndOf="@+id/a4"
+            android:src="@drawable/topinner" />
+
+        <ImageView
+            android:id="@+id/top6"
+            android:layout_width="35dp"
+            android:layout_height="40dp"
+            android:layout_above="@+id/a6"
+            android:layout_gravity="center"
+            android:layout_toEndOf="@+id/a5"
+            android:src="@drawable/topinner" />
+
+        <ImageView
+            android:id="@+id/top7"
+            android:layout_width="35dp"
+            android:layout_height="40dp"
+            android:layout_above="@+id/a6"
+            android:layout_gravity="center"
+            android:layout_toEndOf="@+id/a6"
+            android:src="@drawable/topinner" />
+
+        <!--bottom bars-->
+        <ImageView
+            android:id="@+id/bot1"
+            android:layout_width="35dp"
+            android:layout_height="40dp"
+            android:layout_alignTop="@+id/bot2"
+            android:layout_gravity="center"
+            android:layout_toStartOf="@+id/bot2"
+            android:src="@drawable/bottominner" />
+
+        <ImageView
+            android:id="@+id/bot2"
+            android:layout_width="35dp"
+            android:layout_height="40dp"
+            android:layout_alignTop="@+id/bot3"
+            android:layout_gravity="center"
+            android:layout_toEndOf="@+id/g1"
+            android:src="@drawable/bottominner" />
+
+        <ImageView
+            android:id="@+id/bot3"
+            android:layout_width="35dp"
+            android:layout_height="40dp"
+            android:layout_alignStart="@+id/g3"
+            android:layout_alignTop="@+id/bot6"
+            android:layout_gravity="center"
+            android:src="@drawable/bottominner" />
+
+        <ImageView
+            android:id="@+id/bot4"
+            android:layout_width="35dp"
+            android:layout_height="40dp"
+            android:layout_alignTop="@+id/bot3"
+            android:layout_gravity="center"
+            android:layout_toStartOf="@+id/g5"
+            android:src="@drawable/bottominner" />
+
+        <ImageView
+            android:id="@+id/bot5"
+            android:layout_width="35dp"
+            android:layout_height="40dp"
+            android:layout_alignTop="@+id/bot6"
+            android:layout_gravity="center"
+            android:layout_toStartOf="@+id/bot6"
+            android:src="@drawable/bottominner" />
+
+        <ImageView
+            android:id="@+id/bot6"
+            android:layout_width="35dp"
+            android:layout_height="40dp"
+            android:layout_alignStart="@+id/g6"
+            android:layout_below="@+id/g6"
+            android:layout_gravity="center"
+            android:src="@drawable/bottominner" />
+
+        <ImageView
+            android:id="@+id/bot7"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignStart="@+id/g7"
+            android:layout_below="@+id/g7"
+            android:layout_gravity="center"
+            android:src="@drawable/bottominner" />
+
+        <!--left bars-->
+        <ImageView
+            android:id="@+id/l1"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentStart="false"
+            android:layout_alignTop="@+id/a1"
+            android:layout_gravity="center"
+            android:layout_toStartOf="@+id/a1"
+            android:src="@drawable/leftinner" />
+
+        <ImageView
+            android:id="@+id/l2"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:layout_alignTop="@+id/b1"
+            android:layout_gravity="center"
+            android:layout_toStartOf="@+id/a1"
+            android:src="@drawable/leftinner" />
+
+        <ImageView
+            android:id="@+id/l3"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:layout_alignTop="@+id/c1"
+            android:layout_gravity="center"
+            android:layout_toStartOf="@+id/c1"
+            android:src="@drawable/leftinner" />
+
+        <ImageView
+            android:id="@+id/l4"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:layout_above="@+id/e1"
+            android:layout_gravity="center"
+            android:layout_toStartOf="@+id/d1"
+            android:src="@drawable/leftinner" />
+
+        <ImageView
+            android:id="@+id/l5"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:layout_alignEnd="@+id/l4"
+            android:layout_alignTop="@+id/e1"
+            android:layout_gravity="center"
+            android:src="@drawable/leftinner" />
+
+        <ImageView
+            android:id="@+id/l6"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:layout_above="@+id/g1"
+            android:layout_alignEnd="@+id/l5"
+            android:layout_gravity="center"
+            android:src="@drawable/leftinner" />
+
+        <ImageView
+            android:id="@+id/l7"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:layout_alignEnd="@+id/l6"
+            android:layout_alignTop="@+id/g1"
+            android:layout_gravity="center"
+            android:src="@drawable/leftinner" />
+
+        <!--right bars-->
+        <ImageView
+            android:id="@+id/r1"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:layout_above="@+id/b7"
+            android:layout_alignStart="@+id/r2"
+            android:layout_gravity="center"
+            android:src="@drawable/rightinner" />
+
+        <ImageView
+            android:id="@+id/r2"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:layout_alignStart="@+id/r3"
+            android:layout_below="@+id/a7"
+            android:layout_gravity="center"
+            android:src="@drawable/rightinner" />
+
+        <ImageView
+            android:id="@+id/r3"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:layout_alignStart="@+id/r4"
+            android:layout_below="@+id/b7"
+            android:layout_gravity="center"
+            android:src="@drawable/rightinner" />
+
+        <ImageView
+            android:id="@+id/r4"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/r3"
+            android:layout_gravity="center"
+            android:src="@drawable/rightinner" />
+
+        <ImageView
+            android:id="@+id/r5"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/r4"
+            android:layout_gravity="center"
+            android:src="@drawable/rightinner" />
+
+        <ImageView
+            android:id="@+id/r6"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/r5"
+            android:layout_gravity="center"
+            android:src="@drawable/rightinner" />
+
+        <ImageView
+            android:id="@+id/r7"
+            android:layout_width="40dp"
+            android:layout_height="35dp"
+            android:layout_above="@+id/bot7"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="false"
+            android:layout_gravity="center"
+            android:layout_toEndOf="@id/g7"
+            android:src="@drawable/rightinner" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
