@@ -4,39 +4,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <logic.main.com.boardgame.CustomTextView
         android:id="@+id/textview"
         android:text="Scores!"
-        android:textSize="45dp"
+        android:textSize="55sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
         android:textAlignment="center"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="@color/fontcolor"
+        />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Text"
-        android:textSize="35dp"
+        android:textSize="35sp"
         android:id="@+id/player1"
         android:layout_below="@+id/textview"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-
-        android:textAlignment="center" />
+        android:gravity="center"
+        android:textAlignment="center"
+        android:background="@drawable/score"
+        android:layout_marginTop="2dp"
+        />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Text"
-        android:textSize="35dp"
+        android:textSize="35sp"
         android:id="@+id/player2"
         android:layout_below="@+id/player1"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
+        android:background="@drawable/score"
+        android:gravity="center"
+        android:layout_marginTop="2dp"
         />
 
     <TextView
@@ -44,21 +52,27 @@
         android:layout_height="wrap_content"
         android:text="New Text"
         android:id="@+id/player3"
-        android:textSize="35dp"
+        android:textSize="35sp"
         android:layout_below="@+id/player2"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
+        android:background="@drawable/score"
+        android:gravity="center"
+        android:layout_marginTop="2dp"
         />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Text"
-        android:textSize="35dp"
+        android:textSize="35sp"
         android:id="@+id/player4"
         android:layout_below="@+id/player3"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
+        android:background="@drawable/score"
+        android:gravity="center"
+        android:layout_marginTop="2dp"
         />
 
 </RelativeLayout>
