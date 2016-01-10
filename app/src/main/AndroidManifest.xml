@@ -44,6 +44,9 @@
             android:name=".PlayerSelectActivity"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity android:name=".GameOverActivity"></activity>
+        <activity
+            android:name=".HistoryActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
     </application>
 
 </manifest>

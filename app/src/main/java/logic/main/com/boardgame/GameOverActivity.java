@@ -23,6 +23,7 @@ public class GameOverActivity extends Activity {
         finish();
     }
 
+
     @Override
     public void onBackPressed() {
         final Intent intent = new Intent(this, MenuActivity.class);

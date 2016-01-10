@@ -30,6 +30,12 @@ public class MenuActivity extends Activity {
         finish();
     }
 
+    public void goToHistory(View view){
+        Intent intent = new Intent(this,HistoryActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
    public void goToAbout(View view){
         Intent intent = new Intent(this,AboutActivity.class);
         startActivity(intent);

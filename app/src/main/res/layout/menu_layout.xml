@@ -42,7 +42,6 @@
         android:layout_below="@+id/gameTitle"
         android:layout_centerHorizontal="true"
         android:background="@drawable/menu_start_btn"
-        android:layout_marginTop="20dp"
         android:layout_width="150dp"
         android:layout_height="75dp" />
 
@@ -52,6 +51,16 @@
         android:layout_below="@+id/startBtn"
         android:layout_centerHorizontal="true"
         android:background="@drawable/menu_score_btn"
+        android:layout_marginTop="15dp"
+        android:layout_width="150dp"
+        android:layout_height="75dp" />
+
+    <Button
+        android:id="@+id/historyBtn"
+        android:onClick="goToHistory"
+        android:layout_below="@+id/scoreBtn"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/history_btn"
         android:layout_marginTop="20dp"
         android:layout_width="150dp"
         android:layout_height="75dp" />
@@ -59,7 +68,7 @@
     <Button
         android:id="@+id/aboutBtn"
         android:onClick="goToAbout"
-        android:layout_below="@+id/scoreBtn"
+        android:layout_below="@+id/historyBtn"
         android:layout_centerHorizontal="true"
         android:background="@drawable/menu_about_btn"
         android:layout_marginTop="20dp"
