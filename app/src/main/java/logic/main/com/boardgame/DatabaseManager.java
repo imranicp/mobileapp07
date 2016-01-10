@@ -9,9 +9,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-/**
- * Created by Rishabh on 09-01-2016.
- */
 public class DatabaseManager {
 
     // All Static variables
@@ -43,9 +40,27 @@ public class DatabaseManager {
     }
 
     // Updating score
-    public void updateScore(Board board) {
+    public void updateScore(Board board, String[] players) {
+        String winner = "";
+        int i = 1;
+        for (String player : players) {
+            if (player != null) {
+                if (board.getWinner() == i) {
+                    winner = players[i - 1];
+                }
 
-        String countQuery = "UPDATE " + TABLE_SCORE + " SET " + KEY_SCORE + "=SCORE + 1" + " WHERE " + KEY_NAME + " = 'PLAYER" + board.getWinner() + "'";
+                if (!checkIsDataAlreadyInDBorNot(player)) {
+                    ContentValues values = new ContentValues();
+                    values.put(KEY_NAME, player);
+                    values.put(KEY_SCORE, 0);
+                    db.insert(TABLE_SCORE, null, values);
+                }
+                i++;
+            }
+        }
+
+
+        String countQuery = "UPDATE " + TABLE_SCORE + " SET " + KEY_SCORE + "=SCORE + 1" + " WHERE " + KEY_NAME + " = '" + winner + "'";
         Log.e("updateQuery", countQuery);
         Cursor cursor = db.rawQuery(countQuery, null);
         cursor.moveToFirst();
@@ -54,9 +69,24 @@ public class DatabaseManager {
 
     }
 
+
+    public boolean checkIsDataAlreadyInDBorNot(String playerName) {
+
+        String Query = "Select * from " + TABLE_SCORE + " where " + KEY_NAME + " = '" + playerName + "'";
+        Cursor cursor = db.rawQuery(Query, null);
+        if (cursor.getCount() <= 0) {
+            cursor.close();
+            return false;
+        }
+        cursor.close();
+        return true;
+    }
+
+
+
     public PlayerScore[] retrieveScores() {
 
-        PlayerScore[] playerScore = new PlayerScore[4];
+        PlayerScore[] playerScore = new PlayerScore[50];
         int i = 0;
 
         String countQuery = "SELECT * FROM " + TABLE_SCORE + " ORDER BY " + KEY_SCORE + " DESC;";

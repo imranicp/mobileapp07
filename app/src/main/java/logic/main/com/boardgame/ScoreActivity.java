@@ -21,23 +21,24 @@ public class ScoreActivity extends Activity {
         int i = 1;
 
         for (PlayerScore playerScore : data) {
+            if (playerScore != null) {
+                Log.e("name", playerScore.getName());
+                Log.e("score", String.valueOf(playerScore.getScore()));
+                if (i == 1) {
+                    player1.setText(playerScore.getName() + ": " + playerScore.getScore());
+                }
+                if (i == 2) {
+                    player2.setText(playerScore.getName() + ": " + playerScore.getScore());
+                }
+                if (i == 3) {
+                    player3.setText(playerScore.getName() + ": " + playerScore.getScore());
+                }
+                if (i == 4) {
+                    player4.setText(playerScore.getName() + ": " + playerScore.getScore());
+                }
+                i++;
 
-            Log.e("name", playerScore.getName());
-            Log.e("score", String.valueOf(playerScore.getScore()));
-            if (i == 1) {
-                player1.setText(playerScore.getName() + ": " + playerScore.getScore());
             }
-            if (i == 2) {
-                player2.setText(playerScore.getName() + ": " + playerScore.getScore());
-            }
-            if (i == 3) {
-                player3.setText(playerScore.getName() + ": " + playerScore.getScore());
-            }
-            if (i == 4) {
-                player4.setText(playerScore.getName() + ": " + playerScore.getScore());
-            }
-            i++;
-
         }
 
 

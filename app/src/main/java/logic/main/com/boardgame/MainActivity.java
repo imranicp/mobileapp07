@@ -1,6 +1,9 @@
 package logic.main.com.boardgame;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
@@ -114,6 +117,23 @@ public class MainActivity extends Activity implements View.OnTouchListener {
     }
 
     @Override
+    public void onBackPressed() {
+        final Intent intent = new Intent(this, MenuActivity.class);
+        new AlertDialog.Builder(this)
+                .setTitle("Quit Game?")
+                .setMessage("Are you sure you want to Quit?")
+                .setNegativeButton(android.R.string.no, null)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                        startActivity(intent);
+                    }
+                }).create().show();
+    }
+
+
+    @Override
     public boolean onTouch(final View view, final MotionEvent event) {
         Resources res = view.getResources();     // get resources
         String idString = res.getResourceEntryName(view.getId());
@@ -159,12 +179,33 @@ public class MainActivity extends Activity implements View.OnTouchListener {
                 barImageSetter.setBarImages(board, getApplicationContext(),this);
 
                 if(String.valueOf(board.getWinner())!="0"){
-                    Toast toast = Toast.makeText(getApplicationContext(), "Winner is Player: "+String.valueOf(board.getWinner()), Toast.LENGTH_SHORT);
+                    String[] players = new String[4];
+                    players[0] = player1name;
+                    players[1] = player2name;
+                    if (board.getNumberOfPlayers() == 3) {
+                        players[2] = player3name;
+                    }
+                    if (board.getNumberOfPlayers() == 4) {
+                        players[2] = player3name;
+                        players[3] = player4name;
+                    }
+                    String winner = "";
+                    int i = 1;
+                    for (String player : players) {
+                        if (player != null) {
+                            if (board.getWinner() == i) {
+                                winner = players[i - 1];
+                            }
+                        }
+                    }
+                    Toast toast = Toast.makeText(getApplicationContext(), "Winner is Player: " + winner, Toast.LENGTH_SHORT);
                     toast.show();
-                    dataBaseHelper.updateScore(board);
 
-                    // Intent intent = new Intent(getApplicationContext(), FullscreenActivity.class);
-                    // startActivity(intent);
+                    dataBaseHelper.updateScore(board, players);
+
+                    Intent intent = new Intent(getApplicationContext(), GameOverActivity.class);
+                    intent.putExtra("winner", winner);
+                    startActivity(intent);
 
                 }
                 Log.e("newConfig",board.getOutput());
