@@ -75,4 +75,13 @@
         android:layout_width="150dp"
         android:layout_height="75dp" />
 
+    <Button
+        android:id="@+id/helpBtn"
+        android:onClick="goToHelp"
+        android:background="@drawable/menu_info"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp" />
+
 </RelativeLayout>

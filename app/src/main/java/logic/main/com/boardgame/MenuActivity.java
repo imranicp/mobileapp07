@@ -42,6 +42,12 @@ public class MenuActivity extends Activity {
        finish();
     }
 
+    public void goToHelp(View view){
+        Intent intent = new Intent(this,HelpActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
     @Override
     public void onBackPressed() {
         new AlertDialog.Builder(this).setIcon(android.R.drawable.ic_dialog_alert).setTitle("Exit")
