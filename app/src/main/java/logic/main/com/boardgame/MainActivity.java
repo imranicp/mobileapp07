@@ -128,6 +128,7 @@ public class MainActivity extends Activity implements View.OnTouchListener {
                     public void onClick(DialogInterface arg0, int arg1) {
 
                         startActivity(intent);
+                        finish();
                     }
                 }).create().show();
     }
@@ -206,7 +207,7 @@ public class MainActivity extends Activity implements View.OnTouchListener {
                     Intent intent = new Intent(getApplicationContext(), GameOverActivity.class);
                     intent.putExtra("winner", winner);
                     startActivity(intent);
-
+                    finish();
                 }
                 Log.e("newConfig",board.getOutput());
             } catch (Exception e) {

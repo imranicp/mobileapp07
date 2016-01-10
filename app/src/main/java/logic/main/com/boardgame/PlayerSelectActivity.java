@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.CursorAdapter;
@@ -67,6 +68,13 @@ public class PlayerSelectActivity extends Activity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, GameTypeActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
     public void onClick(View v) {
         Intent newActivity = new Intent(this, MainActivity.class);
 
@@ -85,6 +93,7 @@ public class PlayerSelectActivity extends Activity {
                         newActivity.putExtra("player1", p1Name);
                         newActivity.putExtra("player2", p2Name);
                         startActivity(newActivity);
+                        finish();
                     }
                 }
                 if (value == 3) {
@@ -97,6 +106,7 @@ public class PlayerSelectActivity extends Activity {
                         newActivity.putExtra("player2", p2Name);
                         newActivity.putExtra("player3", p3Name);
                         startActivity(newActivity);
+                        finish();
                     }
                 }
                 if (value == 4) {
@@ -112,6 +122,7 @@ public class PlayerSelectActivity extends Activity {
                         newActivity.putExtra("player3", p3Name);
                         newActivity.putExtra("player4", p4Name);
                         startActivity(newActivity);
+                        finish();
                     }
                 }
                 break;
@@ -243,6 +254,8 @@ public class PlayerSelectActivity extends Activity {
             // Get the cursor, positioned to the corresponding row in the result set
             Cursor cursor = (Cursor) listView.getItemAtPosition(position);
 
+            InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            in.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
             // Get the state's capital from this row in the database.
             //String capital = cursor.getString(cursor.getColumnIndexOrThrow("capital"));
 

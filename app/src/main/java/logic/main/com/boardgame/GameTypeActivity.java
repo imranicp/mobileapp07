@@ -20,27 +20,36 @@ public class GameTypeActivity extends Activity {
 
                 vsComputerActivity.putExtra("numberOfPlayers", 2);
                 startActivity(vsComputerActivity);
-
+                finish();
                 break;
             case R.id.twoPlayer:
 
                 playerSelectActivity.putExtra("numberOfPlayers", 2);
                 startActivity(playerSelectActivity);
-
+                finish();
                 break;
             case R.id.threePlayer:
 
                 playerSelectActivity.putExtra("numberOfPlayers", 3);
                 startActivity(playerSelectActivity);
+                finish();
                 break;
             case R.id.fourPlayer:
 
                 playerSelectActivity.putExtra("numberOfPlayers", 4);
                 startActivity(playerSelectActivity);
+                finish();
                 break;
             default:
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MenuActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override

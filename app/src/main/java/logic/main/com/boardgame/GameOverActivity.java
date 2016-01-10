@@ -20,12 +20,14 @@ public class GameOverActivity extends Activity {
     public void goToMain(View view) {
         Intent intent = new Intent(this, MenuActivity.class);
         startActivity(intent);
-
+        finish();
     }
 
     @Override
     public void onBackPressed() {
         final Intent intent = new Intent(this, MenuActivity.class);
         startActivity(intent);
+        finish();
+
     }
 }

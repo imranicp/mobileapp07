@@ -1,6 +1,7 @@
 package logic.main.com.boardgame;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -42,5 +43,12 @@ public class ScoreActivity extends Activity {
         }
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MenuActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
