@@ -29,7 +29,7 @@
             android:name=".MainActivity"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
-            android:name=".SelectPlayerActivity"
+            android:name=".GameTypeActivity"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
             android:name=".ScoreActivity"
@@ -39,6 +39,9 @@
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
             android:name=".VsComputerActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity
+            android:name=".PlayerSelectActivity"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
     </application>
 

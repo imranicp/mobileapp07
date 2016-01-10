@@ -6,9 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-/**
- * Created by Vahiiid on 1/6/2016.
- */
+
 public class MenuActivity extends Activity {
 
     @Override
@@ -20,7 +18,7 @@ public class MenuActivity extends Activity {
     }
 
     public void goToPlayerMenu(View view){
-        Intent intent = new Intent(this,SelectPlayerActivity.class);
+        Intent intent = new Intent(this, GameTypeActivity.class);
         startActivity(intent);
 
     }

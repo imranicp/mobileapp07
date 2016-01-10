@@ -6,7 +6,7 @@ import android.util.Log;
 import android.widget.TextView;
 
 public class ScoreActivity extends Activity {
-    DataBaseHelper databasehelper = new DataBaseHelper(this);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,7 +16,7 @@ public class ScoreActivity extends Activity {
         TextView player2 = (TextView) findViewById(R.id.player2);
         TextView player3 = (TextView) findViewById(R.id.player3);
         TextView player4 = (TextView) findViewById(R.id.player4);
-
+        DatabaseManager databasehelper = new DatabaseManager(this);
         PlayerScore[] data = databasehelper.retrieveScores();
         int i = 1;
 
