@@ -3,6 +3,7 @@ package logic.main.com.boardgame;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -40,7 +41,7 @@ public class DatabaseManager {
     }
 
     // Updating score
-    public void updateScore(Board board, String[] players) {
+    public void updateScore(Board board, String[] players, Activity mainActivity) {
         String winner = "";
         int i = 1;
         for (String player : players) {
@@ -65,7 +66,10 @@ public class DatabaseManager {
         Cursor cursor = db.rawQuery(countQuery, null);
         cursor.moveToFirst();
         cursor.close();
-
+        Intent intent = new Intent(mainActivity.getApplicationContext(), GameOverActivity.class);
+        intent.putExtra("winner", winner);
+        Log.e("winner", winner);
+        mainActivity.startActivity(intent);
 
     }
 

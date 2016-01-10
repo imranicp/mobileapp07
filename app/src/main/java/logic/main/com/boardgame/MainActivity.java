@@ -23,6 +23,7 @@ public class MainActivity extends Activity implements View.OnTouchListener {
     int beadCount3=15;
     int beadCount4=20;
     int beadCount;
+    boolean winnerDecided = false;
     Board board = new Board();
     MoveController moveController = new MoveController();
     BoardImageSetter boardImageSetter=new BoardImageSetter();
@@ -161,7 +162,7 @@ public class MainActivity extends Activity implements View.OnTouchListener {
 
         gdt.onTouchEvent(event);
 
-        if ((flingType.equals("topToBottom")||flingType .equals( "bottomToTop")||flingType .equals("rightToLeft")||flingType .equals( "leftToRight"))&& beadCount==0) {
+        if ((flingType.equals("topToBottom") || flingType.equals("bottomToTop") || flingType.equals("rightToLeft") || flingType.equals("leftToRight")) && beadCount == 0 && !winnerDecided) {
             Log.e("flingid", idString);
             Log.e("flingtag", (String) view.getTag());
             beadConfingSetter.setBeadConfig(board,getApplicationContext(),this);
@@ -199,15 +200,11 @@ public class MainActivity extends Activity implements View.OnTouchListener {
                             }
                         }
                     }
-                    Toast toast = Toast.makeText(getApplicationContext(), "Winner is Player: " + winner, Toast.LENGTH_SHORT);
-                    toast.show();
 
-                    dataBaseHelper.updateScore(board, players);
-
-                    Intent intent = new Intent(getApplicationContext(), GameOverActivity.class);
-                    intent.putExtra("winner", winner);
-                    startActivity(intent);
+                    dataBaseHelper.updateScore(board, players, this);
+                    winnerDecided = true;
                     finish();
+
                 }
                 Log.e("newConfig",board.getOutput());
             } catch (Exception e) {
