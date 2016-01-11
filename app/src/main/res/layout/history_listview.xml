@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent" android:layout_height="match_parent"
+android:orientation="vertical"
+android:weightSum="6"
+android:background="@drawable/menu_bg">
+
+<logic.main.com.boardgame.CustomTextView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="5"
+    android:background="@drawable/score1"
+    android:text="History"
+    android:textColor="@color/fontcolor"
+    android:gravity="center"
+    android:textSize="45sp"
+    >
+</logic.main.com.boardgame.CustomTextView>
+<ListView
+    android:id="@+id/history_listview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    >
+
+
+</ListView>
+</LinearLayout>

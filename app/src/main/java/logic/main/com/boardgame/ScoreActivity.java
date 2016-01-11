@@ -3,8 +3,6 @@ package logic.main.com.boardgame;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.TextView;
 
 public class ScoreActivity extends Activity {
 
@@ -12,15 +10,17 @@ public class ScoreActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.score_layout);
-        TextView player1 = (TextView) findViewById(R.id.player1);
+        setContentView(R.layout.score_listview);
+        /*TextView player1 = (TextView) findViewById(R.id.player1);
         TextView player2 = (TextView) findViewById(R.id.player2);
         TextView player3 = (TextView) findViewById(R.id.player3);
         TextView player4 = (TextView) findViewById(R.id.player4);
+        */
         DatabaseManager databasehelper = new DatabaseManager(this);
         PlayerScore[] data = databasehelper.retrieveScores();
         int i = 1;
 
+/*
         for (PlayerScore playerScore : data) {
             if (playerScore != null) {
                 Log.e("name", playerScore.getName());
@@ -39,11 +39,10 @@ public class ScoreActivity extends Activity {
                 }
                 i++;
 
-            }
-        }
+            }*/
+     }
 
 
-    }
 
     @Override
     public void onBackPressed() {

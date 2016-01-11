@@ -9,13 +9,14 @@
     >
 
     <LinearLayout
-         android:id="@+id/player1_lay"
+        android:id="@+id/player1_lay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="horizontal"
+        android:background="@drawable/tilempt"
         >
         <ImageView
             android:layout_width="50dp"
@@ -23,20 +24,19 @@
             android:layout_centerHorizontal="true"
             android:layout_marginRight="20dp"
             android:src="@drawable/red"
+            android:layout_marginBottom="5dp"
             />
 
         <AutoCompleteTextView
-        android:id="@+id/player1_name"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
+            android:id="@+id/player1_name"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
             android:background="@android:color/transparent"
             android:hint="Enter Your Name"
-            android:imeOptions="actionNext"
-            android:lines="1"
             android:maxLength="10"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColorHint="@android:color/white" />
+            android:textColorHint="@android:color/white"
+            android:layout_marginBottom="5dp"
+            />
 
     </LinearLayout>
     <LinearLayout
@@ -47,6 +47,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="horizontal"
+        android:background="@drawable/tilempt"
         >
         <ImageView
             android:layout_width="50dp"
@@ -54,6 +55,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginRight="20dp"
             android:src="@drawable/green"
+            android:layout_marginBottom="5dp"
             />
 
         <AutoCompleteTextView
@@ -62,12 +64,10 @@
             android:layout_height="50dp"
             android:background="@android:color/transparent"
             android:hint="Enter Your Name"
-            android:imeOptions="actionNext"
-            android:lines="1"
             android:maxLength="10"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColorHint="@android:color/white" />
+            android:textColorHint="@android:color/white"
+            android:layout_marginBottom="5dp"
+            />
 
     </LinearLayout>
     <LinearLayout
@@ -78,6 +78,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="horizontal"
+        android:background="@drawable/tilempt"
         >
         <ImageView
             android:layout_width="50dp"
@@ -85,6 +86,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginRight="20dp"
             android:src="@drawable/blue"
+            android:layout_marginBottom="5dp"
             />
 
         <AutoCompleteTextView
@@ -93,12 +95,10 @@
             android:layout_height="50dp"
             android:background="@android:color/transparent"
             android:hint="Enter Your Name"
-            android:imeOptions="actionNext"
-            android:lines="1"
             android:maxLength="10"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColorHint="@android:color/white" />
+            android:textColorHint="@android:color/white"
+            android:layout_marginBottom="5dp"
+            />
 
     </LinearLayout>
     <LinearLayout
@@ -109,6 +109,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="horizontal"
+        android:background="@drawable/tilempt"
         >
         <ImageView
             android:layout_width="50dp"
@@ -116,6 +117,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginRight="20dp"
             android:src="@drawable/white"
+            android:layout_marginBottom="5dp"
             />
 
         <AutoCompleteTextView
@@ -124,12 +126,10 @@
             android:layout_height="50dp"
             android:background="@android:color/transparent"
             android:hint="Enter Your Name"
-            android:imeOptions="actionNext"
-            android:lines="1"
             android:maxLength="10"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColorHint="@android:color/white" />
+            android:textColorHint="@android:color/white"
+            android:layout_marginBottom="5dp"
+            />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
