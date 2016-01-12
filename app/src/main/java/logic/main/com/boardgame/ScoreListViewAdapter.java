@@ -11,11 +11,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-public class ListViewAdapter extends BaseAdapter {
+public class ScoreListViewAdapter extends BaseAdapter {
     public ArrayList<HashMap<String, String>> list;
     Activity activity;
 
-    public ListViewAdapter(Activity activity, ArrayList<HashMap<String, String>> list) {
+    public ScoreListViewAdapter(Activity activity, ArrayList<HashMap<String, String>> list) {
         super();
         this.activity = activity;
         this.list = list;
@@ -24,13 +24,21 @@ public class ListViewAdapter extends BaseAdapter {
     @Override
     public int getCount() {
 
-        return list.size();
+        if (list != null) {
+            return list.size();
+        } else {
+            return 0;
+        }
     }
 
     @Override
     public Object getItem(int position) {
 
-        return list.get(position);
+        if (list != null) {
+            return list.get(position);
+        } else {
+            return null;
+        }
     }
 
     @Override

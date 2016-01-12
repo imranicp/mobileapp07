@@ -8,6 +8,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class ScoreActivity extends Activity {
 
@@ -19,17 +20,13 @@ public class ScoreActivity extends Activity {
         setContentView(R.layout.score_listview);
         ListView listView = (ListView) findViewById(R.id.score_list);
         list = new ArrayList<HashMap<String, String>>();
-        /*TextView player1 = (TextView) findViewById(R.id.player1);
-        TextView player2 = (TextView) findViewById(R.id.player2);
-        TextView player3 = (TextView) findViewById(R.id.player3);
-        TextView player4 = (TextView) findViewById(R.id.player4);
-        */
+
         DatabaseManager databaseHelper = new DatabaseManager(this);
-        PlayerScore[] data = databaseHelper.retrieveScores();
-        int i = 1;
+        List<PlayerScore> playerScores = new ArrayList<PlayerScore>();
+        playerScores = databaseHelper.retrieveScores();
 
 
-        for (PlayerScore playerScore : data) {
+        for (PlayerScore playerScore : playerScores) {
             if (playerScore != null) {
                 Log.e("name", playerScore.getName());
                 Log.e("score", String.valueOf(playerScore.getScore()));
@@ -41,7 +38,7 @@ public class ScoreActivity extends Activity {
                 list.add(temp);
             }
         }
-        ListViewAdapter adapter = new ListViewAdapter(this, list);
+        ScoreListViewAdapter adapter = new ScoreListViewAdapter(this, list);
         listView.setAdapter(adapter);
 
      }

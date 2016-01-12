@@ -191,15 +191,6 @@ public class MainActivity extends Activity implements View.OnTouchListener {
                         players[2] = player3name;
                         players[3] = player4name;
                     }
-                    String winner = "";
-                    int i = 1;
-                    for (String player : players) {
-                        if (player != null) {
-                            if (board.getWinner() == i) {
-                                winner = players[i - 1];
-                            }
-                        }
-                    }
 
                     dataBaseHelper.updateScore(board, players, this);
                     winnerDecided = true;

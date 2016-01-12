@@ -10,17 +10,28 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DatabaseManager {
 
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     // Database Name
     private static final String DATABASE_NAME = "BOARDGAME";
 
-    // Contacts table name
+    // table name
     private static final String TABLE_SCORE = "HIGH_SCORE";
+
+    private static final String TABLE_HISTORY = "GAME_HISTORY";
+
+    private static final String KEY_PLAYER1 = "PLAYER1";
+    private static final String KEY_PLAYER2 = "PLAYER2";
+    private static final String KEY_PLAYER3 = "PLAYER3";
+    private static final String KEY_PLAYER4 = "PLAYER4";
+    private static final String KEY_WINNER = "WINNER";
 
     // Contacts Table Columns names
     private static final String KEY_ID = "_id";
@@ -59,8 +70,16 @@ public class DatabaseManager {
                 i++;
             }
         }
+        //Update History
+        ContentValues values = new ContentValues();
+        values.put(KEY_PLAYER1, players[0]);
+        values.put(KEY_PLAYER2, players[1]);
+        values.put(KEY_PLAYER3, players[2]);
+        values.put(KEY_PLAYER4, players[3]);
+        values.put(KEY_WINNER, winner);
+        db.insert(TABLE_HISTORY, null, values);
 
-
+        //Update scores
         String countQuery = "UPDATE " + TABLE_SCORE + " SET " + KEY_SCORE + "=SCORE + 1" + " WHERE " + KEY_NAME + " = '" + winner + "'";
         Log.e("updateQuery", countQuery);
         Cursor cursor = db.rawQuery(countQuery, null);
@@ -86,12 +105,40 @@ public class DatabaseManager {
         return true;
     }
 
+    public List<HistoryData> retrieveHistoryData() {
+        List<HistoryData> historyData = new ArrayList<HistoryData>();
+        String countQuery = "SELECT * FROM " + TABLE_HISTORY + " ORDER BY " + KEY_ID + " DESC;";
+        Cursor cursor = db.rawQuery(countQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                String column1 = cursor.getString(1);
+                String column2 = cursor.getString(2);
+                String column3 = cursor.getString(3);
+                String column4 = cursor.getString(4);
+                String column5 = cursor.getString(5);
 
 
-    public PlayerScore[] retrieveScores() {
+                HistoryData history = new HistoryData();
+                history.setPlayer1(column1);
+                history.setPlayer2(column2);
+                history.setPlayer3(column3);
+                history.setPlayer4(column4);
+                history.setWinner(column5);
+                historyData.add(history);
 
-        PlayerScore[] playerScore = new PlayerScore[50];
-        int i = 0;
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        return historyData;
+    }
+
+
+    public List<PlayerScore> retrieveScores() {
+
+        List<PlayerScore> playerScores = new ArrayList<PlayerScore>();
 
         String countQuery = "SELECT * FROM " + TABLE_SCORE + " ORDER BY " + KEY_SCORE + " DESC;";
 
@@ -104,17 +151,18 @@ public class DatabaseManager {
                 Log.e("column2", column2);
                 Log.e("column3", column3);
                 //Do something Here with values
-                playerScore[i] = new PlayerScore();
-                playerScore[i].setName(column2);
-                playerScore[i].setScore(Integer.parseInt(column3));
-                i++;
+                PlayerScore playerScore = new PlayerScore();
+                playerScore.setName(column2);
+                playerScore.setScore(Integer.parseInt(column3));
+                playerScores.add(playerScore);
+
             } while (cursor.moveToNext());
         }
         cursor.close();
         db.close();
 
 
-        return playerScore;
+        return playerScores;
     }
 
     // Getting Scores
@@ -174,40 +222,25 @@ public class DatabaseManager {
                     + KEY_SCORE + " INTEGER" + ")";
             db.execSQL(CREATE_TABLE_SCORE);
 
+            String CREATE_TABLE_HISTORY = "CREATE TABLE " + TABLE_HISTORY + "("
+                    + KEY_ID + " INTEGER PRIMARY KEY," + KEY_PLAYER1 + " TEXT," + KEY_PLAYER2 +
+                    " TEXT," + KEY_PLAYER3 + " TEXT," + KEY_PLAYER4 + " TEXT,"
+                    + KEY_WINNER + " TEXT" + ")";
+            db.execSQL(CREATE_TABLE_HISTORY);
 
-            /*ContentValues values = new ContentValues();
-            values.put(KEY_NAME, "PLAYER1"); // NAME
-            values.put(KEY_SCORE, 0); // SCORE
-
-            // Inserting Row
-            db.insert(TABLE_SCORE, null, values);
-
-            values.put(KEY_NAME, "PLAYER2"); // NAME
-            values.put(KEY_SCORE, 0); // SCORE
-
-            // Inserting Row
-            db.insert(TABLE_SCORE, null, values);
-
-            values.put(KEY_NAME, "PLAYER3"); // NAME
-            values.put(KEY_SCORE, 0); // SCORE
-
-            // Inserting Row
-            db.insert(TABLE_SCORE, null, values);
-
-            values.put(KEY_NAME, "PLAYER4"); // NAME
-            values.put(KEY_SCORE, 0); // SCORE
-
-            // Inserting Row
-            db.insert(TABLE_SCORE, null, values);*/
 
         }
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_SCORE);
+            db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_SCORE + "("
+                    + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
+                    + KEY_SCORE + " INTEGER" + ")");
+            db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_HISTORY + "("
+                    + KEY_ID + " INTEGER PRIMARY KEY," + KEY_PLAYER1 + " TEXT," + KEY_PLAYER2 +
+                    " TEXT," + KEY_PLAYER3 + " TEXT," + KEY_PLAYER4 + " TEXT,"
+                    + KEY_WINNER + " TEXT" + ")");
 
-            // Create tables again
-            onCreate(db);
         }
     }
 

@@ -1,13 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@drawable/menu_bg"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
-    <TextView
-        android:text="History Layout"
-        android:textSize="50dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <logic.main.com.boardgame.CustomTextView
+        android:id="@+id/name1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3.20"
+        android:background="@drawable/score1"
+        android:gravity="center"
+        android:textColor="@color/fontcolor"
+        android:textSize="15sp"
+        android:textStyle="bold" />
 
-</RelativeLayout>
+    <logic.main.com.boardgame.CustomTextView
+        android:id="@+id/name2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3.20"
+        android:background="@drawable/score1"
+        android:gravity="center"
+        android:textColor="@color/fontcolor"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <logic.main.com.boardgame.CustomTextView
+        android:id="@+id/name3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3.20"
+        android:background="@drawable/score1"
+        android:gravity="center"
+        android:textColor="@color/fontcolor"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <logic.main.com.boardgame.CustomTextView
+        android:id="@+id/name4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3.20"
+        android:background="@drawable/score1"
+        android:gravity="center"
+        android:textColor="@color/fontcolor"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+
+</LinearLayout>
