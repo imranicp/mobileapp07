@@ -33,9 +33,9 @@
             android:layout_height="50dp"
             android:layout_marginBottom="5dp"
             android:background="@android:color/transparent"
-            android:hint="Player 1"
+            android:hint="Player"
             android:maxLength="10"
-            android:textColorHint="@android:color/black"
+            android:textColorHint="@android:color/white"
             android:textSize="35sp"
             />
 
@@ -65,9 +65,9 @@
             android:layout_height="50dp"
             android:layout_marginBottom="5dp"
             android:background="@android:color/transparent"
-            android:hint="Player 2"
+            android:hint="Player"
             android:maxLength="10"
-            android:textColorHint="@android:color/black"
+            android:textColorHint="@android:color/white"
             android:textSize="35sp"
             />
 
@@ -97,9 +97,9 @@
             android:layout_height="50dp"
             android:layout_marginBottom="5dp"
             android:background="@android:color/transparent"
-            android:hint="Player 3"
+            android:hint="Player"
             android:maxLength="10"
-            android:textColorHint="@android:color/black"
+            android:textColorHint="@android:color/white"
             android:textSize="35sp"
             />
 
@@ -129,9 +129,9 @@
             android:layout_height="50dp"
             android:layout_marginBottom="5dp"
             android:background="@android:color/transparent"
-            android:hint="Player 4"
+            android:hint="Player"
             android:maxLength="10"
-            android:textColorHint="@android:color/black"
+            android:textColorHint="@android:color/white"
             android:textSize="35sp"
             />
     </LinearLayout>
