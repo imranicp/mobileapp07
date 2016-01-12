@@ -178,7 +178,7 @@ public class PlayerSelectActivity extends Activity {
                 return getFilterQueryProvider().runQuery(constraint);
             }
 
-            Cursor cursor = mDbHelper.getMatchingStates(
+            Cursor cursor = mDbHelper.getMatchingNames(
                     (constraint != null ? constraint.toString() : null));
 
             return cursor;

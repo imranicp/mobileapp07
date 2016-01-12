@@ -1,87 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@drawable/menu_bg"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        />
     <logic.main.com.boardgame.CustomTextView
-        android:id="@+id/textview"
-        android:text="Scores!"
-        android:textSize="55sp"
-        android:layout_width="wrap_content"
-        android:layout_height="90dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:textAlignment="center"
-        android:textStyle="bold"
-        android:gravity="center_horizontal"
-        android:textColor="@color/fontcolor"
-        android:paddingBottom="10dp"
+        android:id="@+id/name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3.20"
         android:background="@drawable/score1"
-        />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    <TextView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:text="New Text"
-        android:textSize="35sp"
-        android:id="@+id/player1"
-        android:layout_below="@+id/textview"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
         android:gravity="center"
-        android:textAlignment="center"
-        android:background="@drawable/score2"
-        android:layout_marginTop="10dp"
-        />
-    </LinearLayout>
-    <TextView
+        android:textColor="@color/fontcolor"
+        android:textSize="35sp"
+        android:textStyle="bold" />
+
+    <logic.main.com.boardgame.CustomTextView
+        android:id="@+id/score"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:text="New Text"
-        android:textSize="35sp"
-        android:id="@+id/player2"
-        android:layout_below="@+id/player1"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:background="@drawable/tiletmp1"
+        android:layout_height="80dp"
+        android:background="@drawable/playerscore"
         android:gravity="center"
-        android:layout_marginTop="2dp"
-        />
+        android:textColor="@color/fontcolor"
+        android:textSize="35sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:text="New Text"
-        android:id="@+id/player3"
-        android:textSize="35sp"
-        android:layout_below="@+id/player2"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:background="@drawable/score2"
-        android:gravity="center"
-        android:layout_marginTop="2dp"
-        />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:text="New Text"
-        android:textSize="35sp"
-        android:id="@+id/player4"
-        android:layout_below="@+id/player3"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:background="@drawable/tiletmp1"
-        android:gravity="center"
-        android:layout_marginTop="2dp"
-        />
-
-</RelativeLayout>
+</LinearLayout>

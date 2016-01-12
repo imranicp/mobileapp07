@@ -119,7 +119,7 @@ public class DatabaseManager {
 
     // Getting Scores
 
-    public Cursor getMatchingStates(String constraint) throws SQLException {
+    public Cursor getMatchingNames(String constraint) throws SQLException {
 
         String queryString =
                 "SELECT _id, PLAYER_NAME FROM " + TABLE_SCORE;
@@ -175,9 +175,9 @@ public class DatabaseManager {
             db.execSQL(CREATE_TABLE_SCORE);
 
 
-            ContentValues values = new ContentValues();
+            /*ContentValues values = new ContentValues();
             values.put(KEY_NAME, "PLAYER1"); // NAME
-            values.put(KEY_SCORE, 1); // SCORE
+            values.put(KEY_SCORE, 0); // SCORE
 
             // Inserting Row
             db.insert(TABLE_SCORE, null, values);
@@ -198,7 +198,7 @@ public class DatabaseManager {
             values.put(KEY_SCORE, 0); // SCORE
 
             // Inserting Row
-            db.insert(TABLE_SCORE, null, values);
+            db.insert(TABLE_SCORE, null, values);*/
 
         }
 

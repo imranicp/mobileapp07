@@ -14,28 +14,29 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:layout_weight="1"
+        android:background="@drawable/score1"
         android:gravity="center"
         android:orientation="horizontal"
-        android:background="@drawable/tilempt"
         >
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp"
             android:layout_marginRight="20dp"
             android:src="@drawable/red"
-            android:layout_marginBottom="5dp"
             />
 
-        <AutoCompleteTextView
+        <logic.main.com.boardgame.CustomAutoCompleteTextView
             android:id="@+id/player1_name"
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:background="@android:color/transparent"
-            android:hint="Enter Your Name"
-            android:maxLength="10"
-            android:textColorHint="@android:color/white"
             android:layout_marginBottom="5dp"
+            android:background="@android:color/transparent"
+            android:hint="Player 1"
+            android:maxLength="10"
+            android:textColorHint="@android:color/black"
+            android:textSize="35sp"
             />
 
     </LinearLayout>
@@ -45,28 +46,29 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_weight="1"
+        android:background="@drawable/score1"
         android:gravity="center"
         android:orientation="horizontal"
-        android:background="@drawable/tilempt"
         >
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp"
             android:layout_marginRight="20dp"
             android:src="@drawable/green"
-            android:layout_marginBottom="5dp"
             />
 
-        <AutoCompleteTextView
+        <logic.main.com.boardgame.CustomAutoCompleteTextView
             android:id="@+id/player2_name"
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:background="@android:color/transparent"
-            android:hint="Enter Your Name"
-            android:maxLength="10"
-            android:textColorHint="@android:color/white"
             android:layout_marginBottom="5dp"
+            android:background="@android:color/transparent"
+            android:hint="Player 2"
+            android:maxLength="10"
+            android:textColorHint="@android:color/black"
+            android:textSize="35sp"
             />
 
     </LinearLayout>
@@ -76,28 +78,29 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_weight="1"
+        android:background="@drawable/score1"
         android:gravity="center"
         android:orientation="horizontal"
-        android:background="@drawable/tilempt"
         >
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp"
             android:layout_marginRight="20dp"
             android:src="@drawable/blue"
-            android:layout_marginBottom="5dp"
             />
 
-        <AutoCompleteTextView
+        <logic.main.com.boardgame.CustomAutoCompleteTextView
             android:id="@+id/player3_name"
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:background="@android:color/transparent"
-            android:hint="Enter Your Name"
-            android:maxLength="10"
-            android:textColorHint="@android:color/white"
             android:layout_marginBottom="5dp"
+            android:background="@android:color/transparent"
+            android:hint="Player 3"
+            android:maxLength="10"
+            android:textColorHint="@android:color/black"
+            android:textSize="35sp"
             />
 
     </LinearLayout>
@@ -107,28 +110,29 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_weight="1"
+        android:background="@drawable/score1"
         android:gravity="center"
         android:orientation="horizontal"
-        android:background="@drawable/tilempt"
         >
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp"
             android:layout_marginRight="20dp"
             android:src="@drawable/white"
-            android:layout_marginBottom="5dp"
             />
 
-        <AutoCompleteTextView
+        <logic.main.com.boardgame.CustomAutoCompleteTextView
             android:id="@+id/player4_name"
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:background="@android:color/transparent"
-            android:hint="Enter Your Name"
-            android:maxLength="10"
-            android:textColorHint="@android:color/white"
             android:layout_marginBottom="5dp"
+            android:background="@android:color/transparent"
+            android:hint="Player 4"
+            android:maxLength="10"
+            android:textColorHint="@android:color/black"
+            android:textSize="35sp"
             />
     </LinearLayout>
     <LinearLayout
