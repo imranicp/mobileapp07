@@ -42,7 +42,7 @@ public class VsComputerActivity extends Activity implements View.OnTouchListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vs_computer);
+        setContentView(R.layout.vs_computer);
         gdt = new GestureDetector(this, new GestureListener());
 
         BoardConf boardConf = new BoardConf();

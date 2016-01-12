@@ -40,17 +40,26 @@ public class GameOverActivity extends Activity {
         list = new ArrayList<HashMap<String, String>>();
 
         DatabaseManager databaseHelper = new DatabaseManager(this);
-        List playerList = new ArrayList<String>();
+        List<String> playerList = new ArrayList<String>();
         playerList.add(player1);
         playerList.add(player2);
         playerList.add(player3);
         playerList.add(player4);
 
-        List<PlayerScore> playerScores = databaseHelper.retrieveLatestScores(playerList);
-        numberOfPlayers = 0;
-        for (PlayerScore playerScore : playerScores) {
-            numberOfPlayers++;
+        //Counting of players
+
+        for (String playerScore : playerList) {
             if (playerScore != null) {
+                numberOfPlayers++;
+            }
+        }
+        
+        List<PlayerScore> playerScores = databaseHelper.retrieveLatestScores(playerList);
+
+        for (PlayerScore playerScore : playerScores) {
+
+            if (playerScore != null) {
+
                 Log.e("name", playerScore.getName());
                 Log.e("score", String.valueOf(playerScore.getScore()));
                 HashMap<String, String> temp = new HashMap<String, String>();
