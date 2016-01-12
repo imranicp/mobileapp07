@@ -22,8 +22,7 @@ public class ScoreActivity extends Activity {
         list = new ArrayList<HashMap<String, String>>();
 
         DatabaseManager databaseHelper = new DatabaseManager(this);
-        List<PlayerScore> playerScores = new ArrayList<PlayerScore>();
-        playerScores = databaseHelper.retrieveScores();
+        List<PlayerScore> playerScores = databaseHelper.retrieveScores();
 
 
         for (PlayerScore playerScore : playerScores) {

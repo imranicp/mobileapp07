@@ -27,17 +27,39 @@
             android:textColor="#000000"
             android:textSize="50dp" />
 
+        <ListView
+            android:id="@+id/score_list"
+            android:layout_width="match_parent"
+            android:layout_height="253dp"
+            android:layout_alignTop="@+id/mainMenu"
+            android:layout_weight="0.59" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/playAgain"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0.26"
+
+                android:background="@drawable/score1"
+                android:onClick="playAgain"
+                android:text="Play Again" />
+
+            <Button
+                android:id="@+id/mainMenu"
+                android:layout_width="131dp"
+                android:layout_height="81dp"
+
+                android:layout_weight="0.40"
+                android:background="@drawable/menu_main_btn"
+                android:onClick="goToMain" />
+        </LinearLayout>
+
     </LinearLayout>
-
-    <Button
-        android:id="@+id/mainMenu"
-        android:onClick="goToMain"
-        android:background="@drawable/menu_main_btn"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_width="150dp"
-        android:layout_height="75dp" />
-
 
 
 </RelativeLayout>

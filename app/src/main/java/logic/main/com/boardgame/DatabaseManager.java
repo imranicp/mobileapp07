@@ -86,7 +86,11 @@ public class DatabaseManager {
         cursor.moveToFirst();
         cursor.close();
         Intent intent = new Intent(mainActivity.getApplicationContext(), GameOverActivity.class);
-        intent.putExtra("winner", winner);
+        intent.putExtra(KEY_WINNER, winner);
+        intent.putExtra(KEY_PLAYER1, players[0]);
+        intent.putExtra(KEY_PLAYER2, players[1]);
+        intent.putExtra(KEY_PLAYER3, players[2]);
+        intent.putExtra(KEY_PLAYER4, players[3]);
         Log.e("winner", winner);
         mainActivity.startActivity(intent);
 
@@ -166,7 +170,6 @@ public class DatabaseManager {
     }
 
     // Getting Scores
-
     public Cursor getMatchingNames(String constraint) throws SQLException {
 
         String queryString =
@@ -204,6 +207,45 @@ public class DatabaseManager {
         }
 
         return null;
+    }
+
+    public List<PlayerScore> retrieveLatestScores(List<String> playerList) {
+        List<PlayerScore> playerScores = new ArrayList<PlayerScore>();
+        String countQuery = "SELECT * FROM " + TABLE_SCORE + " where ";
+
+
+        for (String playerName : playerList) {
+            if (playerName != null) {
+                countQuery = countQuery + " " + KEY_NAME + " = '" + playerName + "' OR";
+            }
+
+        }
+        countQuery = countQuery.substring(0, countQuery.length() - 2);
+        countQuery = countQuery + " ORDER BY " + KEY_SCORE + " DESC;";
+
+        Log.e("countQuery", countQuery);
+
+        Cursor cursor = db.rawQuery(countQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                String column2 = cursor.getString(1);
+                String column3 = cursor.getString(2);
+                Log.e("column2", column2);
+                Log.e("column3", column3);
+                //Do something Here with values
+                PlayerScore playerScore = new PlayerScore();
+                playerScore.setName(column2);
+                playerScore.setScore(Integer.parseInt(column3));
+                playerScores.add(playerScore);
+
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+
+        return playerScores;
     }
 
     public class DataBaseHelper extends SQLiteOpenHelper {
