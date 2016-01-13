@@ -31,13 +31,13 @@ public class HelpActivity extends Activity {
         // Generate sample data
         number = new String[] { "1", "2", "3", "4", "5", "6", "7"};
 
-        desc = new String[] { "Description About First Page,Description About First Page,Description About First Page,",
-                "Description About First Page,Description About First Page,Description About First Page,",
-                "Description About First Page,Description About First Page,Description About First Page,",
-                "Description About First Page,Description About First Page,Description About First Page,",
-                "Description About First Page,Description About First Page,Description About First Page,",
-                "Description About First Page,Description About First Page,Description About First Page,",
-                "Description About First Page,Description About First Page,Description About First Page,"};
+        desc = new String[] { "when you start a game a Random Board Configuration is generated the board is empty right now,",
+                "Place beads by tapping on horizontal bar tile or vertical bar tile, you can not place a bead on hole. each player places bead one bye one,",
+                "After placement of beads you can play the game. you can move the vertical top bar to downwards position,",
+                "You can also move the horizontal bars to outwards position or inwards,",
+                "The same goes for horizontal bar on the other side, you can move it outwards or inwards",
+                "Bottom bar can be moved upwards or downwards",
+                "when the beads of all the other players are fallen and one players beads are remaining on the board he wins"};
 
 
         image = new int[] { R.drawable.hlp1, R.drawable.hlp2,
@@ -59,7 +59,7 @@ public class HelpActivity extends Activity {
         indicator.setBackgroundColor(0x00000000);
         indicator.setRadius(10 * density);
         indicator.setPageColor(0xFFf0f8ff);
-        indicator.setFillColor(0x88bc8861);
+        indicator.setFillColor(0x8874290c);
         indicator.setStrokeColor(0xFF000000);
         indicator.setStrokeWidth(2 * density);
 
