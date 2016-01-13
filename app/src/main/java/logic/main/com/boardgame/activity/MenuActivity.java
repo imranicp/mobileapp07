@@ -14,43 +14,70 @@ import logic.main.com.boardgame.manager.MusicManager;
 
 import static logic.main.com.boardgame.R.drawable.menu_music_off;
 import static logic.main.com.boardgame.R.drawable.menu_music_on;
+import static logic.main.com.boardgame.R.drawable.menu_sound_off;
+import static logic.main.com.boardgame.R.drawable.menu_sound_on;
 
 
 public class MenuActivity extends Activity {
-    boolean continueMusic, exit = false;
+    boolean continueMusic, soundSetting, exit = false;
     DatabaseManager dataBaseHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_layout);
         dataBaseHelper = new DatabaseManager(this);
 
-        final ImageView imgFavorite = (ImageView) findViewById(R.id.musicIcon);
+        final ImageView imgMusic = (ImageView) findViewById(R.id.musicIcon);
         continueMusic = dataBaseHelper.getMusicValue();
 
         if (continueMusic) {
 
-            imgFavorite.setImageResource(menu_music_on);
+            imgMusic.setImageResource(menu_music_on);
             MusicManager.start(this, MusicManager.MUSIC_MENU);
         } else {
 
-            imgFavorite.setImageResource(menu_music_off);
+            imgMusic.setImageResource(menu_music_off);
             MusicManager.pause();
         }
 
-        imgFavorite.setOnClickListener(new View.OnClickListener() {
+        imgMusic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (continueMusic) {
                     continueMusic = false;
                     dataBaseHelper.setMusicValue(continueMusic);
                     MusicManager.pause();
-                    imgFavorite.setImageResource(menu_music_off);
+                    imgMusic.setImageResource(menu_music_off);
                 } else {
                     continueMusic = true;
                     dataBaseHelper.setMusicValue(continueMusic);
                     MusicManager.start(getApplication(), MusicManager.MUSIC_MENU);
-                    imgFavorite.setImageResource(menu_music_on);
+                    imgMusic.setImageResource(menu_music_on);
+                }
+            }
+        });
+
+        final ImageView imgSound = (ImageView) findViewById(R.id.soundIcon);
+        soundSetting = dataBaseHelper.getSoundValue();
+
+        if (soundSetting) {
+            imgSound.setImageResource(menu_sound_on);
+        } else {
+            imgSound.setImageResource(menu_sound_off);
+        }
+
+        imgSound.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (soundSetting) {
+                    soundSetting = false;
+                    dataBaseHelper.setSoundValue(soundSetting);
+                    imgSound.setImageResource(menu_sound_off);
+                } else {
+                    soundSetting = true;
+                    dataBaseHelper.setSoundValue(soundSetting);
+                    imgSound.setImageResource(menu_sound_on);
                 }
             }
         });
@@ -79,11 +106,11 @@ public class MenuActivity extends Activity {
         //finish();
     }
 
-   public void goToAbout(View view){
+    public void goToAbout(View view) {
         Intent intent = new Intent(this,AboutActivity.class);
-       intent.putExtra("continueMusic", continueMusic);
+        intent.putExtra("continueMusic", continueMusic);
         startActivity(intent);
-       //finish();
+        //finish();
     }
 
     public void goToHelp(View view){

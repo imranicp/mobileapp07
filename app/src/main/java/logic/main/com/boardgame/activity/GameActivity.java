@@ -49,7 +49,7 @@ public class GameActivity extends Activity implements View.OnTouchListener {
     DatabaseManager dataBaseHelper;
     String player1name, player2name, player3name, player4name;
     String flingType="";
-    boolean continueMusic;
+    boolean continueMusic, soundSetting;
 
     @Override
     protected void onPause() {
@@ -78,10 +78,11 @@ public class GameActivity extends Activity implements View.OnTouchListener {
         super.onCreate(savedInstanceState);
         /*drawView = new GameCanvas(this);
         drawView.setBackgroundColor(Color.WHITE);*/
-        setContentView(R.layout.layout_main);
+        setContentView(R.layout.game_layout);
         dataBaseHelper = new DatabaseManager(this);
-        gdt = new GestureDetector(this, new GestureListener());
 
+        gdt = new GestureDetector(this, new GestureListener());
+        soundSetting = dataBaseHelper.getSoundValue();
         BoardConf boardConf = new BoardConf();
         continueMusic = getIntent().getExtras().getBoolean("continueMusic");
         int value = getIntent().getExtras().getInt("numberOfPlayers");
@@ -192,14 +193,18 @@ public class GameActivity extends Activity implements View.OnTouchListener {
 
         //Placing beads
         if (board.getNumberOfPlayers() == 2 && !(beadCount2 == 0) && !winnerDecided) {
+            if (soundSetting)
             placingBead.start();
+
             beadCount2= beadPlacer.placeBeads(beadCount2,tag,view.getId(),board,this);
             beadCount=beadCount2;
         } else if (board.getNumberOfPlayers() == 3 && !(beadCount3 == 0) && !winnerDecided) {
+            if (soundSetting)
             placingBead.start();
             beadCount3= beadPlacer.placeBeads(beadCount3,tag,view.getId(),board,this);
             beadCount=beadCount3;
         } else if (board.getNumberOfPlayers() == 4 && !(beadCount4 == 0) && !winnerDecided) {
+            if (soundSetting)
             placingBead.start();
             beadCount4= beadPlacer.placeBeads(beadCount4,tag,view.getId(),board,this);
             beadCount=beadCount4;
@@ -216,7 +221,7 @@ public class GameActivity extends Activity implements View.OnTouchListener {
             beadConfingSetter.setBeadConfig(board,getApplicationContext(),this);
             String move=moveGenerator.generateMove(view,flingType);
 
-            if (move != "") {
+            if (!move.equals("")) {
                 //Log.e("move",move);
                 // Log.e("beadConfig", board.getBeadConfiguration());
                 try {
@@ -228,8 +233,9 @@ public class GameActivity extends Activity implements View.OnTouchListener {
                     boardImageSetter.setBoardImages(board, getApplicationContext(), this);
                     //setBoardImages(board);
                     barImageSetter.setBarImages(board, getApplicationContext(), this);
+                    if (soundSetting)
                     movingBar.start();
-                    if (String.valueOf(board.getWinner()) != "0") {
+                    if (!String.valueOf(board.getWinner()).equals("0")) {
                         String[] players = new String[4];
                         players[0] = player1name;
                         players[1] = player2name;
@@ -240,6 +246,7 @@ public class GameActivity extends Activity implements View.OnTouchListener {
                             players[2] = player3name;
                             players[3] = player4name;
                         }
+                        if (soundSetting)
                         gameOver.start();
                         dataBaseHelper.updateScore(board, players, this, continueMusic);
                         winnerDecided = true;
@@ -248,6 +255,7 @@ public class GameActivity extends Activity implements View.OnTouchListener {
                     }
                     Log.e("newConfig", board.getOutput());
                 } catch (Exception e) {
+                    if (soundSetting)
                     invalidMove.start();
                     e.printStackTrace();
                     Toast toast = Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT);

@@ -291,6 +291,41 @@ public class DatabaseManager {
         }
     }
 
+    public boolean getSoundValue() {
+        String countQuery = "SELECT VALUE FROM " + TABLE_MUSIC + " where " + KEY_SETTING + "='SOUND';";
+        boolean result = false;
+
+        Cursor cursor = db.rawQuery(countQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                String column1 = cursor.getString(0);
+
+                if (column1.equals("1")) {
+                    result = true;
+                }
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+
+        return result;
+    }
+
+    public void setSoundValue(boolean soundSetting) {
+        if (soundSetting) {
+            String countQuery = "UPDATE " + TABLE_MUSIC + " SET " + KEY_VALUE + "= '1'" + " where " + KEY_SETTING + "='SOUND';";
+            Log.e("updateQuery", countQuery);
+            Cursor cursor = db.rawQuery(countQuery, null);
+            cursor.moveToFirst();
+            cursor.close();
+        } else {
+            String countQuery = "UPDATE " + TABLE_MUSIC + " SET " + KEY_VALUE + "= '0'" + " where " + KEY_SETTING + "='SOUND';";
+            Log.e("updateQuery", countQuery);
+            Cursor cursor = db.rawQuery(countQuery, null);
+            cursor.moveToFirst();
+            cursor.close();
+        }
+    }
+
     public class DataBaseHelper extends SQLiteOpenHelper {
 
         public DataBaseHelper(Context context) {
