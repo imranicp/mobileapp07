@@ -4,12 +4,16 @@ import android.app.Activity;
 import android.widget.ImageView;
 
 public class BeadPlacer {
+
     ImageView imageView;
+
 
     public int placeBeads(int beadCount,String tag, int id,Board board,Activity mainActivity) {
         MoveController moveController = new MoveController();
 
+
         if (tag.equals("brownpiece") && beadCount != 0) {
+            //placingBead.start();
             if (board.getMovingPlayer() == 1) {
                 imageView = (ImageView) mainActivity.findViewById(id);
                 imageView.setImageResource(R.drawable.brown1);
@@ -32,9 +36,8 @@ public class BeadPlacer {
             }
             board = moveController.setMovingPlayer(board);
             beadCount--;
-        }
-
-        if (tag.equals("darkpiece") && beadCount != 0) {
+        } else if (tag.equals("darkpiece") && beadCount != 0) {
+            //placingBead.start();
             if (board.getMovingPlayer() == 1) {
                 imageView = (ImageView) mainActivity.findViewById(id);
                 imageView.setImageResource(R.drawable.dark1);
@@ -57,6 +60,8 @@ public class BeadPlacer {
             }
             board = moveController.setMovingPlayer(board);
             beadCount--;
+        } else {
+            //invalidMove.start();
         }
 
 

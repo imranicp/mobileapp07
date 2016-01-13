@@ -52,7 +52,8 @@ public class DatabaseManager {
     }
 
     // Updating score
-    public void updateScore(Board board, String[] players, Activity mainActivity) {
+    public void updateScore(Board board, String[] players, Activity mainActivity, boolean continueMusic) {
+
         String winner = "";
         int i = 1;
         for (String player : players) {
@@ -85,12 +86,14 @@ public class DatabaseManager {
         Cursor cursor = db.rawQuery(countQuery, null);
         cursor.moveToFirst();
         cursor.close();
+
         Intent intent = new Intent(mainActivity.getApplicationContext(), GameOverActivity.class);
         intent.putExtra(KEY_WINNER, winner);
         intent.putExtra(KEY_PLAYER1, players[0]);
         intent.putExtra(KEY_PLAYER2, players[1]);
         intent.putExtra(KEY_PLAYER3, players[2]);
         intent.putExtra(KEY_PLAYER4, players[3]);
+        intent.putExtra("continueMusic", continueMusic);
         Log.e("winner", winner);
         mainActivity.startActivity(intent);
 

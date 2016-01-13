@@ -26,6 +26,7 @@ public class VsComputerActivity extends Activity implements View.OnTouchListener
     BeadConfingSetter beadConfingSetter = new BeadConfingSetter();
     ProgressDialog dialog;
     ImageView imageView;
+    boolean continueMusic;
 
     public static int randInt(int min, int max, String[] availablepositions) {
         Random rand = new Random();
@@ -40,6 +41,21 @@ public class VsComputerActivity extends Activity implements View.OnTouchListener
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        if (!continueMusic) {
+            MusicManager.pause();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        continueMusic = false;
+        MusicManager.start(this, MusicManager.MUSIC_MENU);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vs_computer);
@@ -50,7 +66,7 @@ public class VsComputerActivity extends Activity implements View.OnTouchListener
         int value = getIntent().getExtras().getInt("numberOfPlayers");
         board.setNumberOfPlayers(value);
         board.setMovingPlayer(1);
-
+        continueMusic = getIntent().getExtras().getBoolean("continueMusic");
         BarConfigGenerator barConfigGenerator = new BarConfigGenerator();
         board = barConfigGenerator.generateBarConfig(board);
 

@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -34,6 +35,22 @@ public class MainActivity extends Activity implements View.OnTouchListener {
     DatabaseManager dataBaseHelper;
     String player1name, player2name, player3name, player4name;
     String flingType="";
+    boolean continueMusic;
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (!continueMusic) {
+            MusicManager.pause();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        continueMusic = false;
+        MusicManager.start(this, MusicManager.MUSIC_MENU);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,7 +62,7 @@ public class MainActivity extends Activity implements View.OnTouchListener {
         gdt = new GestureDetector(this, new GestureListener());
 
         BoardConf boardConf = new BoardConf();
-
+        continueMusic = getIntent().getExtras().getBoolean("continueMusic");
         int value = getIntent().getExtras().getInt("numberOfPlayers");
         board.setNumberOfPlayers(value);
         board.setMovingPlayer(1);
@@ -115,6 +132,7 @@ public class MainActivity extends Activity implements View.OnTouchListener {
         barImageSetter.setBarImages(board, getApplicationContext(), this);
 
 
+
     }
 
     @Override
@@ -134,25 +152,34 @@ public class MainActivity extends Activity implements View.OnTouchListener {
                 }).create().show();
     }
 
-
     @Override
     public boolean onTouch(final View view, final MotionEvent event) {
+
+        final MediaPlayer movingBar = MediaPlayer.create(this, R.raw.moving_bars_sound);
+        movingBar.setOnCompletionListener(new OnCompletionListener());
+        final MediaPlayer placingBead = MediaPlayer.create(this, R.raw.placing_bead_sound);
+        placingBead.setOnCompletionListener(new OnCompletionListener());
+        final MediaPlayer invalidMove = MediaPlayer.create(this, R.raw.invalid_move_sound);
+        invalidMove.setOnCompletionListener(new OnCompletionListener());
+        final MediaPlayer gameOver = MediaPlayer.create(this, R.raw.game_over_sound);
+        gameOver.setOnCompletionListener(new OnCompletionListener());
+
         Resources res = view.getResources();     // get resources
         String idString = res.getResourceEntryName(view.getId());
         String tag = (String) view.getTag();
         //  Log.e("id", idString);
 
         //Placing beads
-        if(board.getNumberOfPlayers()==2){
-
+        if (board.getNumberOfPlayers() == 2 && !(beadCount2 == 0) && !winnerDecided) {
+            placingBead.start();
             beadCount2= beadPlacer.placeBeads(beadCount2,tag,view.getId(),board,this);
             beadCount=beadCount2;
-        }else if(board.getNumberOfPlayers()==3){
-
+        } else if (board.getNumberOfPlayers() == 3 && !(beadCount3 == 0) && !winnerDecided) {
+            placingBead.start();
             beadCount3= beadPlacer.placeBeads(beadCount3,tag,view.getId(),board,this);
             beadCount=beadCount3;
-        }else if(board.getNumberOfPlayers()==4){
-
+        } else if (board.getNumberOfPlayers() == 4 && !(beadCount4 == 0) && !winnerDecided) {
+            placingBead.start();
             beadCount4= beadPlacer.placeBeads(beadCount4,tag,view.getId(),board,this);
             beadCount=beadCount4;
         }
@@ -168,45 +195,55 @@ public class MainActivity extends Activity implements View.OnTouchListener {
             beadConfingSetter.setBeadConfig(board,getApplicationContext(),this);
             String move=moveGenerator.generateMove(view,flingType);
 
-            //Log.e("move",move);
-            // Log.e("beadConfig", board.getBeadConfiguration());
-            try {
-                flingType = "";
-                String input=String.valueOf(board.getNumberOfPlayers())+String.valueOf(board.getMovingPlayer())+board.getPostionsOfHorizontalBars()+board.getPostionsOfVerticalBars()+board.getBeadConfiguration()+move;
-                Log.e("input", input);
-                board.setInput(input);
-                board=moveController.moveTest(board);
-                boardImageSetter.setBoardImages(board, getApplicationContext(), this);
-                //setBoardImages(board);
-                barImageSetter.setBarImages(board, getApplicationContext(),this);
+            if (move != "") {
+                //Log.e("move",move);
+                // Log.e("beadConfig", board.getBeadConfiguration());
+                try {
+                    flingType = "";
+                    String input = String.valueOf(board.getNumberOfPlayers()) + String.valueOf(board.getMovingPlayer()) + board.getPostionsOfHorizontalBars() + board.getPostionsOfVerticalBars() + board.getBeadConfiguration() + move;
+                    Log.e("input", input);
+                    board.setInput(input);
+                    board = moveController.moveTest(board);
+                    boardImageSetter.setBoardImages(board, getApplicationContext(), this);
+                    //setBoardImages(board);
+                    barImageSetter.setBarImages(board, getApplicationContext(), this);
+                    movingBar.start();
+                    if (String.valueOf(board.getWinner()) != "0") {
+                        String[] players = new String[4];
+                        players[0] = player1name;
+                        players[1] = player2name;
+                        if (board.getNumberOfPlayers() == 3) {
+                            players[2] = player3name;
+                        }
+                        if (board.getNumberOfPlayers() == 4) {
+                            players[2] = player3name;
+                            players[3] = player4name;
+                        }
+                        gameOver.start();
+                        dataBaseHelper.updateScore(board, players, this, continueMusic);
+                        winnerDecided = true;
+                        finish();
 
-                if(String.valueOf(board.getWinner())!="0"){
-                    String[] players = new String[4];
-                    players[0] = player1name;
-                    players[1] = player2name;
-                    if (board.getNumberOfPlayers() == 3) {
-                        players[2] = player3name;
                     }
-                    if (board.getNumberOfPlayers() == 4) {
-                        players[2] = player3name;
-                        players[3] = player4name;
-                    }
-
-                    dataBaseHelper.updateScore(board, players, this);
-                    winnerDecided = true;
-                    finish();
-
+                    Log.e("newConfig", board.getOutput());
+                } catch (Exception e) {
+                    invalidMove.start();
+                    e.printStackTrace();
+                    Toast toast = Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT);
+                    toast.show();
                 }
-                Log.e("newConfig",board.getOutput());
-            } catch (Exception e) {
-                e.printStackTrace();
-                Toast toast = Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT);
-                toast.show();
             }
-
         }
 
         return true;
+    }
+
+    private class OnCompletionListener implements MediaPlayer.OnCompletionListener {
+        @Override
+        public void onCompletion(MediaPlayer mp) {
+            mp.stop();
+            mp.release();
+        }
     }
 
     private class GestureListener extends GestureDetector.SimpleOnGestureListener {

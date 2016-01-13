@@ -17,10 +17,18 @@ import android.widget.TextView;
 
 public class PlayerSelectActivity extends Activity {
     int value;
+    boolean continueMusic;
     private AutoCompleteTextView player1_name;
     private AutoCompleteTextView player2_name;
     private AutoCompleteTextView player3_name;
     private AutoCompleteTextView player4_name;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        continueMusic = false;
+        MusicManager.start(this, MusicManager.MUSIC_MENU);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +42,7 @@ public class PlayerSelectActivity extends Activity {
 
         DatabaseManager dataBaseHelper = new DatabaseManager(this);
         ItemAutoTextAdapter adapter = this.new ItemAutoTextAdapter(dataBaseHelper);
-
+        continueMusic = getIntent().getExtras().getBoolean("continueMusic");
         value = getIntent().getExtras().getInt("numberOfPlayers");
 
         player1_name.setAdapter(adapter);
@@ -71,6 +79,7 @@ public class PlayerSelectActivity extends Activity {
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(this, GameTypeActivity.class);
+        intent.putExtra("continueMusic", continueMusic);
         startActivity(intent);
         finish();
     }
@@ -92,6 +101,7 @@ public class PlayerSelectActivity extends Activity {
                         newActivity.putExtra("numberOfPlayers", 2);
                         newActivity.putExtra("player1", p1Name);
                         newActivity.putExtra("player2", p2Name);
+                        newActivity.putExtra("continueMusic", continueMusic);
                         startActivity(newActivity);
                         finish();
                     }
@@ -105,6 +115,7 @@ public class PlayerSelectActivity extends Activity {
                         newActivity.putExtra("player1", p1Name);
                         newActivity.putExtra("player2", p2Name);
                         newActivity.putExtra("player3", p3Name);
+                        newActivity.putExtra("continueMusic", continueMusic);
                         startActivity(newActivity);
                         finish();
                     }
@@ -121,6 +132,7 @@ public class PlayerSelectActivity extends Activity {
                         newActivity.putExtra("player2", p2Name);
                         newActivity.putExtra("player3", p3Name);
                         newActivity.putExtra("player4", p4Name);
+                        newActivity.putExtra("continueMusic", continueMusic);
                         startActivity(newActivity);
                         finish();
                     }
@@ -132,9 +144,12 @@ public class PlayerSelectActivity extends Activity {
 
     }
 
-
+    @Override
     public void onPause() {
         super.onPause();
+        if (!continueMusic) {
+            MusicManager.pause();
+        }
         this.finish();
     }
 

@@ -7,7 +7,7 @@ public class Constants {
 	public static final String verticalBar = "xooooxoxxxoooxxooxxoxooxoxxxooxxoooxxxoooxoxxxxoooooxxxooxooxox";
 	public static final String abort = "Aborting Execution";
 	public static final String invalidInput = "Input is invalid";
-	public static final String invalidMove = "Invalid Move";
+	public static final String invalidMove = "invalid_move_sound";
 	public static final int one = 1;
 	public static final int two = 2;
 	public static final int three = 3;

@@ -12,11 +12,29 @@ import java.util.List;
 
 
 public class HistoryActivity extends Activity {
+    boolean continueMusic;
     private ArrayList<HashMap<String, String>> list;
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (!continueMusic) {
+            MusicManager.pause();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        continueMusic = false;
+        MusicManager.start(this, MusicManager.MUSIC_MENU);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.history_listview);
+        continueMusic = getIntent().getExtras().getBoolean("continueMusic");
         ListView listView = (ListView) findViewById(R.id.history_listview);
         DatabaseManager databaseHelper = new DatabaseManager(this);
         list = new ArrayList<HashMap<String, String>>();

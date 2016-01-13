@@ -20,7 +20,23 @@ public class GameOverActivity extends Activity {
     private static final String KEY_WINNER = "WINNER";
     String player1, player2, player3, player4;
     int numberOfPlayers;
+    boolean continueMusic;
     private ArrayList<HashMap<String, String>> list;
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (!continueMusic) {
+            MusicManager.pause();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        continueMusic = false;
+        MusicManager.start(this, MusicManager.MUSIC_MENU);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +47,7 @@ public class GameOverActivity extends Activity {
         player2 = getIntent().getExtras().getString(KEY_PLAYER2);
         player3 = getIntent().getExtras().getString(KEY_PLAYER3);
         player4 = getIntent().getExtras().getString(KEY_PLAYER4);
-
+        continueMusic = getIntent().getExtras().getBoolean("continueMusic");
 
         TextView winnerText = (TextView) findViewById(R.id.winner);
         winnerText.setText(winner + " WINS!");
@@ -77,6 +93,7 @@ public class GameOverActivity extends Activity {
 
     public void goToMain(View view) {
         Intent intent = new Intent(this, MenuActivity.class);
+        //intent.putExtra("continueMusic",continueMusic);
         startActivity(intent);
         finish();
     }
@@ -86,7 +103,7 @@ public class GameOverActivity extends Activity {
         intent.putExtra("numberOfPlayers", numberOfPlayers);
         intent.putExtra("player1", player1);
         intent.putExtra("player2", player2);
-
+        intent.putExtra("continueMusic", continueMusic);
         if (player3 != null) {
             intent.putExtra("player3", player3);
         }
@@ -102,7 +119,7 @@ public class GameOverActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-        final Intent intent = new Intent(this, MenuActivity.class);
+        Intent intent = new Intent(this, MenuActivity.class);
         startActivity(intent);
         finish();
 

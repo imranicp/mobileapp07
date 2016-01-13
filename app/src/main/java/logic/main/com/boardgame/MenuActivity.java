@@ -9,6 +9,7 @@ import android.view.View;
 
 
 public class MenuActivity extends Activity {
+    boolean continueMusic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +20,7 @@ public class MenuActivity extends Activity {
 
     public void goToPlayerMenu(View view){
         Intent intent = new Intent(this, GameTypeActivity.class);
+        intent.putExtra("continueMusic", continueMusic);
         startActivity(intent);
         finish();
 
@@ -26,24 +28,28 @@ public class MenuActivity extends Activity {
 
     public void goToScore(View view){
         Intent intent = new Intent(this,ScoreActivity.class);
+        intent.putExtra("continueMusic", continueMusic);
         startActivity(intent);
         finish();
     }
 
     public void goToHistory(View view){
         Intent intent = new Intent(this,HistoryActivity.class);
+        intent.putExtra("continueMusic", continueMusic);
         startActivity(intent);
         finish();
     }
 
    public void goToAbout(View view){
         Intent intent = new Intent(this,AboutActivity.class);
+       intent.putExtra("continueMusic", continueMusic);
         startActivity(intent);
        finish();
     }
 
     public void goToHelp(View view){
         Intent intent = new Intent(this,HelpActivity.class);
+        intent.putExtra("continueMusic", continueMusic);
         startActivity(intent);
         finish();
     }
@@ -58,5 +64,20 @@ public class MenuActivity extends Activity {
                         finish();
                     }
                 }).setNegativeButton("No", null).show();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (!continueMusic) {
+            MusicManager.pause();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        continueMusic = false;
+        MusicManager.start(this, MusicManager.MUSIC_MENU);
     }
 }

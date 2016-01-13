@@ -14,11 +14,19 @@
         android:textSize="35sp"
         android:textStyle="bold" />
 
+    <View
+        android:layout_width="10dp"
+        android:layout_height="50dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/holo_blue_light" />
+
     <logic.main.com.boardgame.CustomTextView
         android:id="@+id/score"
-        android:layout_width="wrap_content"
-        android:layout_height="80dp"
-        android:background="@drawable/playerscore"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/score1"
         android:gravity="center"
         android:textColor="@color/fontcolor"
         android:textSize="35sp" />
