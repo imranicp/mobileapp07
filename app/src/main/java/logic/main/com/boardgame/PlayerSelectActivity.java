@@ -14,6 +14,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.CursorAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class PlayerSelectActivity extends Activity {
     int value;
@@ -50,7 +51,7 @@ public class PlayerSelectActivity extends Activity {
 
         player2_name.setAdapter(adapter);
         player2_name.setOnItemClickListener(adapter);
-
+        player2_name.setImeOptions(6);
         LinearLayout linearLayout3 = (LinearLayout) findViewById(R.id.player3_lay);
         linearLayout3.setVisibility(View.INVISIBLE);
 
@@ -58,13 +59,18 @@ public class PlayerSelectActivity extends Activity {
         linearLayout4.setVisibility(View.INVISIBLE);
 
         if (value == 3) {
+            player2_name.setImeOptions(5);
             player3_name.setAdapter(adapter);
             player3_name.setOnItemClickListener(adapter);
             linearLayout3.setVisibility(View.VISIBLE);
+            player3_name.setImeOptions(6);
             linearLayout4.setVisibility(View.INVISIBLE);
         }
 
         if (value == 4) {
+            player2_name.setImeOptions(5);
+            player3_name.setImeOptions(5);
+            player4_name.setImeOptions(6);
             player3_name.setAdapter(adapter);
             player3_name.setOnItemClickListener(adapter);
             player4_name.setAdapter(adapter);
@@ -92,9 +98,14 @@ public class PlayerSelectActivity extends Activity {
         String p3Name = player3_name.getText().toString();
         String p4Name = player4_name.getText().toString();
 
+
         switch (v.getId()) {
             case R.id.playButton:
                 if (value == 2) {
+                    if (p1Name.equals("") || p2Name.equals("")) {
+                        Toast toast = Toast.makeText(getApplicationContext(), "Player cannot be empty", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
                     p1Name = p1Name.replaceAll("\\s+", "");
                     p2Name = p2Name.replaceAll("\\s+", "");
                     if (!p1Name.equals("") && !p2Name.equals("")) {
@@ -107,6 +118,10 @@ public class PlayerSelectActivity extends Activity {
                     }
                 }
                 if (value == 3) {
+                    if (p1Name.equals("") || p2Name.equals("") || p3Name.equals("")) {
+                        Toast toast = Toast.makeText(getApplicationContext(), "Player cannot be empty", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
                     p1Name = p1Name.replaceAll("\\s+", "");
                     p2Name = p2Name.replaceAll("\\s+", "");
                     p3Name = p3Name.replaceAll("\\s+", "");
@@ -121,6 +136,10 @@ public class PlayerSelectActivity extends Activity {
                     }
                 }
                 if (value == 4) {
+                    if (p1Name.equals("") || p2Name.equals("") || p3Name.equals("") || p4Name.equals("")) {
+                        Toast toast = Toast.makeText(getApplicationContext(), "Player cannot be empty", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
                     p1Name = p1Name.replaceAll("\\s+", "");
                     p2Name = p2Name.replaceAll("\\s+", "");
                     p3Name = p3Name.replaceAll("\\s+", "");

@@ -9,9 +9,6 @@ import com.viewpagerindicator.CirclePageIndicator;
 import com.viewpagerindicator.PageIndicator;
 
 
-/**
- * Created by Vahiiid on 1/11/2016.
- */
 public class HelpActivity extends Activity {
 
     // Declare Variables
