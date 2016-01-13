@@ -3,26 +3,26 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
-    <logic.main.com.boardgame.CustomTextView
+    <logic.main.com.boardgame.custom.CustomTextView
         android:id="@+id/name1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="3.20"
         android:background="@drawable/scorecrwn"
         android:gravity="center"
-        android:textColor="@color/fontcolor"
         android:text="Imran"
+        android:textColor="@color/fontcolor"
         android:textSize="15sp"
         android:textStyle="bold" />
     <View
         android:layout_width="10dp"
         android:layout_height="48dp"
-        android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:layout_marginTop="10dp"
         android:background="#46495A" />
 
-    <logic.main.com.boardgame.CustomTextView
+    <logic.main.com.boardgame.custom.CustomTextView
         android:id="@+id/name2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -36,12 +36,12 @@
         android:id="@+id/seprt2nd"
         android:layout_width="10dp"
         android:layout_height="48dp"
-        android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:layout_marginTop="10dp"
         android:background="#46495A" />
 
-    <logic.main.com.boardgame.CustomTextView
+    <logic.main.com.boardgame.custom.CustomTextView
         android:id="@+id/name3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -55,12 +55,12 @@
         android:id="@+id/seprt3rd"
         android:layout_width="10dp"
         android:layout_height="48dp"
-        android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:layout_marginTop="10dp"
         android:background="#46495A" />
 
-    <logic.main.com.boardgame.CustomTextView
+    <logic.main.com.boardgame.custom.CustomTextView
         android:id="@+id/name4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

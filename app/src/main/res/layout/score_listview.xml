@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:weightSum="6">
 
-    <logic.main.com.boardgame.CustomTextView
+    <logic.main.com.boardgame.custom.CustomTextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="5"
@@ -13,16 +13,14 @@
         android:gravity="center"
         android:text="Scores!"
         android:textColor="@color/fontcolor"
-        android:textSize="45sp"
-        >
-    </logic.main.com.boardgame.CustomTextView>
+        android:textSize="45sp"></logic.main.com.boardgame.custom.CustomTextView>
     <ListView
         android:id="@+id/score_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_weight="1"
-        android:dividerHeight="2dp"
         android:divider="@android:color/black"
+        android:dividerHeight="2dp"
     >
 
 

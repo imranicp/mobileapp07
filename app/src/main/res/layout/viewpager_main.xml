@@ -2,33 +2,34 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:background="@drawable/menu_bg">
-<logic.main.com.boardgame.CustomFontTextView
+
+    <logic.main.com.boardgame.custom.CustomFontTextView
     android:id="@+id/help"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/score1"
+        android:gravity="center"
     android:text="HELP"
     android:textColor="#22150c"
-    android:gravity="center"
     android:textSize="35sp"
-    android:layout_alignParentTop="true"
-    android:background="@drawable/score1"
     />
     <com.viewpagerindicator.CirclePageIndicator
         android:id="@+id/indicator"
-        android:padding="10dip"
-        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/help"
-        android:background="@android:color/transparent"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/transparent"
+        android:padding="10dip"
         />
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
-        android:layout_below="@id/indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/indicator"
         android:layout_marginTop="-20dp"/>
 
 

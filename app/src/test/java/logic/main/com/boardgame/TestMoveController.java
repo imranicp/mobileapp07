@@ -6,6 +6,16 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import logic.main.com.boardgame.core.BeadConf;
+import logic.main.com.boardgame.core.Board;
+import logic.main.com.boardgame.core.BoardConf;
+import logic.main.com.boardgame.core.Constants;
+import logic.main.com.boardgame.core.EliminationDecider;
+import logic.main.com.boardgame.core.GameException;
+import logic.main.com.boardgame.core.MoveController;
+import logic.main.com.boardgame.core.RuleController;
+import logic.main.com.boardgame.core.WinnerDecider;
+
 public class TestMoveController {
 
 	MoveController moveController;

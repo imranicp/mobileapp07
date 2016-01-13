@@ -27,7 +27,7 @@
             android:src="@drawable/red"
             />
 
-        <logic.main.com.boardgame.CustomAutoCompleteTextView
+        <logic.main.com.boardgame.custom.CustomAutoCompleteTextView
             android:id="@+id/player1_name"
             android:layout_width="150dp"
             android:layout_height="50dp"
@@ -61,7 +61,7 @@
             android:src="@drawable/green"
             />
 
-        <logic.main.com.boardgame.CustomAutoCompleteTextView
+        <logic.main.com.boardgame.custom.CustomAutoCompleteTextView
             android:id="@+id/player2_name"
             android:layout_width="150dp"
             android:layout_height="50dp"
@@ -94,7 +94,7 @@
             android:src="@drawable/blue"
             />
 
-        <logic.main.com.boardgame.CustomAutoCompleteTextView
+        <logic.main.com.boardgame.custom.CustomAutoCompleteTextView
             android:id="@+id/player3_name"
             android:layout_width="150dp"
             android:layout_height="50dp"
@@ -127,7 +127,7 @@
             android:src="@drawable/white"
             />
 
-        <logic.main.com.boardgame.CustomAutoCompleteTextView
+        <logic.main.com.boardgame.custom.CustomAutoCompleteTextView
             android:id="@+id/player4_name"
             android:layout_width="150dp"
             android:layout_height="50dp"

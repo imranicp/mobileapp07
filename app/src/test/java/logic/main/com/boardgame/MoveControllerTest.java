@@ -7,8 +7,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import logic.main.com.boardgame.core.GameException;
+import logic.main.com.boardgame.core.MoveController;
+
 public class MoveControllerTest {
-	MoveController MoveController;
+	logic.main.com.boardgame.core.MoveController MoveController;
 
 	@Before
 	public void setUp() throws Exception {

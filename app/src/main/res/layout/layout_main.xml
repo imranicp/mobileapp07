@@ -13,12 +13,13 @@
             android:id="@+id/player1tile"
             android:layout_width="110dp"
             android:layout_height="55dp"
+            android:layout_marginBottom="-10dp"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="20dp"
             android:src="@drawable/player1actv"
-            android:layout_marginBottom="-10dp"
             />
-        <logic.main.com.boardgame.CustomTextView
+
+        <logic.main.com.boardgame.custom.CustomTextView
             android:id="@+id/player1text"
             android:layout_width="65dp"
             android:layout_height="35dp"
@@ -36,12 +37,13 @@
             android:id="@+id/player1score"
             android:layout_width="55dp"
             android:layout_height="55dp"
+            android:layout_marginBottom="-10dp"
             android:layout_marginTop="20dp"
             android:layout_toRightOf="@id/player1tile"
             android:src="@drawable/playerscore"
-            android:layout_marginBottom="-10dp"
             />
-        <logic.main.com.boardgame.CustomTextView
+
+        <logic.main.com.boardgame.custom.CustomTextView
             android:id="@+id/player1txtscr"
             android:layout_width="20dp"
             android:layout_height="20dp"
@@ -58,19 +60,20 @@
             android:id="@+id/player2tile"
             android:layout_width="110dp"
             android:layout_height="55dp"
+            android:layout_marginBottom="-10dp"
             android:layout_marginLeft="95dp"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="-10dp"
             android:layout_toRightOf="@id/player1tile"
             android:src="@drawable/player2actv"
             />
-        <logic.main.com.boardgame.CustomTextView
+
+        <logic.main.com.boardgame.custom.CustomTextView
             android:id="@+id/player2text"
             android:layout_width="65dp"
             android:layout_height="35dp"
             android:layout_above="@+id/player3tile"
-            android:layout_marginLeft="5dp"
             android:layout_marginBottom="-5dp"
+            android:layout_marginLeft="5dp"
             android:layout_toRightOf="@+id/player2score"
             android:text="Jain"
             android:textColor="@color/fontcolor"
@@ -81,13 +84,14 @@
             android:id="@+id/player2score"
             android:layout_width="55dp"
             android:layout_height="55dp"
+            android:layout_marginBottom="-10dp"
             android:layout_marginLeft="-10dp"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="-10dp"
             android:layout_toRightOf="@id/player1score"
             android:src="@drawable/playerscore"
             />
-        <logic.main.com.boardgame.CustomTextView
+
+        <logic.main.com.boardgame.custom.CustomTextView
             android:id="@+id/player2txtscr"
             android:layout_width="20dp"
             android:layout_height="20dp"
@@ -108,7 +112,8 @@
             android:layout_marginLeft="30dp"
             android:src="@drawable/player3actv"
             />
-        <logic.main.com.boardgame.CustomTextView
+
+        <logic.main.com.boardgame.custom.CustomTextView
             android:id="@+id/player3text"
             android:layout_width="65dp"
             android:layout_height="35dp"
@@ -127,7 +132,8 @@
             android:layout_toRightOf="@id/player3tile"
             android:src="@drawable/playerscore"
             />
-        <logic.main.com.boardgame.CustomTextView
+
+        <logic.main.com.boardgame.custom.CustomTextView
             android:id="@+id/player3txtscr"
             android:layout_width="20dp"
             android:layout_height="20dp"
@@ -148,7 +154,8 @@
             android:layout_toRightOf="@id/player3tile"
             android:src="@drawable/player4actv"
             />
-        <logic.main.com.boardgame.CustomTextView
+
+        <logic.main.com.boardgame.custom.CustomTextView
             android:id="@+id/player4text"
             android:layout_width="65dp"
             android:layout_height="35dp"
@@ -170,7 +177,8 @@
             android:layout_toRightOf="@id/player3score"
             android:src="@drawable/playerscore"
             />
-        <logic.main.com.boardgame.CustomTextView
+
+        <logic.main.com.boardgame.custom.CustomTextView
             android:id="@+id/player4txtscr"
             android:layout_width="20dp"
             android:layout_height="20dp"
