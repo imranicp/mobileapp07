@@ -18,13 +18,37 @@ public class HelpActivity extends Activity {
     String[] desc;
     int[] image;
     PageIndicator mIndicator;
+    boolean continueMusic;
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        if (continueMusic) {
+            MusicManager.start(this, MusicManager.MUSIC_MENU);
+        } else {
+            MusicManager.pause();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+
+        if (continueMusic) {
+            MusicManager.start(this, MusicManager.MUSIC_MENU);
+        } else {
+            MusicManager.pause();
+        }
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Get the view from viewpager_main.xml
         setContentView(R.layout.viewpager_main);
-
+        continueMusic = getIntent().getExtras().getBoolean("continueMusic");
         // Generate sample data
         number = new String[] { "1", "2", "3", "4", "5", "6", "7"};
 
@@ -60,5 +84,11 @@ public class HelpActivity extends Activity {
         indicator.setStrokeColor(0xFF000000);
         indicator.setStrokeWidth(2 * density);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        finish();
     }
 }

@@ -17,14 +17,14 @@ public class DatabaseManager {
 
     // All Static variables
     // Database Version
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     // Database Name
     private static final String DATABASE_NAME = "BOARDGAME";
 
     // table name
     private static final String TABLE_SCORE = "HIGH_SCORE";
-
+    private static final String TABLE_MUSIC = "MUSIC_VALUES";
     private static final String TABLE_HISTORY = "GAME_HISTORY";
 
     private static final String KEY_PLAYER1 = "PLAYER1";
@@ -37,6 +37,8 @@ public class DatabaseManager {
     private static final String KEY_ID = "_id";
     private static final String KEY_NAME = "PLAYER_NAME";
     private static final String KEY_SCORE = "SCORE";
+    private static final String KEY_SETTING = "SETTING";
+    private static final String KEY_VALUE = "VALUE";
     private final Activity mActivity;
     private DataBaseHelper mDbHelper;
     private SQLiteDatabase db;
@@ -251,6 +253,41 @@ public class DatabaseManager {
         return playerScores;
     }
 
+    public boolean getMusicValue() {
+        String countQuery = "SELECT VALUE FROM " + TABLE_MUSIC + " where " + KEY_SETTING + "='MUSIC';";
+        boolean result = false;
+
+        Cursor cursor = db.rawQuery(countQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                String column1 = cursor.getString(0);
+
+                if (column1.equals("1")) {
+                    result = true;
+                }
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+
+        return result;
+    }
+
+    public void setMusicValue(boolean continueMusic) {
+        if (continueMusic) {
+            String countQuery = "UPDATE " + TABLE_MUSIC + " SET " + KEY_VALUE + "= '1'" + " where " + KEY_SETTING + "='MUSIC';";
+            Log.e("updateQuery", countQuery);
+            Cursor cursor = db.rawQuery(countQuery, null);
+            cursor.moveToFirst();
+            cursor.close();
+        } else {
+            String countQuery = "UPDATE " + TABLE_MUSIC + " SET " + KEY_VALUE + "= '0'" + " where " + KEY_SETTING + "='MUSIC';";
+            Log.e("updateQuery", countQuery);
+            Cursor cursor = db.rawQuery(countQuery, null);
+            cursor.moveToFirst();
+            cursor.close();
+        }
+    }
+
     public class DataBaseHelper extends SQLiteOpenHelper {
 
         public DataBaseHelper(Context context) {
@@ -271,8 +308,22 @@ public class DatabaseManager {
                     + KEY_ID + " INTEGER PRIMARY KEY," + KEY_PLAYER1 + " TEXT," + KEY_PLAYER2 +
                     " TEXT," + KEY_PLAYER3 + " TEXT," + KEY_PLAYER4 + " TEXT,"
                     + KEY_WINNER + " TEXT" + ")";
+
             db.execSQL(CREATE_TABLE_HISTORY);
 
+            String CREATE_TABLE_MUSIC = "CREATE TABLE IF NOT EXISTS " + TABLE_MUSIC + "("
+                    + KEY_ID + " INTEGER PRIMARY KEY," + KEY_SETTING + " TEXT," + KEY_VALUE + " TEXT" + ")";
+            db.execSQL(CREATE_TABLE_MUSIC);
+
+            ContentValues values = new ContentValues();
+            values.put(KEY_SETTING, "MUSIC");
+            values.put(KEY_VALUE, "1");
+            db.insert(TABLE_MUSIC, null, values);
+
+            ContentValues values1 = new ContentValues();
+            values1.put(KEY_SETTING, "SOUND");
+            values1.put(KEY_VALUE, "1");
+            db.insert(TABLE_MUSIC, null, values1);
 
         }
 
@@ -285,6 +336,10 @@ public class DatabaseManager {
                     + KEY_ID + " INTEGER PRIMARY KEY," + KEY_PLAYER1 + " TEXT," + KEY_PLAYER2 +
                     " TEXT," + KEY_PLAYER3 + " TEXT," + KEY_PLAYER4 + " TEXT,"
                     + KEY_WINNER + " TEXT" + ")");
+            db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_MUSIC + "("
+                    + KEY_ID + " INTEGER PRIMARY KEY," + KEY_SETTING + " TEXT," + KEY_VALUE + " TEXT" + ")");
+
+
 
         }
     }

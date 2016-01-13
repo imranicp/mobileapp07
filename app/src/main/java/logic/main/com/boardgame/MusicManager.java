@@ -77,9 +77,11 @@ public class MusicManager {
     }
 
     public static void pause() {
+
         Collection<MediaPlayer> mps = players.values();
         for (MediaPlayer p : mps) {
             if (p.isPlaying()) {
+
                 p.pause();
             }
         }
@@ -113,6 +115,7 @@ public class MusicManager {
             try {
                 if (mp != null) {
                     if (mp.isPlaying()) {
+                        Log.d(TAG, "STOPPING media players");
                         mp.stop();
                     }
                     mp.release();

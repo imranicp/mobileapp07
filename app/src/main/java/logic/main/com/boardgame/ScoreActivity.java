@@ -1,7 +1,6 @@
 package logic.main.com.boardgame;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
@@ -13,12 +12,16 @@ import java.util.List;
 public class ScoreActivity extends Activity {
 
     boolean continueMusic;
+    DatabaseManager databaseHelper;
     private ArrayList<HashMap<String, String>> list;
 
     @Override
     protected void onPause() {
         super.onPause();
-        if (!continueMusic) {
+
+        if (continueMusic) {
+            MusicManager.start(this, MusicManager.MUSIC_MENU);
+        } else {
             MusicManager.pause();
         }
     }
@@ -26,8 +29,12 @@ public class ScoreActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        continueMusic = false;
-        MusicManager.start(this, MusicManager.MUSIC_MENU);
+
+        if (continueMusic) {
+            MusicManager.start(this, MusicManager.MUSIC_MENU);
+        } else {
+            MusicManager.pause();
+        }
     }
 
     @Override
@@ -37,7 +44,8 @@ public class ScoreActivity extends Activity {
         ListView listView = (ListView) findViewById(R.id.score_list);
         list = new ArrayList<HashMap<String, String>>();
         continueMusic = getIntent().getExtras().getBoolean("continueMusic");
-        DatabaseManager databaseHelper = new DatabaseManager(this);
+        Log.e("continueMusic", String.valueOf(continueMusic));
+        databaseHelper = new DatabaseManager(this);
         List<PlayerScore> playerScores = databaseHelper.retrieveScores();
 
 
@@ -62,8 +70,7 @@ public class ScoreActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, MenuActivity.class);
-        startActivity(intent);
         finish();
+
     }
 }

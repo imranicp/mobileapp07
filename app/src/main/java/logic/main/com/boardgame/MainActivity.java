@@ -40,7 +40,10 @@ public class MainActivity extends Activity implements View.OnTouchListener {
     @Override
     protected void onPause() {
         super.onPause();
-        if (!continueMusic) {
+
+        if (continueMusic) {
+            MusicManager.start(this, MusicManager.MUSIC_MENU);
+        } else {
             MusicManager.pause();
         }
     }
@@ -48,8 +51,12 @@ public class MainActivity extends Activity implements View.OnTouchListener {
     @Override
     protected void onResume() {
         super.onResume();
-        continueMusic = false;
-        MusicManager.start(this, MusicManager.MUSIC_MENU);
+
+        if (continueMusic) {
+            MusicManager.start(this, MusicManager.MUSIC_MENU);
+        } else {
+            MusicManager.pause();
+        }
     }
 
     @Override
@@ -146,7 +153,7 @@ public class MainActivity extends Activity implements View.OnTouchListener {
 
                     public void onClick(DialogInterface arg0, int arg1) {
 
-                        startActivity(intent);
+                        //startActivity(intent);
                         finish();
                     }
                 }).create().show();

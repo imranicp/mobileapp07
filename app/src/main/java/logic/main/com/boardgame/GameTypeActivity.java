@@ -13,7 +13,10 @@ public class GameTypeActivity extends Activity {
     @Override
     protected void onPause() {
         super.onPause();
-        if (!continueMusic) {
+
+        if (continueMusic) {
+            MusicManager.start(this, MusicManager.MUSIC_MENU);
+        } else {
             MusicManager.pause();
         }
     }
@@ -21,8 +24,12 @@ public class GameTypeActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        continueMusic = false;
-        MusicManager.start(this, MusicManager.MUSIC_MENU);
+
+        if (continueMusic) {
+            MusicManager.start(this, MusicManager.MUSIC_MENU);
+        } else {
+            MusicManager.pause();
+        }
     }
 
     public void onClick(View v) {
@@ -66,8 +73,7 @@ public class GameTypeActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, MenuActivity.class);
-        startActivity(intent);
+
         finish();
     }
 
