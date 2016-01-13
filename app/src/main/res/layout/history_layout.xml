@@ -8,11 +8,19 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="3.20"
-        android:background="@drawable/score1"
+        android:background="@drawable/scorecrwn"
         android:gravity="center"
         android:textColor="@color/fontcolor"
+        android:text="Imran"
         android:textSize="15sp"
         android:textStyle="bold" />
+    <View
+        android:layout_width="10dp"
+        android:layout_height="48dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:background="#46495A" />
 
     <logic.main.com.boardgame.CustomTextView
         android:id="@+id/name2"
@@ -24,6 +32,14 @@
         android:textColor="@color/fontcolor"
         android:textSize="15sp"
         android:textStyle="bold" />
+    <View
+        android:id="@+id/seprt2nd"
+        android:layout_width="10dp"
+        android:layout_height="48dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:background="#46495A" />
 
     <logic.main.com.boardgame.CustomTextView
         android:id="@+id/name3"
@@ -35,6 +51,14 @@
         android:textColor="@color/fontcolor"
         android:textSize="15sp"
         android:textStyle="bold" />
+    <View
+        android:id="@+id/seprt3rd"
+        android:layout_width="10dp"
+        android:layout_height="48dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:background="#46495A" />
 
     <logic.main.com.boardgame.CustomTextView
         android:id="@+id/name4"

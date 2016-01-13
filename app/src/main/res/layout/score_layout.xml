@@ -16,10 +16,10 @@
 
     <View
         android:layout_width="10dp"
-        android:layout_height="50dp"
+        android:layout_height="48dp"
         android:layout_marginRight="5dp"
         android:layout_marginTop="10dp"
-        android:background="@android:color/holo_blue_light" />
+        android:background="#46495A" />
 
     <logic.main.com.boardgame.CustomTextView
         android:id="@+id/score"
