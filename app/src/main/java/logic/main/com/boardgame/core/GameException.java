@@ -28,38 +28,38 @@ public class GameException extends Exception {
     public String exception(char code, String move, Board board) {
 
         if (code == Constants.charr) {
-            System.out.println(Constants.invalidMove + ":" + move + Constants.bar);
+            System.out.println(move + Constants.bar);
             System.out.println(Constants.lastOutput);
             System.out.println(board.getOutput());
         }
-        return Constants.invalidMove + Constants.bar;
+        return Constants.bar;
     }
 
     public String exception(int code, String bar, Board board) {
         String message="";
         if (code == 1) {
-            System.out.println(Constants.invalidMove);
+
             System.out.println(Constants.horBar + bar + Constants.inner);
             message=Constants.horBar + bar + Constants.inner;
             System.out.println(Constants.lastOutput);
             System.out.println(board.getOutput());
         }
         if (code == 2) {
-            System.out.println(Constants.invalidMove);
+
             System.out.println(Constants.horBar + bar + Constants.outer);
             message=Constants.horBar + bar + Constants.outer;
             System.out.println(Constants.lastOutput);
             System.out.println(board.getOutput());
         }
         if (code == 3) {
-            System.out.println(Constants.invalidMove);
+
             System.out.println(Constants.verBar + bar + Constants.inner);
             message=Constants.verBar + bar + Constants.inner;
             System.out.println(Constants.lastOutput);
             System.out.println(board.getOutput());
         }
         if (code == 4) {
-            System.out.println(Constants.invalidMove);
+
             System.out.println(Constants.verBar + bar + Constants.outer);
             message=Constants.verBar + bar + Constants.outer;
             System.out.println(Constants.lastOutput);

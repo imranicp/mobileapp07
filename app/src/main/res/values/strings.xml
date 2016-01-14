@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">BoardGame</string>
     <string name="desclabel">Description: </string>
+    <string name="placebead">Place Beads </string>
 </resources>

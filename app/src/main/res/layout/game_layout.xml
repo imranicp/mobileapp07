@@ -839,7 +839,34 @@
         android:layout_toEndOf="@id/g7"
         android:src="@drawable/rightinner" />
 
+
 </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textAlignment="center">
 
+
+        <logic.main.com.boardgame.custom.CustomFontTextView
+            android:id="@+id/gamestate"
+            android:layout_width="wrap_content"
+            android:layout_height="180dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="448dp"
+            android:background="@drawable/score1"
+            android:gravity="center_horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="10dp"
+            android:paddingTop="30dp"
+            android:text="@string/placebead"
+            android:textAlignment="center"
+            android:textColor="#22150c"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
 </RelativeLayout>

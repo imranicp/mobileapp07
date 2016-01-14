@@ -12,7 +12,6 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import logic.main.com.boardgame.R;
 import logic.main.com.boardgame.core.BarConfigGenerator;
@@ -20,6 +19,7 @@ import logic.main.com.boardgame.core.Board;
 import logic.main.com.boardgame.core.BoardConf;
 import logic.main.com.boardgame.core.MoveController;
 import logic.main.com.boardgame.core.MoveGenerator;
+import logic.main.com.boardgame.custom.CustomFontTextView;
 import logic.main.com.boardgame.custom.CustomTextView;
 import logic.main.com.boardgame.manager.DatabaseManager;
 import logic.main.com.boardgame.manager.MusicManager;
@@ -51,6 +51,7 @@ public class GameActivity extends Activity implements View.OnTouchListener {
     String flingType="";
     boolean continueMusic, soundSetting;
     CustomTextView player1txtscr, player2txtscr, player3txtscr, player4txtscr;
+    CustomFontTextView gameState;
     ImageView player1tile, player2tile, player3tile, player4tile;
     @Override
     protected void onPause() {
@@ -92,7 +93,7 @@ public class GameActivity extends Activity implements View.OnTouchListener {
 
         CustomTextView player1_name = (CustomTextView) findViewById(R.id.player1text);
         CustomTextView player2_name = (CustomTextView) findViewById(R.id.player2text);
-
+        gameState = (CustomFontTextView) findViewById(R.id.gamestate);
         player1name = getIntent().getExtras().getString("player1");
         player2name = getIntent().getExtras().getString("player2");
         player1_name.setText(player1name);
@@ -203,32 +204,41 @@ public class GameActivity extends Activity implements View.OnTouchListener {
 
         //Placing beads
         if (board.getNumberOfPlayers() == 2 && !(beadCount2 == 0) && !winnerDecided) {
-            if (soundSetting)
-                placingBead.start();
+
             int movingPlayer = board.getMovingPlayer();
             beadCount2= beadPlacer.placeBeads(beadCount2,tag,view.getId(),board,this);
             beadCount=beadCount2;
             if (movingPlayer != board.getMovingPlayer()) {
+                if (soundSetting)
+                    placingBead.start();
                 updateTurn(board.getMovingPlayer());
             }
+            if (beadCount == 0)
+                gameState.setText("Perform move");
         } else if (board.getNumberOfPlayers() == 3 && !(beadCount3 == 0) && !winnerDecided) {
-            if (soundSetting)
-                placingBead.start();
+
             int movingPlayer = board.getMovingPlayer();
             beadCount3= beadPlacer.placeBeads(beadCount3,tag,view.getId(),board,this);
             beadCount=beadCount3;
             if (movingPlayer != board.getMovingPlayer()) {
+                if (soundSetting)
+                    placingBead.start();
                 updateTurn(board.getMovingPlayer());
             }
+            if (beadCount == 0)
+                gameState.setText("Perform move");
         } else if (board.getNumberOfPlayers() == 4 && !(beadCount4 == 0) && !winnerDecided) {
-            if (soundSetting)
-                placingBead.start();
+
             int movingPlayer = board.getMovingPlayer();
             beadCount4= beadPlacer.placeBeads(beadCount4,tag,view.getId(),board,this);
             beadCount=beadCount4;
             if (movingPlayer != board.getMovingPlayer()) {
+                if (soundSetting)
+                    placingBead.start();
                 updateTurn(board.getMovingPlayer());
             }
+            if (beadCount == 0)
+                gameState.setText("Perform move");
         }
 
 
@@ -243,6 +253,7 @@ public class GameActivity extends Activity implements View.OnTouchListener {
             if (!move.equals("")) {
 
                 try {
+                    gameState.setText("Perform move");
                     flingType = "";
                     String input = String.valueOf(board.getNumberOfPlayers()) + String.valueOf(board.getMovingPlayer()) + board.getPostionsOfHorizontalBars() + board.getPostionsOfVerticalBars() + board.getBeadConfiguration() + move;
                     Log.e("input", input);
@@ -278,8 +289,9 @@ public class GameActivity extends Activity implements View.OnTouchListener {
                     if (soundSetting)
                         invalidMove.start();
                     e.printStackTrace();
-                    Toast toast = Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT);
-                    toast.show();
+                    gameState.setText(e.getMessage() + ". Try Again!");
+                    /*Toast toast = Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT);
+                    toast.show();*/
                 }
             }
         }
