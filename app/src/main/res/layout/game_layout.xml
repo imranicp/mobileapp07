@@ -64,7 +64,7 @@
             android:layout_marginLeft="95dp"
             android:layout_marginTop="20dp"
             android:layout_toRightOf="@id/player1tile"
-            android:src="@drawable/player2actv"
+            android:src="@drawable/player2inactv"
             />
 
         <logic.main.com.boardgame.custom.CustomTextView
@@ -110,7 +110,7 @@
             android:layout_height="55dp"
             android:layout_below="@id/player1tile"
             android:layout_marginLeft="30dp"
-            android:src="@drawable/player3actv"
+            android:src="@drawable/player3inactv"
             />
 
         <logic.main.com.boardgame.custom.CustomTextView
@@ -152,7 +152,7 @@
             android:layout_below="@id/player2tile"
             android:layout_marginLeft="95dp"
             android:layout_toRightOf="@id/player3tile"
-            android:src="@drawable/player4actv"
+            android:src="@drawable/player4inactv"
             />
 
         <logic.main.com.boardgame.custom.CustomTextView

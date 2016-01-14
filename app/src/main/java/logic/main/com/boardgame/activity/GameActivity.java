@@ -51,7 +51,7 @@ public class GameActivity extends Activity implements View.OnTouchListener {
     String flingType="";
     boolean continueMusic, soundSetting;
     CustomTextView player1txtscr, player2txtscr, player3txtscr, player4txtscr;
-
+    ImageView player1tile, player2tile, player3tile, player4tile;
     @Override
     protected void onPause() {
         super.onPause();
@@ -102,7 +102,9 @@ public class GameActivity extends Activity implements View.OnTouchListener {
         player2txtscr = (CustomTextView) findViewById(R.id.player2scoredisplay);
         player3txtscr = (CustomTextView) findViewById(R.id.player3scoredisplay);
         player4txtscr = (CustomTextView) findViewById(R.id.player4scoredisplay);
-        ImageView player3tile = (ImageView) findViewById(R.id.player3tile);
+        player1tile = (ImageView) findViewById(R.id.player1tile);
+        player2tile = (ImageView) findViewById(R.id.player2tile);
+        player3tile = (ImageView) findViewById(R.id.player3tile);
         CustomTextView player3_name = (CustomTextView) findViewById(R.id.player3text);
         ImageView player3score = (ImageView) findViewById(R.id.player3score);
 
@@ -110,7 +112,7 @@ public class GameActivity extends Activity implements View.OnTouchListener {
         player3_name.setVisibility(View.INVISIBLE);
         player3score.setVisibility(View.INVISIBLE);
         player3txtscr.setVisibility(View.INVISIBLE);
-        ImageView player4tile = (ImageView) findViewById(R.id.player4tile);
+        player4tile = (ImageView) findViewById(R.id.player4tile);
         CustomTextView player4_name = (CustomTextView) findViewById(R.id.player4text);
         ImageView player4score = (ImageView) findViewById(R.id.player4score);
 
@@ -152,14 +154,10 @@ public class GameActivity extends Activity implements View.OnTouchListener {
         BarConfigGenerator barConfigGenerator = new BarConfigGenerator();
         board = barConfigGenerator.generateBarConfig(board);
 
-        // Log.e("postionsOfVerticalBars", postionsOfVerticalBars);
-        // Log.e("postionsOfHorizonlBars", postionsOfHorizontalBars);
-
         board.setBoardConfiguration(boardConf.boardConfGenerator(
                 board.getPostionsOfHorizontalBars(),
                 board.getPostionsOfVerticalBars()));
 
-        //  Log.e("boardConfig", board.getBoardConfiguration());
 
         boardImageSetter.setBoardImages(board, getApplicationContext(), this);
         //setBoardImages(board);
@@ -206,23 +204,32 @@ public class GameActivity extends Activity implements View.OnTouchListener {
         //Placing beads
         if (board.getNumberOfPlayers() == 2 && !(beadCount2 == 0) && !winnerDecided) {
             if (soundSetting)
-            placingBead.start();
-
+                placingBead.start();
+            int movingPlayer = board.getMovingPlayer();
             beadCount2= beadPlacer.placeBeads(beadCount2,tag,view.getId(),board,this);
             beadCount=beadCount2;
+            if (movingPlayer != board.getMovingPlayer()) {
+                updateTurn(board.getMovingPlayer());
+            }
         } else if (board.getNumberOfPlayers() == 3 && !(beadCount3 == 0) && !winnerDecided) {
             if (soundSetting)
-            placingBead.start();
+                placingBead.start();
+            int movingPlayer = board.getMovingPlayer();
             beadCount3= beadPlacer.placeBeads(beadCount3,tag,view.getId(),board,this);
             beadCount=beadCount3;
+            if (movingPlayer != board.getMovingPlayer()) {
+                updateTurn(board.getMovingPlayer());
+            }
         } else if (board.getNumberOfPlayers() == 4 && !(beadCount4 == 0) && !winnerDecided) {
             if (soundSetting)
-            placingBead.start();
+                placingBead.start();
+            int movingPlayer = board.getMovingPlayer();
             beadCount4= beadPlacer.placeBeads(beadCount4,tag,view.getId(),board,this);
             beadCount=beadCount4;
+            if (movingPlayer != board.getMovingPlayer()) {
+                updateTurn(board.getMovingPlayer());
+            }
         }
-
-
 
 
         gdt.onTouchEvent(event);
@@ -245,7 +252,7 @@ public class GameActivity extends Activity implements View.OnTouchListener {
                     //setBoardImages(board);
                     barImageSetter.setBarImages(board, getApplicationContext(), this);
                     if (soundSetting)
-                    movingBar.start();
+                        movingBar.start();
                     if (!String.valueOf(board.getWinner()).equals("0")) {
                         String[] players = new String[4];
                         players[0] = player1name;
@@ -258,17 +265,18 @@ public class GameActivity extends Activity implements View.OnTouchListener {
                             players[3] = player4name;
                         }
                         if (soundSetting)
-                        gameOver.start();
+                            gameOver.start();
                         dataBaseHelper.updateScore(board, players, this, continueMusic);
                         winnerDecided = true;
                         finish();
 
                     }
                     updateScores(board.getBeadConfiguration());
+                    updateTurn(board.getMovingPlayer());
                     Log.e("newConfig", board.getOutput());
                 } catch (Exception e) {
                     if (soundSetting)
-                    invalidMove.start();
+                        invalidMove.start();
                     e.printStackTrace();
                     Toast toast = Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT);
                     toast.show();
@@ -277,6 +285,33 @@ public class GameActivity extends Activity implements View.OnTouchListener {
         }
 
         return true;
+    }
+
+    private void updateTurn(int movingPlayer) {
+        if (movingPlayer == 1) {
+            player1tile.setImageResource(R.drawable.player1actv);
+            player2tile.setImageResource(R.drawable.player2inactv);
+            player3tile.setImageResource(R.drawable.player3inactv);
+            player4tile.setImageResource(R.drawable.player4inactv);
+        }
+        if (movingPlayer == 2) {
+            player1tile.setImageResource(R.drawable.player1inactv);
+            player2tile.setImageResource(R.drawable.player2actv);
+            player3tile.setImageResource(R.drawable.player3inactv);
+            player4tile.setImageResource(R.drawable.player4inactv);
+        }
+        if (movingPlayer == 3) {
+            player1tile.setImageResource(R.drawable.player1inactv);
+            player2tile.setImageResource(R.drawable.player2inactv);
+            player3tile.setImageResource(R.drawable.player3actv);
+            player4tile.setImageResource(R.drawable.player4inactv);
+        }
+        if (movingPlayer == 4) {
+            player1tile.setImageResource(R.drawable.player1inactv);
+            player2tile.setImageResource(R.drawable.player2inactv);
+            player3tile.setImageResource(R.drawable.player3inactv);
+            player4tile.setImageResource(R.drawable.player4actv);
+        }
     }
 
     private void updateScores(String beadConfiguration) {
