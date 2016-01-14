@@ -44,7 +44,7 @@
             />
 
         <logic.main.com.boardgame.custom.CustomTextView
-            android:id="@+id/player1txtscr"
+            android:id="@+id/player1scoredisplay"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_above="@+id/player3tile"
@@ -92,7 +92,7 @@
             />
 
         <logic.main.com.boardgame.custom.CustomTextView
-            android:id="@+id/player2txtscr"
+            android:id="@+id/player2scoredisplay"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_above="@+id/player3score"
@@ -134,10 +134,10 @@
             />
 
         <logic.main.com.boardgame.custom.CustomTextView
-            android:id="@+id/player3txtscr"
+            android:id="@+id/player3scoredisplay"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_below="@+id/player1txtscr"
+            android:layout_below="@+id/player1scoredisplay"
             android:layout_marginLeft="18dp"
             android:layout_marginTop="13dp"
             android:layout_toRightOf="@id/player3tile"
@@ -179,7 +179,7 @@
             />
 
         <logic.main.com.boardgame.custom.CustomTextView
-            android:id="@+id/player4txtscr"
+            android:id="@+id/player4scoredisplay"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_below="@id/player2score"

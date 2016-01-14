@@ -11,7 +11,7 @@ public class MoveGenerator {
         Log.e("moveTag", viewTag);
         Log.e("flingType",flingType);
 
-        if(flingType == "topToBottom"){
+        if (flingType.equals("topToBottom")) {
 
             if(viewTag.contains("top")){
                 viewTag = viewTag.replaceAll("\\D+","");
@@ -24,7 +24,7 @@ public class MoveGenerator {
             }
         }
 
-        if(flingType == "bottomToTop"){
+        if (flingType.equals("bottomToTop")) {
 
             if(viewTag.contains("bot")){
                 viewTag = viewTag.replaceAll("\\D+","");
@@ -37,7 +37,7 @@ public class MoveGenerator {
             }
         }
 
-        if(flingType == "rightToLeft"){
+        if (flingType.equals("rightToLeft")) {
 
             if(viewTag.contains("l")){
                 viewTag = viewTag.replaceAll("\\D+","");
@@ -50,7 +50,7 @@ public class MoveGenerator {
             }
         }
 
-        if(flingType == "leftToRight"){
+        if (flingType.equals("leftToRight")) {
 
             if(viewTag.contains("l")){
                 viewTag = viewTag.replaceAll("\\D+","");

@@ -50,6 +50,7 @@ public class GameActivity extends Activity implements View.OnTouchListener {
     String player1name, player2name, player3name, player4name;
     String flingType="";
     boolean continueMusic, soundSetting;
+    CustomTextView player1txtscr, player2txtscr, player3txtscr, player4txtscr;
 
     @Override
     protected void onPause() {
@@ -76,10 +77,10 @@ public class GameActivity extends Activity implements View.OnTouchListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        /*drawView = new GameCanvas(this);
-        drawView.setBackgroundColor(Color.WHITE);*/
+
         setContentView(R.layout.game_layout);
         dataBaseHelper = new DatabaseManager(this);
+
 
         gdt = new GestureDetector(this, new GestureListener());
         soundSetting = dataBaseHelper.getSoundValue();
@@ -88,17 +89,23 @@ public class GameActivity extends Activity implements View.OnTouchListener {
         int value = getIntent().getExtras().getInt("numberOfPlayers");
         board.setNumberOfPlayers(value);
         board.setMovingPlayer(1);
+
         CustomTextView player1_name = (CustomTextView) findViewById(R.id.player1text);
         CustomTextView player2_name = (CustomTextView) findViewById(R.id.player2text);
+
         player1name = getIntent().getExtras().getString("player1");
         player2name = getIntent().getExtras().getString("player2");
         player1_name.setText(player1name);
         player2_name.setText(player2name);
 
+        player1txtscr = (CustomTextView) findViewById(R.id.player1scoredisplay);
+        player2txtscr = (CustomTextView) findViewById(R.id.player2scoredisplay);
+        player3txtscr = (CustomTextView) findViewById(R.id.player3scoredisplay);
+        player4txtscr = (CustomTextView) findViewById(R.id.player4scoredisplay);
         ImageView player3tile = (ImageView) findViewById(R.id.player3tile);
         CustomTextView player3_name = (CustomTextView) findViewById(R.id.player3text);
         ImageView player3score = (ImageView) findViewById(R.id.player3score);
-        CustomTextView player3txtscr = (CustomTextView) findViewById(R.id.player3txtscr);
+
         player3tile.setVisibility(View.INVISIBLE);
         player3_name.setVisibility(View.INVISIBLE);
         player3score.setVisibility(View.INVISIBLE);
@@ -106,7 +113,7 @@ public class GameActivity extends Activity implements View.OnTouchListener {
         ImageView player4tile = (ImageView) findViewById(R.id.player4tile);
         CustomTextView player4_name = (CustomTextView) findViewById(R.id.player4text);
         ImageView player4score = (ImageView) findViewById(R.id.player4score);
-        CustomTextView player4txtscr = (CustomTextView) findViewById(R.id.player4txtscr);
+
         player4tile.setVisibility(View.INVISIBLE);
         player4_name.setVisibility(View.INVISIBLE);
         player4score.setVisibility(View.INVISIBLE);
@@ -137,6 +144,11 @@ public class GameActivity extends Activity implements View.OnTouchListener {
             player4name = getIntent().getExtras().getString("player4");
             player4_name.setText(player4name);
         }
+        player1txtscr.setText("5");
+        player2txtscr.setText("5");
+        player3txtscr.setText("5");
+        player4txtscr.setText("5");
+
         BarConfigGenerator barConfigGenerator = new BarConfigGenerator();
         board = barConfigGenerator.generateBarConfig(board);
 
@@ -222,8 +234,7 @@ public class GameActivity extends Activity implements View.OnTouchListener {
             String move=moveGenerator.generateMove(view,flingType);
 
             if (!move.equals("")) {
-                //Log.e("move",move);
-                // Log.e("beadConfig", board.getBeadConfiguration());
+
                 try {
                     flingType = "";
                     String input = String.valueOf(board.getNumberOfPlayers()) + String.valueOf(board.getMovingPlayer()) + board.getPostionsOfHorizontalBars() + board.getPostionsOfVerticalBars() + board.getBeadConfiguration() + move;
@@ -253,6 +264,7 @@ public class GameActivity extends Activity implements View.OnTouchListener {
                         finish();
 
                     }
+                    updateScores(board.getBeadConfiguration());
                     Log.e("newConfig", board.getOutput());
                 } catch (Exception e) {
                     if (soundSetting)
@@ -265,6 +277,15 @@ public class GameActivity extends Activity implements View.OnTouchListener {
         }
 
         return true;
+    }
+
+    private void updateScores(String beadConfiguration) {
+
+        player1txtscr.setText(String.valueOf(beadConfiguration.length() - beadConfiguration.replace("1", "").length()));
+        player2txtscr.setText(String.valueOf(beadConfiguration.length() - beadConfiguration.replace("2", "").length()));
+        player3txtscr.setText(String.valueOf(beadConfiguration.length() - beadConfiguration.replace("3", "").length()));
+        player4txtscr.setText(String.valueOf(beadConfiguration.length() - beadConfiguration.replace("4", "").length()));
+
     }
 
     private class OnCompletionListener implements MediaPlayer.OnCompletionListener {
