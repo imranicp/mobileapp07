@@ -270,7 +270,7 @@ public class GameActivity extends Activity implements View.OnTouchListener {
                     board = moveController.moveTest(board);
                     String newBeadConfig = board.getBeadConfiguration();
                     boardImageSetter.setBoardImages(board, getApplicationContext(), this);
-                    //setBoardImages(board);
+
                     barImageSetter.setBarImages(board, getApplicationContext(), this);
                     if (!oldBeadConfig.equals(newBeadConfig)) {
                         v.vibrate(500);
