@@ -2,11 +2,13 @@ package logic.main.com.boardgame.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -34,6 +36,7 @@ public class GameActivity extends Activity implements View.OnTouchListener {
     private static final int SWIPE_MIN_DISTANCE = 30;
     private static final int SWIPE_THRESHOLD_VELOCITY = 100;
     GestureDetector gdt;
+    Vibrator v;
     int beadCount2=10;
     int beadCount3=15;
     int beadCount4=20;
@@ -56,11 +59,8 @@ public class GameActivity extends Activity implements View.OnTouchListener {
     @Override
     protected void onPause() {
         super.onPause();
-
         continueMusic = false;
         MusicManager.pause();
-
-
     }
 
     @Override
@@ -85,6 +85,9 @@ public class GameActivity extends Activity implements View.OnTouchListener {
 
         gdt = new GestureDetector(this, new GestureListener());
         soundSetting = dataBaseHelper.getSoundValue();
+        v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+
+
         BoardConf boardConf = new BoardConf();
         continueMusic = getIntent().getExtras().getBoolean("continueMusic");
         int value = getIntent().getExtras().getInt("numberOfPlayers");
@@ -164,7 +167,7 @@ public class GameActivity extends Activity implements View.OnTouchListener {
         //setBoardImages(board);
         barImageSetter.setBarImages(board, getApplicationContext(), this);
 
-
+        v.vibrate(400);
 
     }
 
@@ -196,6 +199,8 @@ public class GameActivity extends Activity implements View.OnTouchListener {
         invalidMove.setOnCompletionListener(new OnCompletionListener());
         final MediaPlayer gameOver = MediaPlayer.create(this, R.raw.game_over_sound);
         gameOver.setOnCompletionListener(new OnCompletionListener());
+        final MediaPlayer wooden_fall = MediaPlayer.create(this, R.raw.wooden_fall);
+        wooden_fall.setOnCompletionListener(new OnCompletionListener());
 
         Resources res = view.getResources();     // get resources
         String idString = res.getResourceEntryName(view.getId());
@@ -212,6 +217,7 @@ public class GameActivity extends Activity implements View.OnTouchListener {
                 if (soundSetting)
                     placingBead.start();
                 updateTurn(board.getMovingPlayer());
+                v.vibrate(300);
             }
             if (beadCount == 0)
                 gameState.setText("Perform move");
@@ -224,6 +230,7 @@ public class GameActivity extends Activity implements View.OnTouchListener {
                 if (soundSetting)
                     placingBead.start();
                 updateTurn(board.getMovingPlayer());
+                v.vibrate(300);
             }
             if (beadCount == 0)
                 gameState.setText("Perform move");
@@ -236,6 +243,7 @@ public class GameActivity extends Activity implements View.OnTouchListener {
                 if (soundSetting)
                     placingBead.start();
                 updateTurn(board.getMovingPlayer());
+                v.vibrate(300);
             }
             if (beadCount == 0)
                 gameState.setText("Perform move");
@@ -255,16 +263,24 @@ public class GameActivity extends Activity implements View.OnTouchListener {
                 try {
                     gameState.setText("Perform move");
                     flingType = "";
+                    String oldBeadConfig = board.getBeadConfiguration();
                     String input = String.valueOf(board.getNumberOfPlayers()) + String.valueOf(board.getMovingPlayer()) + board.getPostionsOfHorizontalBars() + board.getPostionsOfVerticalBars() + board.getBeadConfiguration() + move;
                     Log.e("input", input);
                     board.setInput(input);
                     board = moveController.moveTest(board);
+                    String newBeadConfig = board.getBeadConfiguration();
                     boardImageSetter.setBoardImages(board, getApplicationContext(), this);
                     //setBoardImages(board);
                     barImageSetter.setBarImages(board, getApplicationContext(), this);
+                    if (!oldBeadConfig.equals(newBeadConfig)) {
+                        v.vibrate(500);
+                        if (soundSetting)
+                            wooden_fall.start();
+                    }
                     if (soundSetting)
                         movingBar.start();
                     if (!String.valueOf(board.getWinner()).equals("0")) {
+                        v.vibrate(500);
                         String[] players = new String[4];
                         players[0] = player1name;
                         players[1] = player2name;
@@ -289,6 +305,7 @@ public class GameActivity extends Activity implements View.OnTouchListener {
                     if (soundSetting)
                         invalidMove.start();
                     e.printStackTrace();
+                    v.vibrate(200);
                     gameState.setText(e.getMessage() + ". Try Again!");
                     /*Toast toast = Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT);
                     toast.show();*/
