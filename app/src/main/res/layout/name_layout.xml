@@ -155,6 +155,8 @@
             android:layout_gravity="bottom"
             android:onClick="onClick"
             android:text="Play"
+            android:background="@drawable/score1"
+            android:textSize="35sp"
             />
     </LinearLayout>
 </LinearLayout>

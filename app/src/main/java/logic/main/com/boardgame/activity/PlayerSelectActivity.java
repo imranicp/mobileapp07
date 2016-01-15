@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -94,6 +95,9 @@ public class PlayerSelectActivity extends Activity {
         //assigning the AutoCompleteTextView resource for player 4 name
         player4_name = (AutoCompleteTextView) findViewById(R.id.player4_name);
 
+        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/flash.ttf");
+        TextView tv=(TextView) findViewById(R.id.playButton);
+        tv.setTypeface(font);
         //initializing the DB manager object for this activity
         dataBaseHelper = new DatabaseManager(this);
 
@@ -216,7 +220,6 @@ public class PlayerSelectActivity extends Activity {
         //finishing the activity
         finish();
     }
-
     //on click of the play button the game activity must be triggered if all the eligible player names are entered
     public void onClick(View v) {
 
