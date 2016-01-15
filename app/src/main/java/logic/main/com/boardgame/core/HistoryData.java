@@ -1,12 +1,23 @@
 package logic.main.com.boardgame.core;
 
-
+//this class is used to create objects for the HISTORY TABLE in the database
 public class HistoryData {
+
+    //the player1 name
     private String player1;
+
+    //the player2 name
     private String player2;
+
+    //the player3 name
     private String player3;
+
+    //the player4 name
     private String player4;
+
+    //the winner name
     private String winner;
+
 
     public String getPlayer2() {
         return player2;

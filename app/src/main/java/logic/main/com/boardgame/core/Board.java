@@ -2,38 +2,75 @@ package logic.main.com.boardgame.core;
 
 public class Board {
 
-	private String input;
-	private String output;
-	private int numberOfPlayers;
-	private int movingPlayer;
-	private String postionsOfHorizontalBars;
-	private String postionsOfVerticalBars;
-	private String sequenceOfMoves;
-	private String boardConfiguration;
-	private String beadConfiguration;
-	private boolean playerOne;
-	private boolean playerTwo;
-	private boolean playerThree;
-	private boolean playerFour;
-	private String moveOne;
-	private String moveTwo;
-	private String moveThree;
-	private String moveFour;
-	private int winner;
-	private int playerCount;
-	private int lastMovingPlayer;
-	private String exceptionMessage;
+    //the input for the game has numberOfPlayers,MovingPlayer,board configuration,bead configuration,and the move to be performed
+    private String input;
+
+    //the output for the game has numberOfPlayers,MovingPlayer,board configuration,bead configuration,
+    private String output;
+
+    //the numberOfPlayers
+    private int numberOfPlayers;
+
+    //the player who is making the move
+    private int movingPlayer;
+
+    //the positions of horizontal bars
+    private String postionsOfHorizontalBars;
+
+    //the positions of vertical bars
+    private String postionsOfVerticalBars;
+
+    //the sequence of moves to be performed
+    private String sequenceOfMoves;
+
+    //the board configuration
+    private String boardConfiguration;
+
+    //the bead configuration
+    private String beadConfiguration;
+
+    //this boolean value signifies whether the player one is playing the game or not true(yes) false(no)
+    private boolean playerOne;
+
+    //this boolean value signifies whether the player two is playing the game or not true(yes) false(no)
+    private boolean playerTwo;
+
+    //this boolean value signifies whether the player three is playing the game or not true(yes) false(no)
+    private boolean playerThree;
+
+    //this boolean value signifies whether the player four is playing the game or not true(yes) false(no)
+    private boolean playerFour;
 
 
+    //the history of moves which were previously performed move +player number
 
-	/**
-	 * @param playerOne
-	 * @param playerTwo
-	 * @param playerThree
-	 * @param playerFour
-	 */
+    //the last move
+    private String moveOne;
 
-	public Board() {
+    //the second last move
+    private String moveTwo;
+
+    //the third last move
+    private String moveThree;
+
+    //the fourth last move
+    private String moveFour;
+
+    //player number of the winner of the game
+    private int winner;
+
+    //the total number of players currently playing the game
+    private int playerCount;
+
+    //the player number who last performed the move
+    private int lastMovingPlayer;
+
+    //the exception message which has to be displayed
+    private String exceptionMessage;
+
+    //board object constructor
+    //by default there must 2 players in the game
+    public Board() {
 		super();
 		this.playerCount = 2;
 		this.playerOne = true;
@@ -312,18 +349,13 @@ public class Board {
 		this.winner = winner;
 	}
 
-	/**
-	 * @return the count
-	 */
-	public int getPlayerCount() {
+
+    public int getPlayerCount() {
 		return playerCount;
 	}
 
-	/**
-	 * @param count
-	 *            the count to set
-	 */
-	public void setPlayerCount(int playerCount) {
+
+    public void setPlayerCount(int playerCount) {
 		this.playerCount = playerCount;
 	}
 

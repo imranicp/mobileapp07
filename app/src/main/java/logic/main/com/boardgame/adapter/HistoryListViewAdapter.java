@@ -49,7 +49,7 @@ public class HistoryListViewAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
+        System.out.println("getview:" + position + " " + convertView);
 
         LayoutInflater inflater = activity.getLayoutInflater();
         ViewHolder holder;

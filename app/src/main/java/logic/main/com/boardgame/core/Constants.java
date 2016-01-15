@@ -1,7 +1,8 @@
 package logic.main.com.boardgame.core;
 
 public class Constants {
-	public static final String gamePattern = "[234][1234][012]{7}[012]{7}[01234]{49}([hv][1234567][io])*";
+    //file stores all the strings which are used in the game, including regular expressions
+    public static final String gamePattern = "[234][1234][012]{7}[012]{7}[01234]{49}([hv][1234567][io])*";
 	public static final String movePattern = "(?<=\\G...)";
 	public static final String horizontalBar = "xoxoxoxoxxooxooxoxxoooxoooxxoxoxoxoxxoooooooxxxoooxoxxxooxoxoxx";
 	public static final String verticalBar = "xooooxoxxxoooxxooxxoxooxoxxxooxxoooxxxoooxoxxxxoooooxxxooxooxox";
