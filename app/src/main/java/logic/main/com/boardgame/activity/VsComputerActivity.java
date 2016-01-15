@@ -169,13 +169,13 @@ public class VsComputerActivity extends Activity implements View.OnTouchListener
         CustomTextView player4_name = (CustomTextView) findViewById(R.id.player4text);
 
         //getting the name of player 1 from the intent extra
-        player1name = "Human";
+        player1name = "HUMAN";
 
         //setting the name of player 1 in the textview
         player1_name.setText(player1name);
 
         //getting the name of player 2 from the intent extra
-        player2name = "Bot";
+        player2name = "BOT";
 
         //setting the name of player 2 in the textview
         player2_name.setText(player2name);
@@ -245,31 +245,76 @@ public class VsComputerActivity extends Activity implements View.OnTouchListener
 
     }
 
+    //onTouch function is the function which determines which move is performed on the board
+    //it understands the motionEvent and the view which is touched on the screen
     @Override
     public boolean onTouch(View view, MotionEvent event) {
-        Resources res = view.getResources();     // get resources
-        String idString = res.getResourceEntryName(view.getId());
+        //when a touch operation is performed the view which is touched
+        // it's id will be coming as a parameter to the onTouch event
+
+        //setting the values for the various sounds which are produced due to motion events
+
+        //setting moving bar sound
         final MediaPlayer movingBar = MediaPlayer.create(this, R.raw.moving_bars_sound);
+
+        //setting the on Completion Listener for the media player
         movingBar.setOnCompletionListener(new OnCompletionListener());
+
+        //setting placing bead sound
         final MediaPlayer placingBead = MediaPlayer.create(this, R.raw.placing_bead_sound);
+
+        //setting the on Completion Listener for the media player
         placingBead.setOnCompletionListener(new OnCompletionListener());
+
+        //setting invalid move sound
         final MediaPlayer invalidMove = MediaPlayer.create(this, R.raw.invalid_move_sound);
+
+        //setting the on Completion Listener for the media player
         invalidMove.setOnCompletionListener(new OnCompletionListener());
+
+        //setting gameOver sound
         final MediaPlayer gameOver = MediaPlayer.create(this, R.raw.game_over_sound);
+
+        //setting the on Completion Listener for the media player
         gameOver.setOnCompletionListener(new OnCompletionListener());
+
+        //setting bead fall sound
         final MediaPlayer wooden_fall = MediaPlayer.create(this, R.raw.wooden_fall);
+
+        //setting the on Completion Listener for the media player
         wooden_fall.setOnCompletionListener(new OnCompletionListener());
+
+        // getting the resources which are attached to the view
+        Resources res = view.getResources();
+
+        //this is a reverse call which is used to get the resource entry name of the using its id
+        String idString = res.getResourceEntryName(view.getId());
+
+        //get the tag which is associated with the view
         String tag = (String) view.getTag();
-        Log.e("id", idString);
+
+
+        //the following occurs only when there are beads left to be placed on the board and the winner is not decided
+
+
         //User places beads
+        //if the number of players is 2 and the bead count for a 2 player game is not 0 which means a bead can be placed
         if (board.getNumberOfPlayers() == 2 && !(beadCount2 == 0) && !winnerDecided) {
 
+            //get the moving player number
             int movingPlayer = board.getMovingPlayer();
+
+
             if (movingPlayer == 1) {
 
+                //calling the place bead function which takes the id of the view on which the touch even happens
+                //this function also decrements the count of bead left on a successful placement
                 beadCount2 = beadPlacer.placeBeads(beadCount2, tag, view.getId(), board, this);
+
+                //updating the bead count
                 beadCount = beadCount2;
             }
+
             //Computer places beads
             if (movingPlayer == 2) {
 
@@ -303,30 +348,61 @@ public class VsComputerActivity extends Activity implements View.OnTouchListener
 
             }
 
+            //if the move has been performed means the turn has to be updated and
+            // moving player should be the next eligible player
             if (movingPlayer != board.getMovingPlayer()) {
+                //if the soundSetting is true: play the sound
                 if (soundSetting)
                     placingBead.start();
+
+                //update the player who must play next
                 updateTurn(board.getMovingPlayer());
+
+                //vibrate
                 v.vibrate(300);
             }
+
+            //when all beads are placed then the board is ready for the moves to be performed
             if (beadCount == 0)
+                //setting game state
                 gameState.setText("Perform move");
+
         }
 
+        //trigger the gesture detector for the onFling gesture detection
+        gdt.onTouchEvent(event);
 
+        //kinds of flings
+        //topToBottom,bottomToTop : these two set of gestures will performed on vertical bars
+        // rightToLeft,leftToRight: these two set of gestures will performed on horizontal bars
 
-       gdt.onTouchEvent(event);
+        //if there is any kind of valid fling performed after all bead are placed and the winner is not decided yet
+        //then it can possibly be a  move on the board
+        if ((flingType.equals("topToBottom") || flingType.equals("bottomToTop") ||
+                flingType.equals("rightToLeft") || flingType.equals("leftToRight")) && beadCount == 0 && !winnerDecided) {
 
-        if ((flingType.equals("topToBottom") || flingType.equals("bottomToTop") || flingType.equals("rightToLeft") || flingType.equals("leftToRight")) && beadCount == 0 && !winnerDecided) {
             Log.e("flingid", idString);
+
             Log.e("flingtag", (String) view.getTag());
+
+            //first time when a fling is performed we need to predetermine the positions of the bead
+            //the bead config must be set taking into consideration all
+            // the beads which were placed on the board by the players
             beadConfingSetter.setBeadConfig(board, getApplicationContext(), this);
+
+            //the move generator generates a move according to the fling type which is detected on a valid bar
+            //it basically compare the type of bar and the type of fling which is performed, thus generating a possible move
             String move = moveGenerator.generateMove(view, flingType);
 
+            //if the generated move is avalid move
             if (!move.equals("")) {
 
                 try {
+
+                    //setting the game text
                     gameState.setText("Perform move");
+
+                    //resetting the fling type value
                     flingType = "";
                     if (board.getMovingPlayer() == 1) {
                         board = moveFunc(board, move);
@@ -354,6 +430,9 @@ public class VsComputerActivity extends Activity implements View.OnTouchListener
                 if (board.getMovingPlayer() == 2) {
                     VsComputer vsComputer = new VsComputer();
                     String move = vsComputer.computermove(board);
+
+                    gameState.setText(move + " performed by BOT. Your turn");
+
                     board = moveFunc(board, move);
                     /*Log.e("test i am in 2:", String.valueOf(board.getMovingPlayer()));
 
@@ -385,8 +464,7 @@ public class VsComputerActivity extends Activity implements View.OnTouchListener
 
 public Board moveFunc(Board board,String move) throws Exception {
 
-    MoveController moveController=new MoveController();
-    String oldBeadConfig = board.getBeadConfiguration();
+
     final MediaPlayer movingBar = MediaPlayer.create(this, R.raw.moving_bars_sound);
     movingBar.setOnCompletionListener(new OnCompletionListener());
     final MediaPlayer gameOver = MediaPlayer.create(this, R.raw.game_over_sound);
@@ -394,37 +472,90 @@ public Board moveFunc(Board board,String move) throws Exception {
     final MediaPlayer wooden_fall = MediaPlayer.create(this, R.raw.wooden_fall);
     wooden_fall.setOnCompletionListener(new OnCompletionListener());
 
-    String input = String.valueOf(board.getNumberOfPlayers()) + String.valueOf(board.getMovingPlayer()) + board.getPostionsOfHorizontalBars() + board.getPostionsOfVerticalBars() + board.getBeadConfiguration() + move;
+    MoveController moveController = new MoveController();
+    //getting the old bead configuration before a move is performed
+    //this is required to check whether on a successful move performed a bead falls or not
+    String oldBeadConfig = board.getBeadConfiguration();
+
+    //the input is constucrted taking into consideration all the parts of the board required to perform a move
+    String input = String.valueOf(board.getNumberOfPlayers()) + String.valueOf(board.getMovingPlayer()) +
+            board.getPostionsOfHorizontalBars() + board.getPostionsOfVerticalBars() + board.getBeadConfiguration()
+            + move;
+
     Log.e("input", input);
+
+    //setting the input to the board object
     board.setInput(input);
+
+    //performing the move using the moveTest function
+    //this function can throw the invalid moves as excepiton which are collected as messages for users
     board = moveController.moveTest(board);
+
+    //after a successful move the new bead configuration is taken into consideration
     String newBeadConfig = board.getBeadConfiguration();
+
+    //as the move is successful the images of the tiles on the screen are redrawn according to the condition after the
+    // move is performed
     boardImageSetter.setBoardImages(board, getApplicationContext(), this);
 
+    //as the move is successful the images of the bar on the screen are redrawn according to the condition after the
+    // move is performed
     barImageSetter.setBarImages(board, getApplicationContext(), this);
 
+    //the old bead config and new bead configs are matched to check whether a bead has fallen or not
+    //if a bead falls
     if (!oldBeadConfig.equals(newBeadConfig)) {
+        //vibrate
         v.vibrate(500);
         if (soundSetting)
+            //if the soundSetting is true: play the sound
             wooden_fall.start();
     }
+
     if (soundSetting)
+        //if the soundSetting is true: play the moving bar sound as the move is successful
         movingBar.start();
+
+    //when there is a winner in the game the winner variable in the board object will be either 1,2,3,4
+    //means the value will not be 0 anymore
+    //this means the game has ended
     if (!String.valueOf(board.getWinner()).equals("0")) {
+
+        //vibrate
         v.vibrate(500);
+
+        //take the names of all the players who were playing the game
+        //these names are taken to add in the history of game
         String[] players = new String[4];
+
+        //add player 1 name
         players[0] = player1name;
+
+        //add player 2 name
         players[1] = player2name;
 
         if (soundSetting)
+            //if the soundSetting is true: play game over sound
             gameOver.start();
+
+        //update the score in database and save the history of game
+        //upon updation the gameOver activity is triggered
         dataBaseHelper.updateScore(board, players, this, continueMusic);
+
+        //setting the winner decided value as true
         winnerDecided = true;
+
+        //finishing the activity
         finish();
 
     }
+
+    //upon successful moves some bead might fall which means the scores in the score panel must be updated
     updateScores(board.getBeadConfiguration());
+
+    //the turn must be passed on to the next eligible player
     updateTurn(board.getMovingPlayer());
+
     Log.e("newConfig", board.getOutput());
 
     return board;

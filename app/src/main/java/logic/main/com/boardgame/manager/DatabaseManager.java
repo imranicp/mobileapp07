@@ -85,6 +85,9 @@ public class DatabaseManager {
         //the winner for whom the score has to be updated
         String winner = "";
 
+        //boolean variable which has aiGame value
+        boolean aiGame = false;
+
         // the value of i is used to get the winning player number from the board object
         int i = 1;
 
@@ -94,6 +97,11 @@ public class DatabaseManager {
             //if the player value is not null, we check whether it is the winner or not
             if (player != null) {
 
+                //if there is a player named bot then its an AI game
+                if (player.equals("BOT")) {
+                    //set aiGame to true
+                    aiGame = true;
+                }
                 //if the value is equal to i the i-1 position in the players array will be the winner
                 if (board.getWinner() == i) {
 
@@ -160,6 +168,7 @@ public class DatabaseManager {
         //and also showing the scores of the players who played the round
         Intent intent = new Intent(mainActivity.getApplicationContext(), GameOverActivity.class);
 
+
         //adding the winner name
         intent.putExtra(KEY_WINNER, winner);
 
@@ -174,6 +183,9 @@ public class DatabaseManager {
 
         //adding the player 4 name
         intent.putExtra(KEY_PLAYER4, players[3]);
+
+        intent.putExtra("aiGame", aiGame);
+
 
         //adding the continue music variable value which holds whether the music is on or off
         intent.putExtra("continueMusic", continueMusic);

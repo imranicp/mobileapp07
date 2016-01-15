@@ -455,9 +455,14 @@ public class VsComputer {
             //return the best move value
             return bestMove;
         }
+        String anyProbableMove = "";
 
-        //move made randomly as we were not able to find a best moves were found
-        String anyProbableMove = probableMoveList.get(randInt(0, probableMoveList.size() - 1));
+        if (!probableMoveList.isEmpty()) {
+            //move made randomly as we were not able to find a best moves were found
+            anyProbableMove = probableMoveList.get(randInt(0, probableMoveList.size() - 1));
+        } else {
+            Log.e("move on", board.getMoveOne());
+        }
 
         Log.e("anyProbableMove", anyProbableMove);
         Log.e("majboori", anyProbableMove);

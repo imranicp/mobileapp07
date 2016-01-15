@@ -41,6 +41,9 @@ public class GameOverActivity extends Activity {
     //the String to which the values from the intent extra will be set
     String player1, player2, player3, player4;
 
+    //the aiGame boolean variable
+    boolean aiGame;
+
     //the number of players in the game, value comes from the intent extra
     int numberOfPlayers;
 
@@ -112,6 +115,9 @@ public class GameOverActivity extends Activity {
 
         //getting the winner value which is passed as an extra to the intent
         String winner = getIntent().getExtras().getString(KEY_WINNER);
+
+        //determine whether the game which has ended was an AI Game or not
+        aiGame = getIntent().getExtras().getBoolean("aiGame");
 
         //getting the player 1 name value which is passed as an extra to the intent
         player1 = getIntent().getExtras().getString(KEY_PLAYER1);
@@ -212,10 +218,19 @@ public class GameOverActivity extends Activity {
     //when the button play again is pressed then the
     // Game activity is called back with the same parameters as before
     public void playAgain(View view) {
+        //the intent to be sent
+        Intent intent;
 
-        //creating  game activity intent
-        Intent intent = new Intent(this, GameActivity.class);
+        //if it is aiGame send VsComputer Activity
+        if (aiGame) {
 
+            //intent set to VsComputer Activity
+            intent = new Intent(this, VsComputerActivity.class);
+        } else {
+
+            //creating  game activity intent
+            intent = new Intent(this, GameActivity.class);
+        }
         //adding number of player as intent extra
         intent.putExtra("numberOfPlayers", numberOfPlayers);
 
