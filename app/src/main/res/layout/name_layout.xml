@@ -29,13 +29,13 @@
 
         <logic.main.com.boardgame.custom.CustomAutoCompleteTextView
             android:id="@+id/player1_name"
-            android:layout_width="150dp"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginBottom="5dp"
             android:background="@android:color/transparent"
-            android:hint="Player"
+            android:hint="Player 1"
             android:imeOptions="actionNext"
-            android:maxLength="10"
+            android:maxLength="8"
             android:maxLines="1"
             android:singleLine="true"
             android:textColorHint="@android:color/white"
@@ -63,12 +63,12 @@
 
         <logic.main.com.boardgame.custom.CustomAutoCompleteTextView
             android:id="@+id/player2_name"
-            android:layout_width="150dp"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginBottom="5dp"
             android:background="@android:color/transparent"
-            android:hint="Player"
-            android:maxLength="10"
+            android:hint="Player 2"
+            android:maxLength="8"
             android:maxLines="1"
             android:singleLine="true"
             android:textColorHint="@android:color/white"
@@ -96,12 +96,12 @@
 
         <logic.main.com.boardgame.custom.CustomAutoCompleteTextView
             android:id="@+id/player3_name"
-            android:layout_width="150dp"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginBottom="5dp"
             android:background="@android:color/transparent"
-            android:hint="Player"
-            android:maxLength="10"
+            android:hint="Player 3"
+            android:maxLength="8"
             android:maxLines="1"
             android:singleLine="true"
             android:textColorHint="@android:color/white"
@@ -129,12 +129,12 @@
 
         <logic.main.com.boardgame.custom.CustomAutoCompleteTextView
             android:id="@+id/player4_name"
-            android:layout_width="150dp"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginBottom="5dp"
             android:background="@android:color/transparent"
-            android:hint="Player"
-            android:maxLength="10"
+            android:hint="Player 4"
+            android:maxLength="8"
             android:maxLines="1"
             android:singleLine="true"
             android:textColorHint="@android:color/white"
@@ -153,9 +153,9 @@
             android:layout_width="150dp"
             android:layout_height="60dp"
             android:layout_gravity="bottom"
+            android:background="@drawable/score1"
             android:onClick="onClick"
             android:text="Play"
-            android:background="@drawable/score1"
             android:textSize="35sp"
             />
     </LinearLayout>
