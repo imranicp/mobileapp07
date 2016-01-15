@@ -64,7 +64,7 @@
             android:layout_marginLeft="95dp"
             android:layout_marginTop="20dp"
             android:layout_toRightOf="@id/player1tile"
-            android:src="@drawable/player2inactv"
+            android:src="@drawable/aiactive"
             />
 
         <logic.main.com.boardgame.custom.CustomTextView
