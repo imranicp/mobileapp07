@@ -20,7 +20,7 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginTop="10dp"
-        android:background="#46495A" />
+        android:background="#000000" />
 
     <logic.main.com.boardgame.custom.CustomTextView
         android:id="@+id/name2"
@@ -39,7 +39,7 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginTop="10dp"
-        android:background="#46495A" />
+        android:background="#000000" />
 
     <logic.main.com.boardgame.custom.CustomTextView
         android:id="@+id/name3"
@@ -58,7 +58,7 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginTop="10dp"
-        android:background="#46495A" />
+        android:background="#000000" />
 
     <logic.main.com.boardgame.custom.CustomTextView
         android:id="@+id/name4"
