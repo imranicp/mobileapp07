@@ -608,6 +608,39 @@ public class GameActivity extends Activity implements View.OnTouchListener {
                     //upon successful moves some bead might fall which means the scores in the score panel must be updated
                     updateScores(board.getBeadConfiguration());
 
+                    //the name of the player who performed the last move
+                    String player_name = "";
+
+                    //setting the value of player_name according the player which performed the last move
+
+                    //for player 1
+                    if (board.getMoveOne().charAt(3) == '1')
+                        //player 1 name
+                        player_name = player1name;
+
+                    //for player 2
+                    if (board.getMoveOne().charAt(3) == '2')
+                        //player 2 name
+                        player_name = player2name;
+
+                    //for player 3
+                    if (board.getMoveOne().charAt(3) == '3')
+
+                        //player 3 name
+                        player_name = player3name;
+
+                    //player 4 name
+                    if (board.getMoveOne().charAt(3) == '4')
+
+                        //player 4 name
+                        player_name = player4name;
+
+                    //setting the move text
+                    move = getMoveType(move);
+
+                    //setting the text to the performed move
+                    gameState.setText(move + " moved by " + player_name);
+
                     //the turn must be passed on to the next eligible player
                     updateTurn(board.getMovingPlayer());
 
@@ -632,6 +665,17 @@ public class GameActivity extends Activity implements View.OnTouchListener {
         }
 
         return true;
+    }
+
+    public String getMoveType(String move) {
+        String move_message = "";
+        if (move.charAt(0) == 'v') {
+            move_message = move_message + "Vertical Bar " + move.charAt(1);
+        } else {
+            move_message = move_message + "Horizontal Bar " + move.charAt(1);
+        }
+
+        return move_message;
     }
 
 

@@ -201,6 +201,8 @@ public class VsComputerActivity extends Activity implements View.OnTouchListener
         //the image of the player 2 tile
         player2tile = (ImageView) findViewById(R.id.player2tile);
 
+        player2tile.setImageResource(R.drawable.aiinactive);
+
         //the image of the player 3 tile
         player3tile = (ImageView) findViewById(R.id.player3tile);
 
@@ -647,12 +649,12 @@ public Board moveFunc(Board board,String move) throws Exception {
     private void updateTurn(int movingPlayer) {
         if (movingPlayer == 1) {
             player1tile.setImageResource(R.drawable.player1actv);
-            player2tile.setImageResource(R.drawable.player2inactv);
+            player2tile.setImageResource(R.drawable.aiinactive);
 
         }
         if (movingPlayer == 2) {
             player1tile.setImageResource(R.drawable.player1inactv);
-            player2tile.setImageResource(R.drawable.player2actv);
+            player2tile.setImageResource(R.drawable.aiactive);
 
         }
     }
