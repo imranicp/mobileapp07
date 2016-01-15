@@ -1,7 +1,6 @@
 package logic.main.com.boardgame.activity;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.res.Resources;
 import android.media.MediaPlayer;
@@ -31,29 +30,74 @@ import logic.main.com.boardgame.support.BeadConfingSetter;
 import logic.main.com.boardgame.support.BeadPlacer;
 import logic.main.com.boardgame.support.BoardImageSetter;
 
+//this class implements the Human vs Computer game functionality
 public class VsComputerActivity extends Activity implements View.OnTouchListener {
+
+    //the minimum swipe distance which must be covered along either x-axis or y-axis
+    //this variable will be used to determine the user gesture
     private static final int SWIPE_MIN_DISTANCE = 30;
+
+    //the minimum threshold velocity with which the move must be
+    // performed inorder for it to qualify as valid gesture
     private static final int SWIPE_THRESHOLD_VELOCITY = 100;
+
+    //the gesture detector class object
     GestureDetector gdt;
+
+    //the motion gesture which is done by the user
     String flingType = "";
-    int beadCount2 = 10;
-    int beadCount;
+
+    //the vibrator class object
     Vibrator v;
+
+    //the bead count variable which signifies the number of beads available for a 2 player game
+    int beadCount2 = 10;
+
+    //the count of available beads which can be placed on the board tiles
+    int beadCount;
+
+    //the board object on which will be used as a core to the game.
+    //all representation will be set in the board object
+    //the game literally is on the whole described by this object
     Board board = new Board();
+
+    //the board image setter object which is used to set the images on the board accordingly
     BoardImageSetter boardImageSetter = new BoardImageSetter();
+
+    //the bar image setter object which is used to set the images on the bar according to the bar positions
     BarImageSetter barImageSetter = new BarImageSetter();
+
+    //bead placer is used to place a bead at the particular tile on which the user has placed the bead
     BeadPlacer beadPlacer = new BeadPlacer();
+
+    //beadConfingSetter is used to generate the configuration of the beads on the board, according to bead placement on the board
     BeadConfingSetter beadConfingSetter = new BeadConfingSetter();
-    MoveController moveController = new MoveController();
-    ProgressDialog dialog;
+
+    //image view object which is used to set images to resources
     ImageView imageView;
-    ImageView player1tile, player2tile, player3tile, player4tile;
+
+
     boolean winnerDecided = false;
+
+    //names of the players which are entered in the previous activity
     String player1name, player2name;
+
+    //database helper is used to query the database
     DatabaseManager dataBaseHelper;
+
     CustomFontTextView gameState;
+
+    //the preference setting variables which are used for music and sound
     boolean continueMusic, soundSetting;
+
+    //move generator is used to generate a move based on the motion event (gesture) of the user
     MoveGenerator moveGenerator=new MoveGenerator();
+
+    //the text view which is used to show the player score
+    CustomTextView player1txtscr, player2txtscr, player3txtscr, player4txtscr;
+
+    //the image tile of the players, these images are toggled according to the moving player
+    ImageView player1tile, player2tile, player3tile, player4tile;
 
     public static int randInt(int min, int max, String[] availablepositions) {
         Random rand = new Random();
@@ -68,49 +112,126 @@ public class VsComputerActivity extends Activity implements View.OnTouchListener
     }
 
 
-    @Override
-    protected void onPause() {
-        super.onPause();
 
-        continueMusic = false;
-        MusicManager.pause();
-
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        continueMusic = dataBaseHelper.getMusicValue();
-
-        if (continueMusic) {
-            MusicManager.start(this, MusicManager.MUSIC_MENU);
-        } else {
-            MusicManager.pause();
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.vs_computer);
 
+        super.onCreate(savedInstanceState);
+
+        //setting the game layout
+        setContentView(R.layout.game_layout);
+
+        //initializing the datebase helper
         dataBaseHelper = new DatabaseManager(this);
 
+        //initializing the gesture detector object using a Gesture Listener class
+        //this gesture listener class uses the onFling function to determine
+        // the type of gesture/motion event which is performed
         gdt = new GestureDetector(this, new GestureListener());
+
+        //getting the sound setting preference which is saved in the database
         soundSetting = dataBaseHelper.getSoundValue();
+
+        //initializing the vibrator object
         v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
+        //board config generator generates the config of the board using the position of the horizontal and vertical bars
         BoardConf boardConf = new BoardConf();
+
+        //getting the continueMusic value from the intent extra
         continueMusic = getIntent().getExtras().getBoolean("continueMusic");
+
+        //getting the numberOfPlayers which are going to play from the intent extra
         int value = getIntent().getExtras().getInt("numberOfPlayers");
+
+        //setting the number of players in the board object
         board.setNumberOfPlayers(value);
+
+        //setting the player who starts performing the move to player 1
         board.setMovingPlayer(1);
 
+        //initializing the game state with the resource id
+        //game state shows the messages
+        gameState = (CustomFontTextView) findViewById(R.id.gamestate);
+
+
+        //the TextView which shows the player 1 name
         CustomTextView player1_name = (CustomTextView) findViewById(R.id.player1text);
 
+        //the TextView which shows the player 2 name
+        CustomTextView player2_name = (CustomTextView) findViewById(R.id.player2text);
+
+        //the TextView which shows the player 3 name
+        CustomTextView player3_name = (CustomTextView) findViewById(R.id.player3text);
+
+        //the TextView which shows the player 4 name
+        CustomTextView player4_name = (CustomTextView) findViewById(R.id.player4text);
+
+        //getting the name of player 1 from the intent extra
+        player1name = "Human";
+
+        //setting the name of player 1 in the textview
+        player1_name.setText(player1name);
+
+        //getting the name of player 2 from the intent extra
+        player2name = "Bot";
+
+        //setting the name of player 2 in the textview
+        player2_name.setText(player2name);
+
+        //initializing the score displayer for player 1
+        player1txtscr = (CustomTextView) findViewById(R.id.player1scoredisplay);
+
+        //initializing the score displayer for player 2
+        player2txtscr = (CustomTextView) findViewById(R.id.player2scoredisplay);
+
+        //initializing the score displayer for player 3
+        player3txtscr = (CustomTextView) findViewById(R.id.player3scoredisplay);
+
+        //initializing the score displayer for player 4
+        player4txtscr = (CustomTextView) findViewById(R.id.player4scoredisplay);
+
+        //the image of the player 1 tile
+        player1tile = (ImageView) findViewById(R.id.player1tile);
+
+        //the image of the player 2 tile
+        player2tile = (ImageView) findViewById(R.id.player2tile);
+
+        //the image of the player 3 tile
+        player3tile = (ImageView) findViewById(R.id.player3tile);
+
+        //the image of the player 4 tile
+        player4tile = (ImageView) findViewById(R.id.player4tile);
+
+
+        //images of the player 1 and 2 scores are by default visible
+        //as there will be minimum 2 players
+
+        //the image of the player 3 score display
+        ImageView player3score = (ImageView) findViewById(R.id.player3score);
+
+        //setting all player 3 related views to invisible
+        player3tile.setVisibility(View.INVISIBLE);
+        player3_name.setVisibility(View.INVISIBLE);
+        player3score.setVisibility(View.INVISIBLE);
+        player3txtscr.setVisibility(View.INVISIBLE);
+
+        //the image of the player 4 score display
+        ImageView player4score = (ImageView) findViewById(R.id.player4score);
+
+        //setting all player 4 related views to invisible
+        player4tile.setVisibility(View.INVISIBLE);
+        player4_name.setVisibility(View.INVISIBLE);
+        player4score.setVisibility(View.INVISIBLE);
+        player4txtscr.setVisibility(View.INVISIBLE);
+        //setting score of player 1
+        player1txtscr.setText("5");
+
+        //setting score of player 2
+        player2txtscr.setText("5");
+
         gameState = (CustomFontTextView) findViewById(R.id.gamestate);
-        player1name = getIntent().getExtras().getString("player1");
 
         BarConfigGenerator barConfigGenerator = new BarConfigGenerator();
         board = barConfigGenerator.generateBarConfig(board);
@@ -302,12 +423,33 @@ public Board moveFunc(Board board,String move) throws Exception {
         finish();
 
     }
-//    updateScores(board.getBeadConfiguration());
- //   updateTurn(board.getMovingPlayer());
+    updateScores(board.getBeadConfiguration());
+    updateTurn(board.getMovingPlayer());
     Log.e("newConfig", board.getOutput());
 
     return board;
 }
+
+    //this function updates the score value on the screen by counting the bead for a particular player in the bead configuration
+    private void updateScores(String beadConfiguration) {
+
+        //in this function we just check what is difference is the length
+        // of the strings if the bead number of a particular player is subtracted
+        //this will give us the player's score
+
+        //setting player 1 score
+        player1txtscr.setText(String.valueOf(beadConfiguration.length() - beadConfiguration.replace("1", "").length()));
+
+        //setting player 2 score
+        player2txtscr.setText(String.valueOf(beadConfiguration.length() - beadConfiguration.replace("2", "").length()));
+
+        //setting player 3 score
+        player3txtscr.setText(String.valueOf(beadConfiguration.length() - beadConfiguration.replace("3", "").length()));
+
+        //setting player 4 score
+        player4txtscr.setText(String.valueOf(beadConfiguration.length() - beadConfiguration.replace("4", "").length()));
+
+    }
 
     private String botPlacesBead(Board board) {
 
@@ -365,7 +507,7 @@ public Board moveFunc(Board board,String move) throws Exception {
     }
 
     private void updateTurn(int movingPlayer) {
-/*        if (movingPlayer == 1) {
+        if (movingPlayer == 1) {
             player1tile.setImageResource(R.drawable.player1actv);
             player2tile.setImageResource(R.drawable.player2inactv);
 
@@ -374,7 +516,50 @@ public Board moveFunc(Board board,String move) throws Exception {
             player1tile.setImageResource(R.drawable.player1inactv);
             player2tile.setImageResource(R.drawable.player2actv);
 
-        }*/
+        }
+    }
+
+    //the onPause functionality of every activity implements that
+    //when the home button is pressed or when the activity goes in background then
+    //the music playback must be paused.
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        //setting continueMusic to false
+        continueMusic = false;
+
+        //calling music manager to pause the music
+        MusicManager.pause();
+
+
+    }
+
+    //the onResume functionality of every activity implements that
+    //when the activity resumes or when the activity comes in foreground then
+    //the music playback must be resumed if the value for continueMusic is true,
+    // or else it should remain false.
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        //the value for continueMusic is retrieved from the database
+        //as preferences are saved in the database
+        continueMusic = dataBaseHelper.getMusicValue();
+
+        //checking if continue music is true or not
+        //if continue music is true then the music must continue playing
+        if (continueMusic) {
+
+            //calling music manager to start the music
+            MusicManager.start(this, MusicManager.MUSIC_MENU);
+
+        } else {
+
+            //calling music manager to pause the music
+            MusicManager.pause();
+
+        }
     }
 
     private class OnCompletionListener implements MediaPlayer.OnCompletionListener {
@@ -387,31 +572,39 @@ public Board moveFunc(Board board,String move) throws Exception {
 
     private class GestureListener extends GestureDetector.SimpleOnGestureListener {
 
+        //onFling function which determines the flingtype
+        //a fling type is decided on the basis that when the finger moves on the screen
+        // how much it have moved in the x direction and the y direction
+        //the difference in the x or y valuesmust be greater than the minimum swiping distance
+        //also the velocity with which the swipe is performed should be greater than the threshold velocity
+
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+
             if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                // imageView.setBackgroundResource(R.drawable.ho2);
+
+                //set flingtype to right to left as the movement is in negative x direction
                 flingType = "rightToLeft";
-                /*Toast toast = Toast.makeText(getApplicationContext(), "right to left", Toast.LENGTH_SHORT);
-                toast.show();*/
+
             } else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                // imageView.setBackgroundResource(R.drawable.hi2);
+
+                //set flingtype to left to right as the movement is in positive x direction
                 flingType = "leftToRight";
-                /*Toast toast = Toast.makeText(getApplicationContext(), "left to right", Toast.LENGTH_SHORT);
-                toast.show();*/
+
             }
 
             if (e1.getY() - e2.getY() > SWIPE_MIN_DISTANCE && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
-                //flingView.setImageResource(R.drawable.topcenter);
+
+                //set flingtype to bottom to top as the movement is in positive y direction
                 flingType = "bottomToTop";
-                /*Toast toast = Toast.makeText(getApplicationContext(), "bottom to top", Toast.LENGTH_SHORT);
-                toast.show();*/
+
             } else if (e2.getY() - e1.getY() > SWIPE_MIN_DISTANCE && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
-                // flingView.setImageResource(R.drawable.topinner);
+
+                //set flingtype to top to bottom as the movement is in negative y direction
                 flingType = "topToBottom";
-                /*Toast toast = Toast.makeText(getApplicationContext(), "top to bottom", Toast.LENGTH_SHORT);
-                toast.show();*/
+
             }
+
             return false;
         }
     }
