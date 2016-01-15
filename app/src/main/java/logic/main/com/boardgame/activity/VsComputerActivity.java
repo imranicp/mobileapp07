@@ -1,7 +1,10 @@
 package logic.main.com.boardgame.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -244,6 +247,7 @@ public class VsComputerActivity extends Activity implements View.OnTouchListener
         barImageSetter.setBarImages(board, getApplicationContext(), this);
 
     }
+
 
     //onTouch function is the function which determines which move is performed on the board
     //it understands the motionEvent and the view which is touched on the screen
@@ -582,6 +586,9 @@ public Board moveFunc(Board board,String move) throws Exception {
 
     }
 
+    //the bot randomly places a bead at the available positions on the board
+    //the bot first determines whether the tile has a possibility of placing a bead or not
+    //once he has determined all the available positions then it chooses a random position from the list of available position
     private String botPlacesBead(Board board) {
 
         String[] availablepositions = findAvailablePositions(board);
@@ -691,6 +698,35 @@ public Board moveFunc(Board board,String move) throws Exception {
             MusicManager.pause();
 
         }
+    }
+
+    //on back press event of the game if triggered when the back button is pressed
+    //in this case we would like to ask the user whether quitting option should be triggered or not
+    @Override
+    public void onBackPressed() {
+        //create menu activity intent in case of game quit
+        final Intent intent = new Intent(this, MenuActivity.class);
+        new AlertDialog.Builder(this)
+
+                //title to be quit game
+                .setTitle("Quit Game?")
+
+                        //question whether to quit or not
+                .setMessage("Are you sure you want to Quit?")
+
+                        //on no press do nothing
+                .setNegativeButton(android.R.string.no, null)
+
+                        //on yes press finish the current activity
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+
+                        finish();
+                        //show the dialog
+                    }
+                }).create().show();
     }
 
     private class OnCompletionListener implements MediaPlayer.OnCompletionListener {
