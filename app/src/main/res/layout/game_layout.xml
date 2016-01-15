@@ -165,7 +165,7 @@
             android:layout_toRightOf="@+id/player4score"
             android:text="Pawan"
             android:textColor="@color/fontcolor"
-            android:textSize="12sp"
+            android:textSize="11sp"
 
             />
         <ImageView
