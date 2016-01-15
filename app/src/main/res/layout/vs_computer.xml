@@ -3,32 +3,196 @@
     android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fullbg1">
-
+    android:background="@drawable/fullbg1"
+    >
     <RelativeLayout
         android:id="@+id/score"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <ImageView
             android:id="@+id/player1tile"
-            android:layout_width="90dp"
-            android:layout_height="45dp"
+            android:layout_width="110dp"
+            android:layout_height="55dp"
+            android:layout_marginBottom="-10dp"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="25dp"
-            android:src="@drawable/player1actv" />
+            android:layout_marginTop="20dp"
+            android:src="@drawable/player1actv"
+            />
+
+        <logic.main.com.boardgame.custom.CustomTextView
+            android:id="@+id/player1text"
+            android:layout_width="65dp"
+            android:layout_height="35dp"
+            android:layout_above="@+id/player3tile"
+            android:layout_marginBottom="-5dp"
+            android:layout_marginLeft="40dp"
+            android:text="Muhammad"
+            android:textColor="@color/fontcolor"
+            android:textSize="11sp"
+
+            />
+
 
         <ImageView
             android:id="@+id/player1score"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="25dp"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginBottom="-10dp"
+            android:layout_marginTop="20dp"
             android:layout_toRightOf="@id/player1tile"
-            android:src="@drawable/playerscore" />
+            android:src="@drawable/playerscore"
+            />
 
+        <logic.main.com.boardgame.custom.CustomTextView
+            android:id="@+id/player1scoredisplay"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_above="@+id/player3tile"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="22dp"
+            android:layout_toRightOf="@id/player1tile"
+            android:text="1"
+            android:textColor="@color/fontcolor"
+            android:textSize="15sp"
+
+            />
+        <ImageView
+            android:id="@+id/player2tile"
+            android:layout_width="110dp"
+            android:layout_height="55dp"
+            android:layout_marginBottom="-10dp"
+            android:layout_marginLeft="95dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@id/player1tile"
+            android:src="@drawable/player2inactv"
+            />
+
+        <logic.main.com.boardgame.custom.CustomTextView
+            android:id="@+id/player2text"
+            android:layout_width="65dp"
+            android:layout_height="35dp"
+            android:layout_above="@+id/player3tile"
+            android:layout_marginBottom="-5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/player2score"
+            android:text="Jain"
+            android:textColor="@color/fontcolor"
+            android:textSize="11sp"
+
+            />
+        <ImageView
+            android:id="@+id/player2score"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginBottom="-10dp"
+            android:layout_marginLeft="-10dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@id/player1score"
+            android:src="@drawable/playerscore"
+            />
+
+        <logic.main.com.boardgame.custom.CustomTextView
+            android:id="@+id/player2scoredisplay"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_above="@+id/player3score"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="12dp"
+            android:layout_toLeftOf="@id/player2text"
+            android:text="2"
+            android:textColor="@color/fontcolor"
+            android:textSize="15sp"
+
+            />
+        <ImageView
+            android:id="@+id/player3tile"
+            android:layout_width="110dp"
+            android:layout_height="55dp"
+            android:layout_below="@id/player1tile"
+            android:layout_marginLeft="30dp"
+            android:src="@drawable/player3inactv"
+            />
+
+        <logic.main.com.boardgame.custom.CustomTextView
+            android:id="@+id/player3text"
+            android:layout_width="65dp"
+            android:layout_height="35dp"
+            android:layout_below="@+id/player1tile"
+            android:layout_marginLeft="39dp"
+            android:layout_marginTop="15dp"
+            android:text="Vahid"
+            android:textColor="@color/fontcolor"
+            android:textSize="11sp"
+            />
+        <ImageView
+            android:id="@+id/player3score"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_below="@id/player1score"
+            android:layout_toRightOf="@id/player3tile"
+            android:src="@drawable/playerscore"
+            />
+
+        <logic.main.com.boardgame.custom.CustomTextView
+            android:id="@+id/player3scoredisplay"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_below="@+id/player1scoredisplay"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="13dp"
+            android:layout_toRightOf="@id/player3tile"
+            android:text="3"
+            android:textColor="@color/fontcolor"
+            android:textSize="15sp"
+            />
+        <ImageView
+            android:id="@+id/player4tile"
+            android:layout_width="110dp"
+            android:layout_height="55dp"
+            android:layout_below="@id/player2tile"
+            android:layout_marginLeft="95dp"
+            android:layout_toRightOf="@id/player3tile"
+            android:src="@drawable/player4inactv"
+            />
+
+        <logic.main.com.boardgame.custom.CustomTextView
+            android:id="@+id/player4text"
+            android:layout_width="65dp"
+            android:layout_height="35dp"
+            android:layout_below="@id/player2tile"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@+id/player4score"
+            android:text="Pawan"
+            android:textColor="@color/fontcolor"
+            android:textSize="12sp"
+
+            />
+        <ImageView
+            android:id="@+id/player4score"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_below="@id/player2score"
+            android:layout_marginLeft="-10dp"
+            android:layout_toRightOf="@id/player3score"
+            android:src="@drawable/playerscore"
+            />
+
+        <logic.main.com.boardgame.custom.CustomTextView
+            android:id="@+id/player4scoredisplay"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_below="@id/player2score"
+            android:layout_marginBottom="18dp"
+            android:layout_marginRight="13dp"
+            android:layout_marginTop="13dp"
+            android:layout_toLeftOf="@id/player4text"
+            android:text="4"
+            android:textColor="@color/fontcolor"
+            android:textSize="15sp"
+            />
 
     </RelativeLayout>
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -42,7 +206,6 @@
             android:layout_centerVertical="true"
             android:layout_toStartOf="@+id/a2"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/a2"
             android:layout_width="35dp"
@@ -51,7 +214,6 @@
             android:layout_gravity="center"
             android:layout_toStartOf="@+id/a3"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/a3"
             android:layout_width="35dp"
@@ -60,7 +222,6 @@
             android:layout_gravity="center"
             android:layout_toStartOf="@+id/a4"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/a4"
             android:layout_width="35dp"
@@ -69,7 +230,6 @@
             android:layout_gravity="center"
             android:layout_toStartOf="@+id/a5"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/a5"
             android:layout_width="35dp"
@@ -78,7 +238,6 @@
             android:layout_gravity="center"
             android:layout_toStartOf="@+id/a6"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/a6"
             android:layout_width="35dp"
@@ -87,7 +246,6 @@
             android:layout_gravity="center"
             android:layout_toStartOf="@+id/a7"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/a7"
             android:layout_width="35dp"
@@ -106,7 +264,6 @@
             android:layout_alignStart="@+id/a1"
             android:layout_gravity="center"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/b2"
             android:layout_width="35dp"
@@ -115,7 +272,6 @@
             android:layout_gravity="center"
             android:layout_toStartOf="@+id/a3"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/b3"
             android:layout_width="35dp"
@@ -124,7 +280,6 @@
             android:layout_below="@+id/a3"
             android:layout_gravity="center"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/b4"
             android:layout_width="35dp"
@@ -133,7 +288,6 @@
             android:layout_gravity="center"
             android:layout_toEndOf="@+id/a3"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/b5"
             android:layout_width="35dp"
@@ -142,7 +296,6 @@
             android:layout_alignStart="@+id/a5"
             android:layout_gravity="center"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/b6"
             android:layout_width="35dp"
@@ -151,7 +304,6 @@
             android:layout_gravity="center"
             android:layout_toEndOf="@+id/a5"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/b7"
             android:layout_width="35dp"
@@ -170,7 +322,6 @@
             android:layout_gravity="center"
             android:layout_toStartOf="@+id/b2"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/c2"
             android:layout_width="35dp"
@@ -179,7 +330,6 @@
             android:layout_gravity="center"
             android:layout_toStartOf="@+id/b3"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/c3"
             android:layout_width="35dp"
@@ -188,7 +338,6 @@
             android:layout_below="@+id/b3"
             android:layout_gravity="center"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/c4"
             android:layout_width="35dp"
@@ -197,7 +346,6 @@
             android:layout_gravity="center"
             android:layout_toStartOf="@+id/b5"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/c5"
             android:layout_width="35dp"
@@ -206,7 +354,6 @@
             android:layout_gravity="center"
             android:layout_toStartOf="@+id/b6"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/c6"
             android:layout_width="35dp"
@@ -215,7 +362,6 @@
             android:layout_gravity="center"
             android:layout_toStartOf="@+id/b7"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/c7"
             android:layout_width="35dp"
@@ -234,7 +380,6 @@
             android:layout_gravity="center"
             android:layout_toStartOf="@+id/c2"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/d2"
             android:layout_width="35dp"
@@ -243,7 +388,6 @@
             android:layout_gravity="center"
             android:layout_toEndOf="@+id/c1"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/d3"
             android:layout_width="35dp"
@@ -252,7 +396,6 @@
             android:layout_gravity="center"
             android:layout_toStartOf="@+id/c4"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/d4"
             android:layout_width="35dp"
@@ -261,7 +404,6 @@
             android:layout_below="@+id/c4"
             android:layout_gravity="center"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/d5"
             android:layout_width="35dp"
@@ -270,7 +412,6 @@
             android:layout_gravity="center"
             android:layout_toEndOf="@+id/c4"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/d6"
             android:layout_width="35dp"
@@ -279,7 +420,6 @@
             android:layout_gravity="center"
             android:layout_toStartOf="@+id/c7"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/d7"
             android:layout_width="35dp"
@@ -298,7 +438,6 @@
             android:layout_alignTop="@+id/e2"
             android:layout_gravity="center"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/e2"
             android:layout_width="35dp"
@@ -307,7 +446,6 @@
             android:layout_below="@+id/d2"
             android:layout_gravity="center"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/e3"
             android:layout_width="35dp"
@@ -316,7 +454,6 @@
             android:layout_gravity="center"
             android:layout_toEndOf="@+id/d2"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/e4"
             android:layout_width="35dp"
@@ -325,7 +462,6 @@
             android:layout_gravity="center"
             android:layout_toEndOf="@+id/e3"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/e5"
             android:layout_width="35dp"
@@ -334,7 +470,6 @@
             android:layout_gravity="center"
             android:layout_toEndOf="@+id/d4"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/e6"
             android:layout_width="35dp"
@@ -343,7 +478,6 @@
             android:layout_gravity="center"
             android:layout_toEndOf="@+id/d5"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/e7"
             android:layout_width="35dp"
@@ -362,7 +496,6 @@
             android:layout_gravity="center"
             android:layout_toStartOf="@+id/e2"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/f2"
             android:layout_width="35dp"
@@ -371,7 +504,6 @@
             android:layout_below="@+id/e2"
             android:layout_gravity="center"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/f3"
             android:layout_width="35dp"
@@ -380,7 +512,6 @@
             android:layout_gravity="center"
             android:layout_toStartOf="@+id/e4"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/f4"
             android:layout_width="35dp"
@@ -389,7 +520,6 @@
             android:layout_gravity="center"
             android:layout_toEndOf="@+id/e3"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/f5"
             android:layout_width="35dp"
@@ -398,7 +528,6 @@
             android:layout_below="@+id/e5"
             android:layout_gravity="center"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/f6"
             android:layout_width="35dp"
@@ -407,7 +536,6 @@
             android:layout_gravity="center"
             android:layout_toStartOf="@+id/e7"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/f7"
             android:layout_width="35dp"
@@ -426,7 +554,6 @@
             android:layout_gravity="center"
             android:layout_toStartOf="@+id/g2"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/g2"
             android:layout_width="35dp"
@@ -435,7 +562,6 @@
             android:layout_gravity="center"
             android:layout_toEndOf="@+id/f1"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/g3"
             android:layout_width="35dp"
@@ -444,7 +570,6 @@
             android:layout_gravity="center"
             android:layout_toEndOf="@+id/g2"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/g4"
             android:layout_width="35dp"
@@ -453,7 +578,6 @@
             android:layout_gravity="center"
             android:layout_toEndOf="@+id/f3"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/g5"
             android:layout_width="35dp"
@@ -462,7 +586,6 @@
             android:layout_gravity="center"
             android:layout_toStartOf="@+id/g6"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/g6"
             android:layout_width="35dp"
@@ -471,7 +594,6 @@
             android:layout_below="@+id/f6"
             android:layout_gravity="center"
             android:src="@drawable/hole" />
-
         <ImageView
             android:id="@+id/g7"
             android:layout_width="35dp"
@@ -490,7 +612,6 @@
             android:layout_gravity="center"
             android:layout_toEndOf="@+id/l1"
             android:src="@drawable/topinner" />
-
         <ImageView
             android:id="@+id/top2"
             android:layout_width="35dp"
@@ -499,7 +620,6 @@
             android:layout_gravity="center"
             android:layout_toEndOf="@+id/a1"
             android:src="@drawable/topinner" />
-
         <ImageView
             android:id="@+id/top3"
             android:layout_width="35dp"
@@ -508,7 +628,6 @@
             android:layout_gravity="center"
             android:layout_toEndOf="@+id/a2"
             android:src="@drawable/topinner" />
-
         <ImageView
             android:id="@+id/top4"
             android:layout_width="35dp"
@@ -517,7 +636,6 @@
             android:layout_gravity="center"
             android:layout_toEndOf="@+id/a3"
             android:src="@drawable/topinner" />
-
         <ImageView
             android:id="@+id/top5"
             android:layout_width="35dp"
@@ -526,7 +644,6 @@
             android:layout_gravity="center"
             android:layout_toEndOf="@+id/a4"
             android:src="@drawable/topinner" />
-
         <ImageView
             android:id="@+id/top6"
             android:layout_width="35dp"
@@ -535,7 +652,6 @@
             android:layout_gravity="center"
             android:layout_toEndOf="@+id/a5"
             android:src="@drawable/topinner" />
-
         <ImageView
             android:id="@+id/top7"
             android:layout_width="35dp"
@@ -554,7 +670,6 @@
             android:layout_gravity="center"
             android:layout_toStartOf="@+id/bot2"
             android:src="@drawable/bottominner" />
-
         <ImageView
             android:id="@+id/bot2"
             android:layout_width="35dp"
@@ -563,7 +678,6 @@
             android:layout_gravity="center"
             android:layout_toEndOf="@+id/g1"
             android:src="@drawable/bottominner" />
-
         <ImageView
             android:id="@+id/bot3"
             android:layout_width="35dp"
@@ -572,7 +686,6 @@
             android:layout_alignTop="@+id/bot6"
             android:layout_gravity="center"
             android:src="@drawable/bottominner" />
-
         <ImageView
             android:id="@+id/bot4"
             android:layout_width="35dp"
@@ -581,7 +694,6 @@
             android:layout_gravity="center"
             android:layout_toStartOf="@+id/g5"
             android:src="@drawable/bottominner" />
-
         <ImageView
             android:id="@+id/bot5"
             android:layout_width="35dp"
@@ -590,7 +702,6 @@
             android:layout_gravity="center"
             android:layout_toStartOf="@+id/bot6"
             android:src="@drawable/bottominner" />
-
         <ImageView
             android:id="@+id/bot6"
             android:layout_width="35dp"
@@ -599,11 +710,10 @@
             android:layout_below="@+id/g6"
             android:layout_gravity="center"
             android:src="@drawable/bottominner" />
-
         <ImageView
             android:id="@+id/bot7"
             android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_height="40dp"
             android:layout_alignStart="@+id/g7"
             android:layout_below="@+id/g7"
             android:layout_gravity="center"
@@ -620,7 +730,6 @@
             android:layout_gravity="center"
             android:layout_toStartOf="@+id/a1"
             android:src="@drawable/leftinner" />
-
         <ImageView
             android:id="@+id/l2"
             android:layout_width="40dp"
@@ -629,7 +738,6 @@
             android:layout_gravity="center"
             android:layout_toStartOf="@+id/a1"
             android:src="@drawable/leftinner" />
-
         <ImageView
             android:id="@+id/l3"
             android:layout_width="40dp"
@@ -638,7 +746,6 @@
             android:layout_gravity="center"
             android:layout_toStartOf="@+id/c1"
             android:src="@drawable/leftinner" />
-
         <ImageView
             android:id="@+id/l4"
             android:layout_width="40dp"
@@ -647,7 +754,6 @@
             android:layout_gravity="center"
             android:layout_toStartOf="@+id/d1"
             android:src="@drawable/leftinner" />
-
         <ImageView
             android:id="@+id/l5"
             android:layout_width="40dp"
@@ -656,7 +762,6 @@
             android:layout_alignTop="@+id/e1"
             android:layout_gravity="center"
             android:src="@drawable/leftinner" />
-
         <ImageView
             android:id="@+id/l6"
             android:layout_width="40dp"
@@ -665,7 +770,6 @@
             android:layout_alignEnd="@+id/l5"
             android:layout_gravity="center"
             android:src="@drawable/leftinner" />
-
         <ImageView
             android:id="@+id/l7"
             android:layout_width="40dp"
@@ -684,7 +788,6 @@
             android:layout_alignStart="@+id/r2"
             android:layout_gravity="center"
             android:src="@drawable/rightinner" />
-
         <ImageView
             android:id="@+id/r2"
             android:layout_width="40dp"
@@ -693,7 +796,6 @@
             android:layout_below="@+id/a7"
             android:layout_gravity="center"
             android:src="@drawable/rightinner" />
-
         <ImageView
             android:id="@+id/r3"
             android:layout_width="40dp"
@@ -702,7 +804,6 @@
             android:layout_below="@+id/b7"
             android:layout_gravity="center"
             android:src="@drawable/rightinner" />
-
         <ImageView
             android:id="@+id/r4"
             android:layout_width="40dp"
@@ -711,7 +812,6 @@
             android:layout_below="@+id/r3"
             android:layout_gravity="center"
             android:src="@drawable/rightinner" />
-
         <ImageView
             android:id="@+id/r5"
             android:layout_width="40dp"
@@ -720,7 +820,6 @@
             android:layout_below="@+id/r4"
             android:layout_gravity="center"
             android:src="@drawable/rightinner" />
-
         <ImageView
             android:id="@+id/r6"
             android:layout_width="40dp"
@@ -729,7 +828,6 @@
             android:layout_below="@+id/r5"
             android:layout_gravity="center"
             android:src="@drawable/rightinner" />
-
         <ImageView
             android:id="@+id/r7"
             android:layout_width="40dp"
@@ -741,7 +839,34 @@
             android:layout_toEndOf="@id/g7"
             android:src="@drawable/rightinner" />
 
+
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textAlignment="center">
 
+
+        <logic.main.com.boardgame.custom.CustomFontTextView
+            android:id="@+id/gamestate"
+            android:layout_width="wrap_content"
+            android:layout_height="180dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="448dp"
+            android:background="@drawable/score1"
+            android:gravity="center_horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="10dp"
+            android:paddingTop="30dp"
+            android:text="@string/placebead"
+            android:textAlignment="center"
+            android:textColor="#22150c"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
 </RelativeLayout>
