@@ -5,7 +5,7 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.AutoCompleteTextView;
 
-
+//custom AutoCompleteTextView which uses the flash font
 public class CustomAutoCompleteTextView extends AutoCompleteTextView {
 
     public CustomAutoCompleteTextView(Context context, AttributeSet attrs) {

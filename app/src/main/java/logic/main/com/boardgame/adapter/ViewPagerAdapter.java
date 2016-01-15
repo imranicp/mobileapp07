@@ -1,8 +1,5 @@
 package logic.main.com.boardgame.adapter;
 
-/**
- * Created by Muhammad-Imran on 1/13/2016.
- */
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -48,8 +45,11 @@ public class ViewPagerAdapter extends PagerAdapter {
         TextView txtdesc;
         ImageView image2;
 
+        //getting the service from the context
         inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        //inflating the view
         View itemView = inflater.inflate(R.layout.viewpager_item, container,
                 false);
 
@@ -61,6 +61,7 @@ public class ViewPagerAdapter extends PagerAdapter {
 
         // Locate the ImageView in viewpager_item.xml
         image2 = (ImageView) itemView.findViewById(R.id.image1);
+
         // Capture position and set to the ImageView
         image2.setImageResource(image[position]);
 

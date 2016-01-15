@@ -18,6 +18,7 @@ import logic.main.com.boardgame.core.Board;
 import logic.main.com.boardgame.core.HistoryData;
 import logic.main.com.boardgame.core.PlayerScore;
 
+//the database Manager class which connects to the Db to execute queries
 public class DatabaseManager {
 
     // All Static variables

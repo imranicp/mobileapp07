@@ -6,6 +6,8 @@ import android.util.AttributeSet;
 import android.widget.TextView;
 
 
+//a custom text view class which uses the flash font file
+//it extends the TextView view
 public class CustomTextView extends TextView {
 
     public CustomTextView(Context context,AttributeSet attrs){

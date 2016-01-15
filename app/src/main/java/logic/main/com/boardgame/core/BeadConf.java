@@ -1,5 +1,6 @@
 package logic.main.com.boardgame.core;
 
+// this class holds the function which generates the bead configuration
 public class BeadConf {
 
 	/**
