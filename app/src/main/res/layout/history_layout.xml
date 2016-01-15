@@ -8,9 +8,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="3.20"
-        android:background="@drawable/winner2"
+        android:background="@drawable/score1"
         android:gravity="center"
-        android:text="Imran"
+        android:text=""
         android:textColor="@color/fontcolor"
         android:textSize="15sp"
         android:textStyle="bold" />

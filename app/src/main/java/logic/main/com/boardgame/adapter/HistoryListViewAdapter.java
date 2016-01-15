@@ -109,6 +109,12 @@ public class HistoryListViewAdapter extends BaseAdapter {
             //setting the name of the player 4 to textView name4
             holder.txtPlayer4 = (TextView) convertView.findViewById(R.id.name4);
 
+
+            holder.separator1 = (View) convertView.findViewById(R.id.seprt2nd);
+
+            holder.separator2 = (View) convertView.findViewById(R.id.seprt3rd);
+
+
             //setting tag to the convertView
             convertView.setTag(holder);
 
@@ -124,32 +130,89 @@ public class HistoryListViewAdapter extends BaseAdapter {
         //setting the text of the player 1 name textView
         holder.txtPlayer1.setText(map.get("PLAYER1"));
 
+        //if winner if player 1 then winner image must be set
+        if (map.get("PLAYER1").equals(map.get("WINNER"))) {
+
+            //setting winner image
+            holder.txtPlayer1.setBackgroundResource(R.drawable.winner2);
+
+        }
+
+
         //setting the text of the player 2 name textView
         holder.txtPlayer2.setText(map.get("PLAYER2"));
+
+        //if winner if player 2 then winner image must be set
+        if (map.get("PLAYER2").equals(map.get("WINNER"))) {
+
+            //setting winner image
+            holder.txtPlayer2.setBackgroundResource(R.drawable.winner2);
+        }
 
         //if there was a player 3 in the game then his name is also set in the text View, or else
         //the textview is made invisible
         if (map.get("PLAYER3") != "") {
 
             //setting player 3 name
+            holder.txtPlayer3.setVisibility(View.VISIBLE);
             holder.txtPlayer3.setText(map.get("PLAYER3"));
+
+            //setting separator visibility to visible
+            holder.separator1.setVisibility(View.VISIBLE);
+
+            //setting separator visibility to invisible
+            holder.separator2.setVisibility(View.INVISIBLE);
+
+            //if winner if player 3 then winner image must be set
+            if (map.get("PLAYER3").equals(map.get("WINNER"))) {
+
+                //setting winner image
+                holder.txtPlayer3.setBackgroundResource(R.drawable.winner2);
+
+            }
+
         } else {
 
             //setting player 3 textView invisible
             holder.txtPlayer3.setVisibility(View.INVISIBLE);
 
+            //setting separator visibility to invisible
+            holder.separator1.setVisibility(View.INVISIBLE);
+
+            //setting separator visibility to invisible
+            holder.separator2.setVisibility(View.INVISIBLE);
+
+
         }
+
 
         //if there was a player 3 in the game then his name is also set in the text View, or else
         //the textview is made invisible
         if (map.get("PLAYER4") != "") {
-            //setting player 3 name
+            //setting player 4 name
+            holder.txtPlayer4.setVisibility(View.VISIBLE);
             holder.txtPlayer4.setText(map.get("PLAYER4"));
+
+            //setting separator visibility to visible
+            holder.separator1.setVisibility(View.VISIBLE);
+
+            //setting separator visibility to visible
+            holder.separator2.setVisibility(View.VISIBLE);
+
+            //if winner if player 4 then winner image must be set
+            if (map.get("PLAYER4").equals(map.get("WINNER"))) {
+
+                //setting winner image
+                holder.txtPlayer4.setBackgroundResource(R.drawable.winner2);
+            }
 
         } else {
 
             //setting player 4 textView invisible
             holder.txtPlayer4.setVisibility(View.INVISIBLE);
+
+            //setting separator visibility to invisible
+            holder.separator2.setVisibility(View.INVISIBLE);
         }
 
         //returning the convertView
@@ -170,6 +233,13 @@ public class HistoryListViewAdapter extends BaseAdapter {
         
         //Player 4 Name
         TextView txtPlayer4;
+
+        //separator one which is between player two and player three
+        View separator1;
+
+        //separator two which is between player three and player four
+        View separator2;
+
     }
 
 
