@@ -25,27 +25,51 @@ public class HelpActivity extends Activity {
     PageIndicator mIndicator;
     boolean continueMusic;
     DatabaseManager dataBaseHelper;
+
+
+    //the onPause functionality of every activity implements that
+    //when the home button is pressed or when the activity goes in background then
+    //the music playback must be paused.
     @Override
     protected void onPause() {
         super.onPause();
 
+        //setting continueMusic to false
         continueMusic = false;
+
+        //calling music manager to pause the music
         MusicManager.pause();
 
 
     }
 
+    //the onResume functionality of every activity implements that
+    //when the activity resumes or when the activity comes in foreground then
+    //the music playback must be resumed if the value for continueMusic is true,
+    // or else it should remain false.
     @Override
     protected void onResume() {
         super.onResume();
+
+        //the value for continueMusic is retrieved from the database
+        //as preferences are saved in the database
         continueMusic = dataBaseHelper.getMusicValue();
 
+        //checking if continue music is true or not
+        //if continue music is true then the music must continue playing
         if (continueMusic) {
+
+            //calling music manager to start the music
             MusicManager.start(this, MusicManager.MUSIC_MENU);
+
         } else {
+
+            //calling music manager to pause the music
             MusicManager.pause();
+
         }
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,13 +81,13 @@ public class HelpActivity extends Activity {
         // Generate sample data
         number = new String[] { "1", "2", "3", "4", "5", "6", "7"};
 
-        desc = new String[] { "when you start a game a Random Board Configuration is generated the board is empty right now,",
+        desc = new String[]{"when you start the game a random tile configuration is generated as this one,",
                 "Place beads by tapping on horizontal bar tile or vertical bar tile, you can not place a bead on a hole. each player places bead one by one,",
-                "After placement of beads you can play the game. you can move the vertical top bar to downwards or upwards position,",
-                "You can also move the horizontal bars to outwards position or inwards,",
+                "After placement of beads you can perform the moves . you can perform the moves by moving the bars,",
+                "You can move the horizontal bars from right to left and vice versa,",
                 "The same goes for horizontal bar on the other side, you can move it outwards or inwards",
-                "Bottom bar can be moved upwards or downwards",
-                "when the beads of all the other players are fallen and one players beads are remaining on the board he wins"};
+                "vertical bars can be moved upside or downside",
+                "when the beads of only one players is remaining on the board he wins"};
 
 
         image = new int[] { R.drawable.hlp1, R.drawable.hlp2,
