@@ -58,8 +58,8 @@ public class HelpActivity extends Activity {
         number = new String[] { "1", "2", "3", "4", "5", "6", "7"};
 
         desc = new String[] { "when you start a game a Random Board Configuration is generated the board is empty right now,",
-                "Place beads by tapping on horizontal bar tile or vertical bar tile, you can not place a bead on hole. each player places bead one bye one,",
-                "After placement of beads you can play the game. you can move the vertical top bar to downwards position,",
+                "Place beads by tapping on horizontal bar tile or vertical bar tile, you can not place a bead on a hole. each player places bead one by one,",
+                "After placement of beads you can play the game. you can move the vertical top bar to downwards or upwards position,",
                 "You can also move the horizontal bars to outwards position or inwards,",
                 "The same goes for horizontal bar on the other side, you can move it outwards or inwards",
                 "Bottom bar can be moved upwards or downwards",
