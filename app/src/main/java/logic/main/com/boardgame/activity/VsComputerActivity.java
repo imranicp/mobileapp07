@@ -226,15 +226,21 @@ public class VsComputerActivity extends Activity implements View.OnTouchListener
 
             }
         }
+
         if( beadCount == 0 && !winnerDecided && board.getMovingPlayer() == 2) {
             try {
                 gameState.setText("Perform move");
                 if (board.getMovingPlayer() == 2) {
-                    Log.e("test i am in 2:", String.valueOf(board.getMovingPlayer()));
                     VsComputer vsComputer = new VsComputer();
-                    String move1 = vsComputer.computermove(board);
+                    String move = vsComputer.computermove(board);
+                    board = moveFunc(board, move);
+                    /*Log.e("test i am in 2:", String.valueOf(board.getMovingPlayer()));
+
+
                      Log.e("test move1: ", move1);
-                    board = moveFunc(board, move1);
+                   */
+
+
                 }
             } catch (Exception e) {
 
@@ -257,6 +263,7 @@ public class VsComputerActivity extends Activity implements View.OnTouchListener
 
 
 public Board moveFunc(Board board,String move) throws Exception {
+
     MoveController moveController=new MoveController();
     String oldBeadConfig = board.getBeadConfiguration();
     final MediaPlayer movingBar = MediaPlayer.create(this, R.raw.moving_bars_sound);
@@ -265,6 +272,7 @@ public Board moveFunc(Board board,String move) throws Exception {
     gameOver.setOnCompletionListener(new OnCompletionListener());
     final MediaPlayer wooden_fall = MediaPlayer.create(this, R.raw.wooden_fall);
     wooden_fall.setOnCompletionListener(new OnCompletionListener());
+
     String input = String.valueOf(board.getNumberOfPlayers()) + String.valueOf(board.getMovingPlayer()) + board.getPostionsOfHorizontalBars() + board.getPostionsOfVerticalBars() + board.getBeadConfiguration() + move;
     Log.e("input", input);
     board.setInput(input);
@@ -273,6 +281,7 @@ public Board moveFunc(Board board,String move) throws Exception {
     boardImageSetter.setBoardImages(board, getApplicationContext(), this);
 
     barImageSetter.setBarImages(board, getApplicationContext(), this);
+
     if (!oldBeadConfig.equals(newBeadConfig)) {
         v.vibrate(500);
         if (soundSetting)
@@ -299,20 +308,13 @@ public Board moveFunc(Board board,String move) throws Exception {
 
     return board;
 }
-    private class OnCompletionListener implements MediaPlayer.OnCompletionListener {
-        @Override
-        public void onCompletion(MediaPlayer mp) {
-            mp.stop();
-            mp.release();
-        }
-    }
 
     private String botPlacesBead(Board board) {
 
         String[] availablepositions = findAvailablePositions(board);
 
         int beadPos = randInt(0, 49, availablepositions);
-         
+
         return availablepositions[beadPos];
     }
 
@@ -362,6 +364,26 @@ public Board moveFunc(Board board,String move) throws Exception {
         return pos;
     }
 
+    private void updateTurn(int movingPlayer) {
+/*        if (movingPlayer == 1) {
+            player1tile.setImageResource(R.drawable.player1actv);
+            player2tile.setImageResource(R.drawable.player2inactv);
+
+        }
+        if (movingPlayer == 2) {
+            player1tile.setImageResource(R.drawable.player1inactv);
+            player2tile.setImageResource(R.drawable.player2actv);
+
+        }*/
+    }
+
+    private class OnCompletionListener implements MediaPlayer.OnCompletionListener {
+        @Override
+        public void onCompletion(MediaPlayer mp) {
+            mp.stop();
+            mp.release();
+        }
+    }
 
     private class GestureListener extends GestureDetector.SimpleOnGestureListener {
 
@@ -392,18 +414,6 @@ public Board moveFunc(Board board,String move) throws Exception {
             }
             return false;
         }
-    }
-    private void updateTurn(int movingPlayer) {
-/*        if (movingPlayer == 1) {
-            player1tile.setImageResource(R.drawable.player1actv);
-            player2tile.setImageResource(R.drawable.player2inactv);
-
-        }
-        if (movingPlayer == 2) {
-            player1tile.setImageResource(R.drawable.player1inactv);
-            player2tile.setImageResource(R.drawable.player2actv);
-
-        }*/
     }
 }
 

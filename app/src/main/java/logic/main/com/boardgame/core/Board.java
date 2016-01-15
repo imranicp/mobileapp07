@@ -374,4 +374,6 @@ public class Board {
 	public void setExceptionMessage(String exceptionMessage) {
 		this.exceptionMessage = exceptionMessage;
 	}
+
+
 }

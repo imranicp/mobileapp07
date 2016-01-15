@@ -17,7 +17,7 @@ import static logic.main.com.boardgame.R.drawable.menu_music_on;
 import static logic.main.com.boardgame.R.drawable.menu_sound_off;
 import static logic.main.com.boardgame.R.drawable.menu_sound_on;
 
-
+//This activity is the launcher activity which comes up when the game starts
 public class MenuActivity extends Activity {
     boolean continueMusic, soundSetting, exit = false;
     DatabaseManager dataBaseHelper;
