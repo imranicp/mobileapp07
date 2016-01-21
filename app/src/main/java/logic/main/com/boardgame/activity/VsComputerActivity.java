@@ -90,6 +90,9 @@ public class VsComputerActivity extends Activity implements View.OnTouchListener
 
     CustomFontTextView gameState;
 
+    //vs computer core class
+    VsComputer vsComputer;
+
     //the preference setting variables which are used for music and sound
     boolean continueMusic, soundSetting;
 
@@ -121,6 +124,9 @@ public class VsComputerActivity extends Activity implements View.OnTouchListener
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
+        //vs computer core class initialization
+        vsComputer = new VsComputer();
 
         //setting the game layout
         setContentView(R.layout.game_layout);
@@ -434,7 +440,7 @@ public class VsComputerActivity extends Activity implements View.OnTouchListener
             try {
                 gameState.setText("Perform move");
                 if (board.getMovingPlayer() == 2) {
-                    VsComputer vsComputer = new VsComputer();
+
                     String move = vsComputer.computermove(board);
 
                     gameState.setText(move + " performed by BOT. Your turn");

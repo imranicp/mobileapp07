@@ -352,12 +352,14 @@ public class VsComputer {
         int bestChangeInCount = 0;
 
         for (String suggestedMove : suggestedMoveList) {
-            Log.e("checking", "------------------------------------------------------------------");
+
 
             Log.e("suggestedMove", suggestedMove);
 
             //DummyBoard object is created
-            DummyBoard testBoard = new DummyBoard(board);
+            Board testBoard = new Board();
+
+            testBoard = initializaTestBoard(testBoard, board);
 
             //the original count of human's bead is taken into account
             int humanBeadCount = 0;
@@ -384,11 +386,11 @@ public class VsComputer {
             int changeInHumanBeadCount = 0, newHumanBeadCount = 0;
 
             //dummy controller object
-            DummyMoveController testMoveController = new DummyMoveController();
+            MoveController testMoveController = new MoveController();
             try {
 
                 //we set the output of the move into the dummy object's output
-                testBoard.setOutput(testMoveController.moveTest(testBoard.getInput()));
+                testBoard = testMoveController.moveTest(testBoard);
 
                 //we find the new bead configuration after the dummy move is performed
                 String newBeadConfiguration = testBoard.getBeadConfiguration();
@@ -440,7 +442,7 @@ public class VsComputer {
                 Log.e("notAgoodMove", suggestedMove);
 
             }
-            Log.e("checking", "------------------------------------------------------------------");
+
 
         }
 
@@ -458,17 +460,64 @@ public class VsComputer {
         String anyProbableMove = "";
 
         if (!probableMoveList.isEmpty()) {
+
             //move made randomly as we were not able to find a best moves were found
             anyProbableMove = probableMoveList.get(randInt(0, probableMoveList.size() - 1));
-        } else {
-            Log.e("move on", board.getMoveOne());
-        }
 
-        Log.e("anyProbableMove", anyProbableMove);
-        Log.e("majboori", anyProbableMove);
+        } else {
+
+            //this is for the case when there is no probable move possible
+            //when all possible moves show one or the other error
+
+            if (board.getMoveOne().charAt(1) != '7') {
+                if (board.getPostionsOfVerticalBars().charAt(6) == '2') {
+                    anyProbableMove = "v7i";
+                } else {
+                    anyProbableMove = "v7o";
+                }
+
+            } else {
+                if (board.getPostionsOfVerticalBars().charAt(0) == '2') {
+                    anyProbableMove = "v1i";
+                } else {
+                    anyProbableMove = "v1o";
+                }
+            }
+        }
 
         //the anyProbableMove is returned in case no best move is found
         return anyProbableMove;
+    }
+
+    private Board initializaTestBoard(Board testBoard, Board board) {
+
+        testBoard.setInput(board.getInput());
+        testBoard.setOutput(board.getOutput());
+        testBoard.setNumberOfPlayers(board.getNumberOfPlayers());
+
+        testBoard.setMovingPlayer(board.getMovingPlayer());
+        testBoard.setPostionsOfHorizontalBars(board.getPostionsOfHorizontalBars());
+        testBoard.setPostionsOfVerticalBars(board.getPostionsOfVerticalBars());
+        testBoard.setSequenceOfMoves(board.getSequenceOfMoves());
+
+        testBoard.setBoardConfiguration(board.getBoardConfiguration());
+        testBoard.setBeadConfiguration(board.getBeadConfiguration());
+        testBoard.setPlayerOne(board.isPlayerOne());
+        testBoard.setPlayerTwo(board.isPlayerTwo());
+        testBoard.setPlayerThree(board.isPlayerThree());
+        testBoard.setPlayerFour(board.isPlayerFour());
+
+        testBoard.setMoveOne(board.getMoveOne());
+        testBoard.setMoveTwo(board.getMoveTwo());
+        testBoard.setMoveThree(board.getMoveThree());
+        testBoard.setMoveFour(board.getMoveFour());
+        testBoard.setWinner(board.getWinner());
+        testBoard.setPlayerCount(board.getPlayerCount());
+        testBoard.setLastMovingPlayer(board.getLastMovingPlayer());
+        testBoard.setExceptionMessage(board.getExceptionMessage());
+
+
+        return testBoard;
     }
 
 
